@@ -1,0 +1,68 @@
+_src_path: /home/jessica-nash/sandbox/lesson_copier
+project_title: "AI Training for Analytics Cohort"
+project_slug: "data-analytics-lessons"
+project_tagline: "Tutorial-style lessons for AI-assisted analytics from exploration to dashboard delivery."
+authors:
+  - Jessica Nash
+author_string: "Jessica Nash"
+copyright_year: 2026
+sections:
+  - slug: session-1-foundations
+    title: "Session 1: Foundations for AI-Assisted Analytics Work"
+    include: true
+    lessons:
+      - discovery-mode
+      - prompting-planning-context
+      - environments-version-control
+      - mini-analytics-challenge
+  - slug: session-2-reusable-skills
+    title: "Session 2: Reusable Skills for Analytics Work"
+    include: true
+    lessons:
+      - skills-overview
+      - create-or-refine-eda-skill
+      - skill-testing-and-iteration
+  - slug: session-3-analysis-to-dashboard
+    title: "Session 3: From Analysis to Dashboard"
+    include: true
+    lessons:
+      - multi-agent-workflows
+      - analysis-validation-patterns
+      - dashboard-build-sprint
+  - slug: session-4-presentations-reflection
+    title: "Session 4: Dashboard Presentations and Reflection"
+    include: true
+    lessons:
+      - presentation-structure
+      - reflection-and-next-steps
+      - capstone-retrospective
+scaffold_lessons: true
+lesson_stub_style: question-driven
+include_csv_tables: true
+theme_preset: duke
+theme_registry:
+  colab:
+    css_files:
+      - custom.css
+    js_files: []
+    logo_light: images/duke-colab-logo-light.svg
+    logo_dark: images/duke-colab-logo-light.svg
+  duke:
+    css_files:
+      - custom.css
+    js_files: []
+    logo_light: images/duke_wordmark_white_cropped.svg
+    logo_dark: images/duke_wordmark_white_cropped.svg
+  flamin_hot:
+    css_files:
+      - custom.css
+      - theme-flamin-hot.css
+    js_files:
+      - theme-flamin-hot.js
+    logo_light: images/flamin-hot-tabby-logo.png
+    logo_dark: images/flamin-hot-tabby-logo.png
+sphinx_theme: pydata_sphinx_theme
+include_myst_markdown: true
+include_mermaid: true
+include_copybutton: true
+include_togglebutton: true

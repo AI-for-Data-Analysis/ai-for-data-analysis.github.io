@@ -1,0 +1,26 @@
+# GitLab CI/CD pipeline for building and deploying Sphinx docs to GitLab Pages
+
+image: python:3.13
+
+stages:
+  - deploy
+
+pages:
+  stage: deploy
+  before_script:
+    - apt-get update
+    - DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends latexmk texlive-xetex texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra fonts-open-sans
+    - rm -rf /var/lib/apt/lists/*
+  script:
+    - python -m pip install --upgrade pip
+    - python -m pip install -r requirements.txt
+    - sphinx-build -b html . _build/html
+    - sphinx-build -M latexpdf . _build
+    - mkdir -p public/latex
+    - cp -r _build/html/* public/
+    - cp _build/latex/*.pdf public/latex/
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

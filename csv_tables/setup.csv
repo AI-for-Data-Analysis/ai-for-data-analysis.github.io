@@ -1,0 +1,6 @@
+Page,Questions,Objectives
+`Set Up <setup.html>`_,"* What do I need to complete before Session 1 so my machine is workshop-ready?","* Verify core tooling: Python 3.11+, venv, pip, Node.js, npm, and VS Code
+* Check that the required tools are installed and working (Python, Node.js, npm, and VS Code)
+* Install Codex and the connector needed for the workshop
+* Sign in to Codex using the method for your Duke affiliation
+* Set up your project environment, install the required packages, and run the final setup checklist"

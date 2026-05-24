@@ -1,0 +1,74 @@
+project_title: "Assistant Workflows 101"
+project_slug: "assistant-workflows-101"
+project_tagline: "Teach how coding assistants are configured, guided, and operated."
+
+authors:
+  - "CoLab"
+  - "Jessica Nash"
+
+copyright_year: 2026
+
+sections:
+  - slug: foundations
+    title: Foundations
+    include: true
+    lessons:
+      - overview
+      - separation-test
+  - slug: codex
+    title: Codex
+    include: true
+    lessons:
+      - config
+      - skills
+      - subagents
+      - security-permissions
+      - end-to-end
+  - slug: claude-code
+    title: Claude Code
+    include: true
+    lessons:
+      - config
+      - skills
+      - subagents
+      - security-permissions
+      - end-to-end
+  - slug: best-practices
+    title: Best Practices
+    include: false
+    lessons:
+      - separation
+
+scaffold_lessons: true
+lesson_stub_style: question-driven
+include_csv_tables: true
+
+theme_preset: duke
+
+theme_registry:
+  colab:
+    css_files:
+      - custom.css
+    js_files: []
+    logo_light: images/duke-colab-logo-light.svg
+    logo_dark: images/duke-colab-logo-light.svg
+  duke:
+    css_files:
+      - custom.css
+    js_files: []
+    logo_light: images/duke_wordmark_white_cropped.svg
+    logo_dark: images/duke_wordmark_white_cropped.svg
+  flamin_hot:
+    css_files:
+      - custom.css
+      - theme-flamin-hot.css
+    js_files:
+      - theme-flamin-hot.js
+    logo_light: images/flamin-hot-tabby-logo.png
+    logo_dark: images/flamin-hot-tabby-logo.png
+
+sphinx_theme: pydata_sphinx_theme
+include_myst_markdown: true
+include_mermaid: true
+include_copybutton: true
+include_togglebutton: true
