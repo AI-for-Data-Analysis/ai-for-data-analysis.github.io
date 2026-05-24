@@ -71,6 +71,7 @@ html_theme_options = {
 pygments_style = 'friendly'
 pygments_dark_style = 'native'
 
+latex_logo = 'images/duke_wordmark_navyblue_012169.pdf'
 latex_engine = 'xelatex'
 latex_documents = [
     (

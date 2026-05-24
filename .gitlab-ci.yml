@@ -9,11 +9,12 @@ pages:
   stage: deploy
   before_script:
     - apt-get update
-    - DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends latexmk texlive-xetex texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra fonts-open-sans
+    - DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends latexmk texlive-xetex texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra fonts-open-sans fonts-freefont-otf librsvg2-bin
     - rm -rf /var/lib/apt/lists/*
   script:
     - python -m pip install --upgrade pip
     - python -m pip install -r requirements.txt
+    - rsvg-convert -f pdf -o images/duke_wordmark_navyblue_012169.pdf images/duke_wordmark_navyblue_012169.svg
     - sphinx-build -b html . _build/html
     - sphinx-build -M latexpdf . _build
     - mkdir -p public/latex
