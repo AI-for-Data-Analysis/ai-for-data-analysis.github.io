@@ -34,7 +34,7 @@ html_theme = "pydata_sphinx_theme"
 html_static_path = ['_static']
 
 
-html_logo = "images/duke_wordmark_white_cropped.svg"
+html_logo = "images/oit-logo.svg"
 
 html_css_files = [
 
@@ -50,8 +50,8 @@ html_js_files = [
 html_theme_options = {
     'logo': {
 
-        'image_light': "images/duke_wordmark_white_cropped.svg",
-        'image_dark': "images/duke_wordmark_white_cropped.svg",
+        'image_light': "images/oit-logo.svg",
+        'image_dark': "images/oit-logo.svg",
 
     },
     'icon_links': [
