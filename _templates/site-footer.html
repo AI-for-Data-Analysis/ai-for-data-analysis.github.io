@@ -1,0 +1,30 @@
+{% set duke_wordmark = pathto('_static/duke_wordmark_white_cropped.svg', 1) %}
+
+<div class="site-footer row align-items-center">
+  <div class="site-footer__content col-12 col-md-8">
+    <p>
+      Created by the <a href="https://oit.duke.edu/" target="_blank" rel="noopener">Duke University Office of Information Technology</a>.
+    </p>
+    <p>
+      The lesson materials are licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0 International License</a>.
+      You are free to adapt and share this material with attribution.
+    </p>
+
+    {% if show_sphinx %}
+    <p class="sphinx-version">
+      {% trans sphinx_version=sphinx_version|e %}Created using <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a> {{ sphinx_version }}.{% endtrans %}
+    </p>
+    {% endif %}
+
+    <p class="theme-version">
+      {% trans theme_version=theme_version|e %}Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html" target="_blank" rel="noopener">PyData Sphinx Theme</a> {{ theme_version }}.{% endtrans %}
+    </p>
+  </div>
+
+  <div class="site-footer__duke col-12 col-md-4">
+    <a href="https://duke.edu/" target="_blank" rel="noopener" title="Go to Duke University in a new tab">
+      <img src="{{ duke_wordmark }}" class="site-footer__wordmark" alt="Duke University">
+    </a>
+  </div>
+</div>

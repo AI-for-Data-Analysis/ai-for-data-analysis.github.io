@@ -39,7 +39,7 @@ sections:
 scaffold_lessons: true
 lesson_stub_style: question-driven
 include_csv_tables: true
-theme_preset: duke
+theme_preset: duke_ai
 theme_registry:
   colab:
     css_files:
@@ -53,6 +53,13 @@ theme_registry:
     js_files: []
     logo_light: images/duke_wordmark_white_cropped.svg
     logo_dark: images/duke_wordmark_white_cropped.svg
+  duke_ai:
+    css_files:
+      - custom.css
+      - theme-duke-ai.css
+    js_files: []
+    logo_light: images/ai-duke-transparent.png
+    logo_dark: images/ai-duke-transparent.png
   flamin_hot:
     css_files:
       - custom.css

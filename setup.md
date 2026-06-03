@@ -194,11 +194,16 @@ After installing Node.js and `npm`, run the checks again.
 
 ::::
 
-#### Configure npm global installs
+(troubleshoot-npm-global-installs)=
+#### Troubleshoot npm global installs
 
 Codex is installed as a global npm package. On some systems, global npm installs fail because the default global install folder requires administrator permissions.
 
-To avoid this, configure npm to install global packages into a folder in your home directory.
+:::{warning}
+Do not run the commands in this section unless an `npm install -g` command fails with a permissions error. If the global install command works, skip this section.
+:::
+
+If `npm install -g` fails because npm cannot write to the global install folder, configure npm to install global packages into a folder in your home directory, then try the failed install command again.
 
 ::::{tab-set}
 
@@ -286,6 +291,8 @@ Install the Codex command-line tool with npm:
 npm install -g @openai/codex
 ```
 
+If this command fails with a permissions error, use the steps in [Troubleshoot npm global installs](#troubleshoot-npm-global-installs), then run the install command again.
+
 Then check that the `codex` command is available:
 
 ```bash
@@ -300,37 +307,48 @@ You will also need to install a connector for Codex and the Jupyter Lab interfac
 npm install -g @zed-industries/codex-acp
 ```
 
+If this command fails with a permissions error, use the steps in [Troubleshoot npm global installs](#troubleshoot-npm-global-installs), then run the install command again.
+
 #### AI provider access
 
 This workshop uses **Codex**, OpenAI's coding agent. 
 You will be using Codex both in the JupyterLab interface with the JupyterAI plugin and in the command line interface.
-Currently, the way you should configure Codex depends on if you are affiliated with the Duke Office of Information Technology or with a campus academic department.
+We expect ChatGPT access to be available for workshop participants by the time the workshop begins.
 
-##### Duke OIT Employees
-If you are part of Duke Office of Information Technology, you can log into Codex using your Duke credentials.
-First, make sure you have access to Duke ChatGPT by [placing an order with Duke Software Manager](https://oit.duke.edu/service/chatgpt-edu/).
+First, make sure you have access to Duke ChatGPT by [placing an order with Duke Software Manager](https://oit.duke.edu/service/chatgpt-edu/), if you have not already done so.
 
-You can open codex by typing `codex` into your termina.
+Open Codex by typing `codex` into your terminal.
 
-The first time you open Codex, choose the first option "Sign in with ChatGPT". This will open a web page where you should log in to ChatGPT using your Duke NetID. 
+The first time you open Codex, choose the first option, **Sign in with ChatGPT**. This will open a web page where you should log in to ChatGPT using your Duke NetID.
 
-##### Duke Campus Affiliation
-If you are not affiliated with OIT, you unfortunately do not have access to Codex with your Duke ChatGPT account yet (hopefully this will change soon!).
+After logging in, check your login status:
 
-You will need to set up Codex to use an API key provided by Duke. 
-For this workshop, we will provide a special API key to you. 
-These will be sent privately.
-
-To use a Duke API key, you will need to edit your Codex config file. Open `~/.codex/config.toml` and add the following.
-You should replace `YOUR_LITELLM_TOKEN_HERE` with the API key provided by the workshop instructors. 
-
+```bash
+codex login status
 ```
+
+If ChatGPT login works, you can use Codex normally.
+
+```bash
+codex exec "Reply with only: Codex is working" --skip-git-repo-check
+```
+
+##### API key fallback
+
+We will provide API keys to all workshop participants. You only need to use the API key setup if you cannot log in with ChatGPT.
+
+If ChatGPT login does not work, configure Codex to use the workshop API key through a separate `litellm` profile. This keeps your default Codex setup on ChatGPT login while making the API key available when you explicitly use `--profile litellm`.
+
+Create or open `~/.codex/litellm.config.toml` and add the following. Replace `YOUR_LITELLM_TOKEN_HERE` with the API key provided by the workshop instructors.
+
+```toml
 #:schema https://developers.openai.com/codex/config-schema.json
 
 # View all configuration
 # https://github.com/openai/codex/blob/main/codex-rs/config.md
 
-# Set a default model and provider here
+# Use the Duke LiteLLM provider only when Codex is launched with:
+# codex --profile litellm
 model = "gpt-5.3-codex"
 model_provider = "litellm"
 
@@ -356,13 +374,15 @@ experimental_bearer_token = "YOUR_LITELLM_TOKEN_HERE"
 ## rate limited in certain instances
 # request_max_retries = 10
 # stream_max_retries = 10
-
-# Create custom profiles that target a model and provider
-# https://developers.openai.com/codex/config-advanced#profiles
-[profiles.gpt-5.2]
-model_provider = "litellm"
-model = "gpt-5.2"
 ```
+
+Then test the API-key profile:
+
+```bash
+codex exec --profile litellm "Reply with only: Codex is working" --skip-git-repo-check
+```
+
+If this works, use `--profile litellm` whenever you need Codex to use the workshop API key.
 
 ## Obtaining Workshop Materials
 
@@ -429,6 +449,12 @@ codex --version          # should show a Codex version
 codex exec "Reply with only: Codex is working" --skip-git-repo-check # should return: Codex is working
 ```
 
+If ChatGPT login does not work and you set up the workshop API key fallback, run:
+
+```bash
+codex exec --profile litellm "Reply with only: Codex is working" --skip-git-repo-check # should return: Codex is working
+```
+
 ### Run from the workshop materials folder in your terminal
 
 Move into the folder where you downloaded and unzipped the workshop materials. Replace `path/to/workshop-materials` with the actual path to your folder.
@@ -459,4 +485,3 @@ python -m pip --version # should show pip from the virtual environment
 python -m pip check     # should show: No broken requirements found.
 jupyter lab --version   # should show a JupyterLab version
 ```
-

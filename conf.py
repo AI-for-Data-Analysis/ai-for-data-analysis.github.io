@@ -2,7 +2,7 @@
 
 project = "AI Training for Analytics and Data Analysis"
 author = "Jessica Nash"
-copyright = "2026, Duke University Office of Information Technology"
+copyright = "2026, Duke University"
 
 extensions = [
     'myst_parser',
@@ -31,14 +31,15 @@ html_sidebars = {
 }
 
 html_theme = "pydata_sphinx_theme"
-html_static_path = ['_static']
+html_static_path = ['_static', 'images']
 
 
-html_logo = "images/oit-logo.svg"
+html_logo = "images/ai-duke-transparent.png"
 
 html_css_files = [
 
     "custom.css",
+    "theme-duke-ai.css",
 
 ]
 
@@ -50,8 +51,8 @@ html_js_files = [
 html_theme_options = {
     'logo': {
 
-        'image_light': "images/oit-logo.svg",
-        'image_dark': "images/oit-logo.svg",
+        'image_light': "images/ai-duke-transparent.png",
+        'image_dark': "images/ai-duke-transparent.png",
 
     },
     'icon_links': [
@@ -66,6 +67,9 @@ html_theme_options = {
     'navbar_persistent': ['search-button-field'],
     'show_nav_level': 1,
     'show_toc_level': 3,
+    'footer_start': ['site-footer'],
+    'footer_center': [],
+    'footer_end': [],
 }
 
 pygments_style = 'friendly'
