@@ -29,7 +29,7 @@ html[data-theme="dark"] .bd-header.bd-navbar {
 }
 
 .bd-header .navbar-brand::after {
-  content: "AI Training for Analytics and Data Analysis";
+  content: "AI Accelerator: Analytics and Data Analysis";
   display: inline-block;
   margin-left: 0.35rem;
   color: #ffffff;

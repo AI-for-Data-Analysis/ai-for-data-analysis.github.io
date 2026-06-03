@@ -1,4 +1,4 @@
-AI Tools for Analytics and Data Analysis
+AI Accelerator: Analytics and Data Analysis
 ===========================================
 
 Tutorial-style lessons for AI-assisted analytics from exploration to dashboard delivery.

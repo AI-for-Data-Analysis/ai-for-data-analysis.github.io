@@ -1,6 +1,6 @@
 # Configuration file for the Sphinx documentation builder.
 
-project = "AI Training for Analytics and Data Analysis"
+project = "AI Accelerator: Analytics and Data Analysis"
 author = "Jessica Nash"
 copyright = "2026, Duke University"
 
@@ -81,7 +81,7 @@ latex_documents = [
     (
         'index',
         'ai-training-analytics-data-analysis.tex',
-        'AI Training for Analytics and Data Analysis',
+        'AI Accelerator: Analytics and Data Analysis',
         'Jessica Nash',
         'howto',
     ),
