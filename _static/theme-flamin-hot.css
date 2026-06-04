@@ -1,0 +1,354 @@
+@import url("https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700&display=swap");
+
+/* Hidden easter egg mode toggled by JS (Konami code). */
+html.flamin-hot-mode {
+  --fh-red: #e8230a;
+  --fh-orange: #ff6b0b;
+  --fh-neon-orange: #ff4d00;
+  --fh-blaze-yellow: #ffcc00;
+  --fh-neon-pink: #ff0099;
+  --fh-neon-green: #39ff14;
+  --fh-electric-cyan: #00ffff;
+  --fh-deep-dark: #0d0000;
+  --fh-ash: #1a1a1a;
+  --fh-smoke: #2d2d2d;
+  --fh-ember: #3d1500;
+  --fh-hot-white: #fff9f5;
+  --fh-cream: #fff0e0;
+  --fh-powder: #f5e6d3;
+}
+
+html.flamin-hot-mode body {
+  background: var(--fh-deep-dark);
+  color: var(--fh-hot-white);
+  font-family: "Nunito", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+}
+
+html.flamin-hot-mode .bd-content,
+html.flamin-hot-mode .bd-main,
+html.flamin-hot-mode .bd-page-width {
+  background: transparent;
+}
+
+html.flamin-hot-mode .bd-header {
+  background: linear-gradient(110deg, #0d0000 0%, #3d1500 30%, #e8230a 65%, #ff6b0b 100%);
+  box-shadow:
+    0 0 8px #ff4d00,
+    0 0 24px rgba(255, 77, 0, 0.6);
+}
+
+html.flamin-hot-mode .bd-header .navbar {
+  min-height: 8.8rem;
+}
+
+html.flamin-hot-mode .bd-header .navbar-brand {
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+html.flamin-hot-mode .bd-header .navbar-brand img {
+  height: 7.2rem;
+  max-height: none;
+  width: auto;
+  border-radius: 12px;
+  filter: drop-shadow(0 0 6px #ff6b0b) drop-shadow(0 0 16px #ff4d00);
+}
+
+html.flamin-hot-mode .pst-navbar-icon.sidebar-toggle,
+html.flamin-hot-mode .pst-navbar-icon button.sidebar-toggle {
+  background: rgba(255, 107, 11, 0.2) !important;
+  border: 1px solid rgba(255, 107, 11, 0.65) !important;
+  color: var(--fh-hot-white) !important;
+}
+
+html.flamin-hot-mode .pst-navbar-icon.sidebar-toggle:hover,
+html.flamin-hot-mode .pst-navbar-icon.sidebar-toggle:focus,
+html.flamin-hot-mode .pst-navbar-icon button.sidebar-toggle:hover,
+html.flamin-hot-mode .pst-navbar-icon button.sidebar-toggle:focus {
+  background: rgba(255, 77, 0, 0.38) !important;
+  border-color: var(--fh-orange) !important;
+  color: var(--fh-blaze-yellow) !important;
+}
+
+html.flamin-hot-mode button.sidebar-toggle.primary-toggle,
+html.flamin-hot-mode button.sidebar-toggle.secondary-toggle,
+html.flamin-hot-mode .sidebar-toggle.primary-toggle,
+html.flamin-hot-mode .sidebar-toggle.secondary-toggle {
+  background: rgba(255, 107, 11, 0.2) !important;
+  border: 1px solid rgba(255, 107, 11, 0.65) !important;
+  color: var(--fh-hot-white) !important;
+}
+
+html.flamin-hot-mode button.sidebar-toggle.primary-toggle:hover,
+html.flamin-hot-mode button.sidebar-toggle.primary-toggle:focus,
+html.flamin-hot-mode button.sidebar-toggle.secondary-toggle:hover,
+html.flamin-hot-mode button.sidebar-toggle.secondary-toggle:focus,
+html.flamin-hot-mode .sidebar-toggle.primary-toggle:hover,
+html.flamin-hot-mode .sidebar-toggle.primary-toggle:focus,
+html.flamin-hot-mode .sidebar-toggle.secondary-toggle:hover,
+html.flamin-hot-mode .sidebar-toggle.secondary-toggle:focus {
+  background: rgba(255, 77, 0, 0.38) !important;
+  border-color: var(--fh-orange) !important;
+  color: var(--fh-blaze-yellow) !important;
+}
+
+html.flamin-hot-mode button[aria-label*="sidebar"],
+html.flamin-hot-mode button[aria-label*="Sidebar"],
+html.flamin-hot-mode [data-bs-title*="sidebar"],
+html.flamin-hot-mode [data-bs-title*="Sidebar"] {
+  background: rgba(255, 107, 11, 0.2) !important;
+  border-color: rgba(255, 107, 11, 0.65) !important;
+  color: var(--fh-hot-white) !important;
+}
+
+html.flamin-hot-mode button[aria-label*="sidebar"]:hover,
+html.flamin-hot-mode button[aria-label*="sidebar"]:focus,
+html.flamin-hot-mode button[aria-label*="Sidebar"]:hover,
+html.flamin-hot-mode button[aria-label*="Sidebar"]:focus,
+html.flamin-hot-mode [data-bs-title*="sidebar"]:hover,
+html.flamin-hot-mode [data-bs-title*="sidebar"]:focus,
+html.flamin-hot-mode [data-bs-title*="Sidebar"]:hover,
+html.flamin-hot-mode [data-bs-title*="Sidebar"]:focus {
+  background: rgba(255, 77, 0, 0.38) !important;
+  border-color: var(--fh-orange) !important;
+  color: var(--fh-blaze-yellow) !important;
+}
+
+html.flamin-hot-mode h1,
+html.flamin-hot-mode h2,
+html.flamin-hot-mode h3,
+html.flamin-hot-mode h4,
+html.flamin-hot-mode h5,
+html.flamin-hot-mode h6,
+html.flamin-hot-mode .bd-content h1,
+html.flamin-hot-mode .bd-content h2,
+html.flamin-hot-mode .bd-content h3 {
+  font-family: "Boogaloo", "Impact", "Arial Black", sans-serif;
+  color: var(--fh-orange);
+  text-shadow:
+    0 0 4px #ff6b0b,
+    0 0 10px #ff6b0b,
+    0 0 25px #ff4d00,
+    0 0 50px #e8230a;
+}
+
+html.flamin-hot-mode .bd-content p,
+html.flamin-hot-mode .bd-content li,
+html.flamin-hot-mode .bd-content td,
+html.flamin-hot-mode .bd-content th {
+  color: var(--fh-hot-white);
+  font-family: "Nunito", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+}
+
+html.flamin-hot-mode .bd-content a {
+  color: var(--fh-electric-cyan);
+  text-shadow:
+    0 0 4px #00ffff,
+    0 0 10px rgba(0, 255, 255, 0.75);
+}
+
+html.flamin-hot-mode .bd-content a:hover,
+html.flamin-hot-mode .bd-content a:focus {
+  color: var(--fh-orange);
+}
+
+html.flamin-hot-mode .bd-sidebar,
+html.flamin-hot-mode .bd-sidebar-primary,
+html.flamin-hot-mode .bd-toc {
+  background: var(--fh-ash);
+  border-color: var(--fh-smoke);
+}
+
+html.flamin-hot-mode .bd-sidebar .nav-link,
+html.flamin-hot-mode .bd-toc-nav .nav-link {
+  color: var(--fh-powder);
+}
+
+html.flamin-hot-mode[data-theme="light"] .bd-sidebar .nav-link,
+html.flamin-hot-mode[data-theme="light"] .bd-sidebar .nav-link:visited,
+html.flamin-hot-mode[data-theme="light"] .bd-toc-nav .nav-link,
+html.flamin-hot-mode[data-theme="light"] .bd-toc-nav .nav-link:visited,
+html[data-theme="light"].flamin-hot-mode .bd-sidebar .nav-link,
+html[data-theme="light"].flamin-hot-mode .bd-sidebar .nav-link:visited,
+html[data-theme="light"].flamin-hot-mode .bd-toc-nav .nav-link,
+html[data-theme="light"].flamin-hot-mode .bd-toc-nav .nav-link:visited {
+  color: var(--fh-hot-white);
+}
+
+html.flamin-hot-mode .bd-sidebar .nav-link.active,
+html.flamin-hot-mode nav.bd-links .current > a {
+  color: var(--fh-hot-white);
+  border-left-color: var(--fh-orange);
+  box-shadow: inset 0 0 8px rgba(255, 107, 11, 0.25);
+}
+
+html.flamin-hot-mode .bd-sidebar .nav-link:hover,
+html.flamin-hot-mode .bd-sidebar .nav-link:focus,
+html.flamin-hot-mode .bd-toc-nav .nav-link:hover,
+html.flamin-hot-mode .bd-toc-nav .nav-link:focus {
+  color: var(--fh-electric-cyan) !important;
+  text-shadow:
+    0 0 4px #00ffff,
+    0 0 10px rgba(0, 255, 255, 0.75);
+}
+
+html[data-theme="light"].flamin-hot-mode .bd-sidebar .nav-link:hover,
+html[data-theme="light"].flamin-hot-mode .bd-sidebar .nav-link:focus,
+html[data-theme="light"].flamin-hot-mode .bd-toc-nav .nav-link:hover,
+html[data-theme="light"].flamin-hot-mode .bd-toc-nav .nav-link:focus,
+html.flamin-hot-mode[data-theme="light"] .bd-sidebar .nav-link:hover,
+html.flamin-hot-mode[data-theme="light"] .bd-sidebar .nav-link:focus,
+html.flamin-hot-mode[data-theme="light"] .bd-toc-nav .nav-link:hover,
+html.flamin-hot-mode[data-theme="light"] .bd-toc-nav .nav-link:focus {
+  color: var(--fh-blaze-yellow) !important;
+  text-shadow:
+    0 0 4px #ffcc00,
+    0 0 10px rgba(255, 204, 0, 0.75);
+}
+
+html[data-theme="light"].flamin-hot-mode .bd-sidebar .toctree-l1 > a:hover,
+html[data-theme="light"].flamin-hot-mode .bd-sidebar .toctree-l2 > a:hover,
+html[data-theme="light"].flamin-hot-mode .bd-sidebar .toctree-l1 > a:focus,
+html[data-theme="light"].flamin-hot-mode .bd-sidebar .toctree-l2 > a:focus,
+html.flamin-hot-mode[data-theme="light"] .bd-sidebar .toctree-l1 > a:hover,
+html.flamin-hot-mode[data-theme="light"] .bd-sidebar .toctree-l2 > a:hover,
+html.flamin-hot-mode[data-theme="light"] .bd-sidebar .toctree-l1 > a:focus,
+html.flamin-hot-mode[data-theme="light"] .bd-sidebar .toctree-l2 > a:focus {
+  color: var(--fh-blaze-yellow) !important;
+  text-shadow:
+    0 0 4px #ffcc00,
+    0 0 10px rgba(255, 204, 0, 0.75);
+}
+
+html.flamin-hot-mode .sidebar-primary-item,
+html.flamin-hot-mode .sidebar-primary-items__item,
+html.flamin-hot-mode .bd-links__title,
+html.flamin-hot-mode .bd-links__title a,
+html.flamin-hot-mode .caption,
+html.flamin-hot-mode .toctree-l1 > a,
+html.flamin-hot-mode .toctree-l2 > a {
+  color: var(--fh-hot-white);
+}
+
+html.flamin-hot-mode .admonition,
+html.flamin-hot-mode .note,
+html.flamin-hot-mode .warning {
+  background: var(--fh-ash);
+  border-color: var(--fh-smoke);
+}
+
+html.flamin-hot-mode .admonition-title {
+  background: var(--fh-ember);
+  color: var(--fh-hot-white);
+}
+
+html.flamin-hot-mode .bd-footer {
+  background: var(--fh-ash);
+  border-top: 1px solid var(--fh-smoke);
+  color: var(--fh-hot-white);
+}
+
+html.flamin-hot-mode .bd-footer a,
+html.flamin-hot-mode .bd-footer a:visited {
+  color: var(--fh-electric-cyan);
+}
+
+html.flamin-hot-mode .bd-footer a:hover,
+html.flamin-hot-mode .bd-footer a:focus {
+  color: var(--fh-orange);
+}
+
+html.flamin-hot-mode .footer-item,
+html.flamin-hot-mode .footer-article-items,
+html.flamin-hot-mode .footer-content-items {
+  color: var(--fh-hot-white);
+}
+
+html.flamin-hot-mode .tooltip {
+  --bs-tooltip-bg: var(--fh-ash) !important;
+  --bs-tooltip-color: var(--fh-hot-white) !important;
+}
+
+html.flamin-hot-mode .tooltip .tooltip-inner {
+  --bs-tooltip-bg: var(--fh-ash) !important;
+  --bs-tooltip-color: var(--fh-hot-white) !important;
+  background: var(--fh-ash) !important;
+  color: var(--fh-hot-white) !important;
+  border: 1px solid var(--fh-smoke);
+}
+
+html.flamin-hot-mode .tooltip .tooltip-arrow::before {
+  border-top-color: var(--fh-ash) !important;
+  border-bottom-color: var(--fh-ash) !important;
+}
+
+html.flamin-hot-mode #pst-back-to-top,
+html.flamin-hot-mode button.pst-back-to-top {
+  background: linear-gradient(135deg, var(--fh-red), var(--fh-orange));
+  color: var(--fh-hot-white) !important;
+  border: 1px solid var(--fh-smoke);
+  box-shadow:
+    0 0 5px #ff6b0b,
+    0 0 15px rgba(255, 107, 11, 0.45);
+}
+
+html.flamin-hot-mode #pst-back-to-top:hover,
+html.flamin-hot-mode #pst-back-to-top:focus,
+html.flamin-hot-mode button.pst-back-to-top:hover,
+html.flamin-hot-mode button.pst-back-to-top:focus {
+  background: linear-gradient(135deg, var(--fh-neon-orange), var(--fh-red));
+  color: var(--fh-hot-white) !important;
+}
+
+.flamin-hot-toggle {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1050;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid rgba(1, 33, 105, 0.3);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #c84e00;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.flamin-hot-toggle:hover,
+.flamin-hot-toggle:focus {
+  background: #f3f2f1;
+  outline: none;
+}
+
+html.flamin-hot-mode .flamin-hot-toggle {
+  border: 1px solid var(--fh-smoke);
+  background: var(--fh-ash);
+  color: var(--fh-blaze-yellow);
+  box-shadow:
+    0 0 5px #ff6b0b,
+    0 0 15px rgba(255, 107, 11, 0.45);
+}
+
+html.flamin-hot-mode .flamin-hot-toggle.is-active {
+  border: 1px solid var(--fh-smoke) !important;
+  background: var(--fh-ash) !important;
+  color: var(--fh-hot-white) !important;
+  font-weight: 700;
+  font-size: 0.92rem;
+  font-family: "Nunito", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  width: auto;
+  min-width: 9.75rem;
+  padding: 0 0.65rem;
+  text-shadow:
+    0 0 4px #ff6b0b,
+    0 0 10px #ff4d00;
+  box-shadow:
+    0 0 5px #ff6b0b,
+    0 0 15px rgba(255, 107, 11, 0.45) !important;
+}

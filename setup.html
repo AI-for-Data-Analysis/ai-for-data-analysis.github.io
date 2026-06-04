@@ -1,0 +1,880 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Setup &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=8105e7f7" />
+    <link rel="stylesheet" type="text/css" href="_static/theme-duke-ai.css?v=fb250738" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'setup';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="AI Accelerator: Analytics and Data Analysis" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ai-duke-transparent.png" class="logo__image only-light" alt="AI Accelerator: Analytics and Data Analysis  documentation - Home"/>
+    <img src="_static/ai-duke-transparent.png" class="logo__image only-dark pst-js-only" alt="AI Accelerator: Analytics and Data Analysis  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="../latex/ai-training-analytics-data-analysis.pdf" title="Download PDF" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-file-pdf fa-lg" aria-hidden="true"></i><span class="visually-hidden">Download PDF</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="../latex/ai-training-analytics-data-analysis.pdf" title="Download PDF" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-file-pdf fa-lg" aria-hidden="true"></i><span class="visually-hidden">Download PDF</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="index.html">AI Accelerator: Analytics and Data Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Setup</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h1>
+<p>This page will walk you through installing the required software, setting up an environment, and installing and configuring the AI agent (Codex) we will use for this workshop series.</p>
+<div class="note admonition">
+<p class="admonition-title">Special Note for Windows Users</p>
+<p>For this workshop, you will need a working Python programming environment where you can create virtual environments and run Jupyter notebooks.</p>
+<p>If you do not already have this set up, we recommend that <strong>Windows users use the Windows Subsystem for Linux (WSL)</strong> for the workshop. WSL lets you run a Linux environment on Windows, which is often easier for Python development.</p>
+<p>Most Windows users should be able to install <strong>Ubuntu for WSL</strong> directly from the Microsoft Store using this link: <a class="reference external" href="https://apps.microsoft.com/detail/9PDXGNCFSCZV?hl=en-us&amp;gl=US&amp;ocid=pdpshare">Ubuntu/WSL</a>. After installing it, you can start your Linux shell by searching for <strong>“Ubuntu”</strong> in the Windows search bar.</p>
+<p>If the Microsoft Store installation does not work, follow Microsoft’s more detailed WSL installation instructions here: <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/install">Install WSL</a>.</p>
+<p>You may also want to install <a class="reference external" href="https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-us&amp;gl=US&amp;ocid=pdpshare">Windows Terminal</a>, which provides a nicer interface for using WSL and other command-line tools.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Download the Workshop Setup Installer</p>
+<p>Download the <a class="reference download internal" download="" href="_downloads/d1ae9060c175ff480b9350f03cf6ad86/student-setup.zip"><span class="xref download myst">workshop setup installer</span></a> now, but do not run it yet. This page first walks you through computer-level setup: WSL if needed, Python, npm, Codex, and the Codex Jupyter connector.</p>
+<p>Later, in the AI provider access section, you will use the installer to create the workshop-specific Python/Jupyter environment and Codex API key configuration.</p>
+</div>
+<section id="set-up-your-development-environment">
+<h2>Set Up Your Development Environment<a class="headerlink" href="#set-up-your-development-environment" title="Link to this heading">#</a></h2>
+<p>In this section, you will check that the basic tools needed for the workshop are installed and available on your computer. You will run these checks from a terminal, which is the program we will use to type setup commands.</p>
+<p>Start by opening a terminal for your operating system.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="mac" for="sd-tab-item-0">
+Mac</label><div class="sd-tab-content docutils">
+<p>Open the <strong>Terminal</strong> app.</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wsl-linux" for="sd-tab-item-1">
+WSL/Linux</label><div class="sd-tab-content docutils">
+<p>Open your Linux terminal.</p>
+<ul class="simple">
+<li><p><strong>Windows users using WSL:</strong> open <strong>Ubuntu</strong> from the Windows search bar, or open <strong>Windows Terminal</strong> and choose your Ubuntu/WSL profile.</p></li>
+<li><p><strong>Linux users:</strong> open your usual terminal application.</p></li>
+</ul>
+<p>Windows users should run the commands on this page <strong>inside the Ubuntu/WSL terminal</strong>, not in PowerShell or Command Prompt.</p>
+</div>
+</div>
+<p>Once your terminal is open, use the commands below to check that each required tool is installed.</p>
+<section id="python">
+<h3>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h3>
+<p>You will need <strong>Python 3.11 or newer</strong>.</p>
+<p>Check your Python version with:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="mac" for="sd-tab-item-2">
+Mac</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>--version
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wsl-linux" for="sd-tab-item-3">
+WSL/Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>--version
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should see a version number beginning with <code class="docutils literal notranslate"><span class="pre">3.11</span></code> or higher.</p>
+<p>If Python is not installed, or if your version is older than Python 3.11, install a newer version before continuing.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="mac" for="sd-tab-item-4">
+Mac</label><div class="sd-tab-content docutils">
+<p>Install Python from <a class="reference external" href="https://www.python.org/downloads/">python.org</a> or with a package manager such as Homebrew.</p>
+<p>After installing Python, run the version check again.</p>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wsl-linux" for="sd-tab-item-5">
+WSL/Linux</label><div class="sd-tab-content docutils">
+<p>Install Python inside your Linux environment. On Ubuntu/WSL, you can usually install Python with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-venv<span class="w"> </span>python3-pip
+</pre></div>
+</div>
+<p>After installing Python, run the version check again.</p>
+</div>
+</div>
+<section id="python-virtual-environment-and-pip-support">
+<h4>Python virtual environment and pip support<a class="headerlink" href="#python-virtual-environment-and-pip-support" title="Link to this heading">#</a></h4>
+<p>In addition to Python itself, you will need support for virtual environments and <code class="docutils literal notranslate"><span class="pre">pip</span></code>, Python’s package installer.</p>
+<p>Check that you can create virtual environments with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>Check that <code class="docutils literal notranslate"><span class="pre">pip</span></code> is available with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>If both commands work, you can continue.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="mac" for="sd-tab-item-6">
+Mac</label><div class="sd-tab-content docutils">
+<p>If <code class="docutils literal notranslate"><span class="pre">venv</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span></code> is missing, reinstall Python from <a class="reference external" href="https://www.python.org/downloads/">python.org</a> or use your package manager to install a complete Python distribution.</p>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wsl-linux" for="sd-tab-item-7">
+WSL/Linux</label><div class="sd-tab-content docutils">
+<p>If <code class="docutils literal notranslate"><span class="pre">venv</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span></code> is missing, install them inside your Linux environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-venv<span class="w"> </span>python3-pip
+</pre></div>
+</div>
+<p>After installing them, run the checks again.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="node-js-and-npm">
+<h3>Node.js and npm<a class="headerlink" href="#node-js-and-npm" title="Link to this heading">#</a></h3>
+<p>You will also need <strong>Node.js</strong> and <strong>npm</strong> to install Codex. <code class="docutils literal notranslate"><span class="pre">npm</span></code> is the package manager used to install many command-line tools written for the JavaScript ecosystem.</p>
+<p>Check that Node.js is installed with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>Check that <code class="docutils literal notranslate"><span class="pre">npm</span></code> is installed with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>If both commands print version numbers, you can continue.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="mac" for="sd-tab-item-8">
+Mac</label><div class="sd-tab-content docutils">
+<p>If Node.js or <code class="docutils literal notranslate"><span class="pre">npm</span></code> is missing, install Node.js from <a class="reference external" href="https://nodejs.org/">nodejs.org</a> or with a package manager such as Homebrew.</p>
+<p>After installing Node.js, run the checks again.</p>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wsl-linux" for="sd-tab-item-9">
+WSL/Linux</label><div class="sd-tab-content docutils">
+<p>If Node.js or <code class="docutils literal notranslate"><span class="pre">npm</span></code> is missing, install them inside your Linux environment. On Ubuntu/WSL, you can usually install them with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nodejs<span class="w"> </span>npm
+</pre></div>
+</div>
+<p>After installing Node.js and <code class="docutils literal notranslate"><span class="pre">npm</span></code>, run the checks again.</p>
+</div>
+</div>
+</section>
+<section id="code-editor">
+<h3>Code editor<a class="headerlink" href="#code-editor" title="Link to this heading">#</a></h3>
+<p>We recommend using <strong>Visual Studio Code (VS Code)</strong> as your code editor for this workshop.</p>
+<p>VS Code gives you a convenient place to edit files, open a terminal, work with notebooks, and view the workshop files.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="mac" for="sd-tab-item-10">
+Mac</label><div class="sd-tab-content docutils">
+<p>Install VS Code from <a class="reference external" href="https://code.visualstudio.com/">code.visualstudio.com</a>.</p>
+<p>You should be able to open VS Code as an application.
+During the workshop, it will be useful to be able to open VS Code from the terminal.
+<a class="reference external" href="https://code.visualstudio.com/docs/setup/mac#_launch-vs-code-from-the-command-line">Follow these instructions</a> to enable opening code from your terminal</p>
+<p>After it is enabled, you should be able to open VS Code using the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>code<span class="w"> </span>--version
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wsl-linux" for="sd-tab-item-11">
+WSL/Linux</label><div class="sd-tab-content docutils">
+<p><strong>Windows users using WSL:</strong> install VS Code on Windows from <a class="reference external" href="https://code.visualstudio.com/">code.visualstudio.com</a>, not inside WSL.</p>
+<p>Then install the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack">Remote Development extension pack</a>in VS Code. This allows VS Code to open and edit files inside your Ubuntu/WSL environment.</p>
+<p>After installing VS Code and the extension, open your Ubuntu/WSL terminal and check that VS Code can be opened from the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>code<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>Later, after you download and open the workshop materials, you will be able to open the project in VS Code from inside the project folder with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>code<span class="w"> </span>.
+</pre></div>
+</div>
+<p><strong>Linux users:</strong> install VS Code from <a class="reference external" href="https://code.visualstudio.com/">code.visualstudio.com</a> or use your preferred code editor.</p>
+</div>
+</div>
+</section>
+<section id="install-codex">
+<h3>Install Codex<a class="headerlink" href="#install-codex" title="Link to this heading">#</a></h3>
+<p>Install the Codex command-line tool with npm:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@openai/codex
+</pre></div>
+</div>
+<p>If this command fails with a permissions error, use the steps in <a class="reference internal" href="#troubleshoot-npm-global-installs">Troubleshoot npm global installs</a>, then run the install command again.</p>
+<section id="troubleshoot-npm-global-installs">
+<span id="id1"></span><h4>Troubleshoot npm global installs<a class="headerlink" href="#troubleshoot-npm-global-installs" title="Link to this heading">#</a></h4>
+<p>Codex is installed as a global npm package. On some systems, global npm installs fail because the default global install folder requires administrator permissions.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not run the commands in this section unless an <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span></code> command fails with a permissions error. If the global install command works, skip this section.</p>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span></code> fails because npm cannot write to the global install folder, configure npm to install global packages into a folder in your home directory, then try the failed install command again.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="mac" for="sd-tab-item-12">
+Mac</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.local
+npm<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>prefix<span class="w"> </span>~/.local
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=&quot;$HOME/.local/bin:$PATH&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zprofile
+<span class="nb">source</span><span class="w"> </span>~/.zprofile
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wsl-linux" for="sd-tab-item-13">
+WSL/Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.local
+npm<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>prefix<span class="w"> </span>~/.local
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=&quot;$HOME/.local/bin:$PATH&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.profile
+<span class="nb">source</span><span class="w"> </span>~/.profile
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then check that the <code class="docutils literal notranslate"><span class="pre">codex</span></code> command is available:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>codex<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>If your terminal says that <code class="docutils literal notranslate"><span class="pre">codex</span></code> was not found, close and reopen your terminal, then try the version check again.</p>
+<p>You will also need to install a connector for Codex and the Jupyter Lab interface:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@zed-industries/codex-acp
+</pre></div>
+</div>
+<p>If this command fails with a permissions error, use the steps in <a class="reference internal" href="#troubleshoot-npm-global-installs">Troubleshoot npm global installs</a>, then run the install command again.</p>
+</section>
+<section id="ai-provider-access">
+<h4>AI provider access<a class="headerlink" href="#ai-provider-access" title="Link to this heading">#</a></h4>
+<p>This workshop uses <strong>Codex</strong>, OpenAI’s coding agent.
+You will be using Codex both in the JupyterLab interface with the JupyterAI plugin and in the command line interface.
+Some Duke departments cover access to ChatGPT. If you are able to get ChatGPT access through Duke without paying out of pocket, please <a class="reference external" href="https://oit.duke.edu/service/chatgpt-edu/">set it up through Duke Software Manager</a> before the workshop.</p>
+<p>If your department does not cover access, you do not need to pay for ChatGPT for this workshop unless you want to. We will also provide a workshop API key that you can use instead; <a class="reference internal" href="#workshop-api-key-setup">skip to the workshop API key setup</a>.</p>
+<p>Open Codex by typing <code class="docutils literal notranslate"><span class="pre">codex</span></code> into your terminal.</p>
+<p>The first time you open Codex, choose the first option, <strong>Sign in with ChatGPT</strong>. This will open a web page where you should log in to ChatGPT using your Duke NetID.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you cannot get ChatGPT access, or if access would require you to pay and you do not want to, use the workshop API key setup below.</p>
+</div>
+<p>After logging in, check your login status:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>codex<span class="w"> </span>login<span class="w"> </span>status
+</pre></div>
+</div>
+<p>If ChatGPT login works, you can use Codex normally.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>codex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;Reply with only: Codex is working&quot;</span><span class="w"> </span>--skip-git-repo-check
+</pre></div>
+</div>
+<section id="workshop-api-key-setup">
+<span id="id2"></span><h5>Workshop API key setup<a class="headerlink" href="#workshop-api-key-setup" title="Link to this heading">#</a></h5>
+<p>We will provide API keys to all workshop participants. Set up the workshop API key configuration even if ChatGPT login works for you. This gives you a backup provider if ChatGPT login is unavailable or if you run out of usage during the workshop.</p>
+<p>After you have installed Python, npm, Codex, and the Codex Jupyter connector, use the <a class="reference download internal" download="" href="_downloads/d1ae9060c175ff480b9350f03cf6ad86/student-setup.zip"><span class="xref download myst">workshop setup installer</span></a>. The zip includes a <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> for testing JupyterLab and Jupyter AI, and a script that creates the workshop Codex LiteLLM configuration after you paste in your API key.</p>
+<p>Move the downloaded zip file to the folder where you want to create your workshop setup, or retrieve it again from the terminal with <code class="docutils literal notranslate"><span class="pre">curl</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-L<span class="w"> </span><span class="s1">&#39;https://gitlab.oit.duke.edu/jn242/ai-analytics-accelerator/-/raw/main/student-setup.zip&#39;</span><span class="w"> </span>-o<span class="w"> </span>student-setup.zip
+unzip<span class="w"> </span>student-setup.zip
+<span class="nb">cd</span><span class="w"> </span>student-setup
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In WSL, you can open the current Linux folder in Windows File Explorer with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>explorer.exe<span class="w"> </span>.
+</pre></div>
+</div>
+<p>You can also open a specific path by replacing <code class="docutils literal notranslate"><span class="pre">.</span></code> with that path.</p>
+</div>
+<p>Then run the Codex API key setup script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/setup_codex_litellm.py
+</pre></div>
+</div>
+<p>When prompted, paste the API key provided by the workshop instructors.</p>
+<p>The script creates a separate Codex home directory named <code class="docutils literal notranslate"><span class="pre">~/.codex-litellm</span></code>. Codex will still use your regular <code class="docutils literal notranslate"><span class="pre">~/.codex</span></code> folder by default and will use <code class="docutils literal notranslate"><span class="pre">~/.codex-litellm</span></code> only when you explicitly launch it that way.</p>
+<p>Then test the workshop API key configuration:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CODEX_HOME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.codex-litellm&quot;</span><span class="w"> </span>codex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;Reply with only: Codex is working&quot;</span><span class="w"> </span>--skip-git-repo-check
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Optional shortcut</p>
+<p>A shell function is a shortcut in your terminal. The function below creates a command named <code class="docutils literal notranslate"><span class="pre">litellm</span></code> that runs one command with the workshop Codex configuration.</p>
+<p>This does not permanently set <code class="docutils literal notranslate"><span class="pre">CODEX_HOME</span></code>. It sets <code class="docutils literal notranslate"><span class="pre">CODEX_HOME</span></code> only for the command you run after <code class="docutils literal notranslate"><span class="pre">litellm</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="mac" for="sd-tab-item-14">
+Mac</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<span class="s">litellm() {</span>
+<span class="s">  CODEX_HOME=&quot;$HOME/.codex-litellm&quot; &quot;$@&quot;</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+<span class="nb">source</span><span class="w"> </span>~/.zshrc
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wsl-linux" for="sd-tab-item-15">
+WSL/Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<span class="s">litellm() {</span>
+<span class="s">  CODEX_HOME=&quot;$HOME/.codex-litellm&quot; &quot;$@&quot;</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+</div>
+</div>
+<p>After adding the function, you can test Codex with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>litellm<span class="w"> </span>codex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;Reply with only: Codex is working&quot;</span><span class="w"> </span>--skip-git-repo-check
+</pre></div>
+</div>
+</div>
+<p>During the workshop, use normal Codex for ChatGPT login when available. Launch commands with <code class="docutils literal notranslate"><span class="pre">CODEX_HOME=&quot;$HOME/.codex-litellm&quot;</span></code> when you need the workshop API key.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="set-up-the-student-installer-environment">
+<h2>Set Up the Student Installer Environment<a class="headerlink" href="#set-up-the-student-installer-environment" title="Link to this heading">#</a></h2>
+<p>Workshop materials will be distributed separately. For now, use the <a class="reference download internal" download="" href="_downloads/d1ae9060c175ff480b9350f03cf6ad86/student-setup.zip"><span class="xref download myst">workshop setup installer</span></a> to verify that your environment can run JupyterLab, Jupyter AI, and the workshop Codex API key configuration.</p>
+<section id="create-a-virtual-environment">
+<h3>Create a virtual environment<a class="headerlink" href="#create-a-virtual-environment" title="Link to this heading">#</a></h3>
+<p>The setup installer contains a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file with the Python packages needed for the setup check. We will use a Python virtual environment for these packages.</p>
+<p>You should execute the following commands from the <code class="docutils literal notranslate"><span class="pre">student-setup</span></code> folder. Create a virtual environment for the setup check:</p>
+<div class="tip admonition">
+<p class="admonition-title">Recommended shortcut</p>
+<p>The installer includes a script that creates <code class="docutils literal notranslate"><span class="pre">.venv</span></code>, activates it inside the script, upgrades <code class="docutils literal notranslate"><span class="pre">pip</span></code>, and installs <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>scripts/setup_python_environment.sh
+</pre></div>
+</div>
+<p>After the script finishes, activate the environment in your current terminal before running more commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+</div>
+<p>If you prefer to run the steps manually, create the virtual environment with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</pre></div>
+</div>
+<p>Then activate the virtual environment:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="mac" for="sd-tab-item-16">
+Mac</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wsl-linux" for="sd-tab-item-17">
+WSL/Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+</div>
+</div>
+<p>After activation, you should see <code class="docutils literal notranslate"><span class="pre">(.venv)</span></code> at the beginning of your terminal prompt.</p>
+</section>
+<section id="install-python-packages">
+<h3>Install Python packages<a class="headerlink" href="#install-python-packages" title="Link to this heading">#</a></h3>
+<p>Install the required Python packages from <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+</section>
+<section id="checklist">
+<h2>Checklist<a class="headerlink" href="#checklist" title="Link to this heading">#</a></h2>
+<p>Before the workshop, open your terminal and run these checks to confirm your setup.</p>
+<section id="run-from-any-folder-in-your-terminal">
+<h3>Run from any folder in your terminal<a class="headerlink" href="#run-from-any-folder-in-your-terminal" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>--version<span class="w">        </span><span class="c1"># should show Python 3.11 or newer</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--help<span class="w">   </span><span class="c1"># should show venv help text</span>
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>--version<span class="w"> </span><span class="c1"># should show a pip version</span>
+node<span class="w"> </span>--version<span class="w">           </span><span class="c1"># should show a Node.js version</span>
+npm<span class="w"> </span>--version<span class="w">            </span><span class="c1"># should show an npm version</span>
+codex<span class="w"> </span>--version<span class="w">          </span><span class="c1"># should show a Codex version</span>
+codex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;Reply with only: Codex is working&quot;</span><span class="w"> </span>--skip-git-repo-check<span class="w"> </span><span class="c1"># should return: Codex is working</span>
+</pre></div>
+</div>
+<p>Check the workshop API key setup:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CODEX_HOME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.codex-litellm&quot;</span><span class="w"> </span>codex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;Reply with only: Codex is working&quot;</span><span class="w"> </span>--skip-git-repo-check<span class="w"> </span><span class="c1"># should return: Codex is working</span>
+</pre></div>
+</div>
+</section>
+<section id="run-from-the-workshop-materials-folder-in-your-terminal">
+<h3>Run from the workshop materials folder in your terminal<a class="headerlink" href="#run-from-the-workshop-materials-folder-in-your-terminal" title="Link to this heading">#</a></h3>
+<p>Move into the folder where you downloaded and unzipped the workshop materials. Replace <code class="docutils literal notranslate"><span class="pre">path/to/workshop-materials</span></code> with the actual path to your folder.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/to/workshop-materials
+</pre></div>
+</div>
+<p>Check that the expected files and folders are present.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w">                  </span><span class="c1"># should show the workshop files</span>
+ls<span class="w"> </span>.venv<span class="w">            </span><span class="c1"># should show the virtual environment folder contents</span>
+ls<span class="w"> </span>requirements.txt<span class="w"> </span><span class="c1"># should show requirements.txt</span>
+</pre></div>
+</div>
+<p>Activate the virtual environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+<p>After activation, run these checks.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>--version<span class="w">        </span><span class="c1"># should show Python 3.11 or newer</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>--version<span class="w"> </span><span class="c1"># should show pip from the virtual environment</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>check<span class="w">     </span><span class="c1"># should show: No broken requirements found.</span>
+jupyter<span class="w"> </span>lab<span class="w"> </span>--version<span class="w">   </span><span class="c1"># should show a JupyterLab version</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">AI Accelerator: Analytics and Data Analysis</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-your-development-environment">Set Up Your Development Environment</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-virtual-environment-and-pip-support">Python virtual environment and pip support</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-js-and-npm">Node.js and npm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-editor">Code editor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-codex">Install Codex</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshoot-npm-global-installs">Troubleshoot npm global installs</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-provider-access">AI provider access</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#workshop-api-key-setup">Workshop API key setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-student-installer-environment">Set Up the Student Installer Environment</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python-packages">Install Python packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist">Checklist</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-from-any-folder-in-your-terminal">Run from any folder in your terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-from-the-workshop-materials-folder-in-your-terminal">Run from the workshop materials folder in your terminal</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/setup.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+<div class="site-footer row align-items-center">
+  <div class="site-footer__content col-12 col-md-8">
+    <p>
+      Created by the <a href="https://oit.duke.edu/" target="_blank" rel="noopener">Duke University Office of Information Technology</a>.
+    </p>
+    <p>
+      The lesson materials are licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0 International License</a>.
+      You are free to adapt and share this material with attribution.
+    </p>
+
+    
+    <p class="sphinx-version">
+      Created using <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a> 9.0.4.
+    </p>
+    
+
+    <p class="theme-version">
+      Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html" target="_blank" rel="noopener">PyData Sphinx Theme</a> 0.18.0.
+    </p>
+  </div>
+
+  <div class="site-footer__duke col-12 col-md-4">
+    <a href="https://duke.edu/" target="_blank" rel="noopener" title="Go to Duke University in a new tab">
+      <img src="_static/duke_wordmark_white_cropped.svg" class="site-footer__wordmark" alt="Duke University">
+    </a>
+  </div>
+</div></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

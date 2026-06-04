@@ -1,0 +1,246 @@
+/* Duke AI preset: Eno-to-Navy treatment with the transparent AI Duke logo. */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap");
+
+:root {
+  --duke-ai-eno: #339999;
+  --duke-ai-eno-bright: #7ff7f7;
+  --duke-ai-navy: #012169;
+  --duke-ai-surface: #020c1d;
+  --duke-ai-surface-dark: #010714;
+  --duke-ai-surface-light: #061733;
+  --duke-ai-gradient: linear-gradient(120deg, var(--duke-ai-eno) 0%, var(--duke-ai-navy) 38%, var(--duke-ai-navy) 100%);
+  --duke-ai-shadow: rgba(1, 33, 105, 0.22);
+}
+
+.bd-header,
+.bd-header.bd-navbar,
+html[data-theme="light"] .bd-header,
+html[data-theme="light"] .bd-header.bd-navbar,
+html[data-theme="dark"] .bd-header,
+html[data-theme="dark"] .bd-header.bd-navbar {
+  background: var(--duke-ai-gradient);
+  box-shadow: 0 8px 30px var(--duke-ai-shadow);
+}
+
+.bd-header .navbar-brand img {
+  height: 44px;
+  max-height: 44px;
+  padding: 0;
+}
+
+.bd-header .navbar-brand::after {
+  content: "AI Accelerator: Analytics and Data Analysis";
+  display: inline-block;
+  margin-left: 0.35rem;
+  color: #ffffff;
+  font-family: "Open Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.bd-header .search-button-field,
+.bd-header .theme-switch-button,
+.bd-header .pst-navbar-icon.sidebar-toggle {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.62);
+}
+
+.bd-header .search-button-field:hover,
+.bd-header .search-button-field:focus,
+.bd-header .theme-switch-button:hover,
+.bd-header .theme-switch-button:focus,
+.bd-header .pst-navbar-icon.sidebar-toggle:hover,
+.bd-header .pst-navbar-icon.sidebar-toggle:focus {
+  background: rgba(255, 255, 255, 0.27);
+  border-color: #ffffff;
+}
+
+html[data-theme="light"] a,
+html[data-theme="light"] a:link,
+html[data-theme="light"] a:visited,
+html[data-theme="light"] .bd-content a,
+html[data-theme="light"] .bd-content a:visited,
+html[data-theme="light"] .prev-next-area a,
+html[data-theme="light"] .prev-next-area a:visited {
+  color: var(--duke-ai-eno);
+}
+
+html[data-theme="light"] a:hover,
+html[data-theme="light"] a:focus,
+html[data-theme="light"] .bd-content a:hover,
+html[data-theme="light"] .bd-content a:focus,
+html[data-theme="light"] .prev-next-area a:hover,
+html[data-theme="light"] .prev-next-area a:focus {
+  color: var(--duke-ai-navy);
+}
+
+html[data-theme="light"] .prev-next-area .prev-next-title,
+html[data-theme="light"] .prev-next-area .prev-next-subtitle,
+html[data-theme="light"] .prev-next-area i {
+  color: var(--duke-ai-eno);
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] .bd-container,
+html[data-theme="dark"] .bd-container__inner,
+html[data-theme="dark"] .bd-main {
+  background: var(--duke-ai-surface-dark);
+}
+
+html[data-theme="dark"] .bd-content,
+html[data-theme="dark"] .bd-sidebar,
+html[data-theme="dark"] .bd-sidebar-primary,
+html[data-theme="dark"] .bd-toc {
+  background: var(--duke-ai-surface);
+  border-color: rgba(51, 153, 153, 0.22);
+}
+
+html[data-theme="dark"] .pst-scrollable-table-container,
+html[data-theme="dark"] table,
+html[data-theme="dark"] table.table,
+html[data-theme="dark"] table.docutils {
+  --pst-color-primary: var(--duke-ai-eno-bright);
+  --bs-table-border-color: rgba(51, 153, 153, 0.22);
+  background: var(--duke-ai-surface);
+  border-color: rgba(51, 153, 153, 0.22);
+}
+
+html[data-theme="dark"] table thead,
+html[data-theme="dark"] table.table thead,
+html[data-theme="dark"] table.table thead th,
+html[data-theme="dark"] table.docutils thead,
+html[data-theme="dark"] table.docutils thead th {
+  background: var(--duke-ai-surface-light) !important;
+  color: #ffffff;
+}
+
+html[data-theme="dark"] table tbody tr,
+html[data-theme="dark"] table.table tbody tr,
+html[data-theme="dark"] table.docutils tbody tr {
+  background: var(--duke-ai-surface);
+}
+
+html[data-theme="dark"] table tbody tr:nth-child(even),
+html[data-theme="dark"] table.table tbody tr:nth-child(even),
+html[data-theme="dark"] table.docutils tbody tr:nth-child(even) {
+  background: var(--duke-ai-surface-dark);
+}
+
+html[data-theme="dark"] table td,
+html[data-theme="dark"] table th,
+html[data-theme="dark"] table.table td,
+html[data-theme="dark"] table.table th,
+html[data-theme="dark"] table.docutils td,
+html[data-theme="dark"] table.docutils th {
+  border-color: rgba(51, 153, 153, 0.22);
+}
+
+html[data-theme="dark"] table thead th,
+html[data-theme="dark"] table.table thead th,
+html[data-theme="dark"] table.docutils thead th {
+  border-bottom-color: var(--duke-ai-eno-bright) !important;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] table thead tr,
+html[data-theme="dark"] table.table thead tr,
+html[data-theme="dark"] table.docutils thead tr,
+html[data-theme="dark"] .bd-content div.cell_output table.dataframe thead tr,
+html[data-theme="dark"] .bd-content .nboutput .output_area .jp-RenderedHTMLCommon table.dataframe thead tr,
+html[data-theme="dark"] .bd-content .nboutput .output_area.rendered_html table.dataframe thead tr {
+  border-bottom-color: var(--duke-ai-eno-bright) !important;
+}
+
+html[data-theme="dark"] .table > :not(caption) > * > * {
+  border-bottom-color: var(--duke-ai-eno-bright);
+}
+
+html[data-theme="dark"] a,
+html[data-theme="dark"] a:link,
+html[data-theme="dark"] a:visited,
+html[data-theme="dark"] .bd-content a,
+html[data-theme="dark"] .bd-content a:visited,
+html[data-theme="dark"] .prev-next-area a,
+html[data-theme="dark"] .prev-next-area a:visited {
+  color: var(--duke-ai-eno-bright);
+}
+
+html[data-theme="dark"] a:hover,
+html[data-theme="dark"] a:focus,
+html[data-theme="dark"] .bd-content a:hover,
+html[data-theme="dark"] .bd-content a:focus,
+html[data-theme="dark"] .prev-next-area a:hover,
+html[data-theme="dark"] .prev-next-area a:focus {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .prev-next-area .prev-next-title,
+html[data-theme="dark"] .prev-next-area .prev-next-subtitle,
+html[data-theme="dark"] .prev-next-area i {
+  color: var(--duke-ai-eno-bright);
+}
+
+html[data-theme="dark"] .prev-next-area a:hover .prev-next-title,
+html[data-theme="dark"] .prev-next-area a:hover .prev-next-subtitle,
+html[data-theme="dark"] .prev-next-area a:hover i,
+html[data-theme="dark"] .prev-next-area a:focus .prev-next-title,
+html[data-theme="dark"] .prev-next-area a:focus .prev-next-subtitle,
+html[data-theme="dark"] .prev-next-area a:focus i {
+  color: #ffffff;
+}
+
+footer.bd-footer,
+html[data-theme="light"] footer.bd-footer,
+html[data-theme="dark"] footer.bd-footer {
+  background: var(--duke-ai-gradient);
+  border-top: none;
+  box-shadow: 0 -8px 30px var(--duke-ai-shadow);
+  color: #ffffff;
+}
+
+footer.bd-footer .footer-item,
+footer.bd-footer p,
+footer.bd-footer a,
+footer.bd-footer a:visited,
+html[data-theme="light"] footer.bd-footer .footer-item,
+html[data-theme="light"] footer.bd-footer p,
+html[data-theme="light"] footer.bd-footer a,
+html[data-theme="light"] footer.bd-footer a:visited,
+html[data-theme="dark"] footer.bd-footer .footer-item,
+html[data-theme="dark"] footer.bd-footer p,
+html[data-theme="dark"] footer.bd-footer a,
+html[data-theme="dark"] footer.bd-footer a:visited {
+  color: #ffffff;
+}
+
+footer.bd-footer a:hover,
+footer.bd-footer a:focus {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+#pst-back-to-top,
+button.pst-back-to-top,
+html[data-theme="dark"] #pst-back-to-top,
+html[data-theme="dark"] button.pst-back-to-top {
+  background: var(--duke-ai-gradient);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 12px 24px rgba(1, 33, 105, 0.32);
+  color: #ffffff;
+}
+
+#pst-back-to-top:hover,
+#pst-back-to-top:focus,
+button.pst-back-to-top:hover,
+button.pst-back-to-top:focus,
+html[data-theme="dark"] #pst-back-to-top:hover,
+html[data-theme="dark"] #pst-back-to-top:focus,
+html[data-theme="dark"] button.pst-back-to-top:hover,
+html[data-theme="dark"] button.pst-back-to-top:focus {
+  background: var(--duke-ai-gradient);
+  border-color: #ffffff;
+  color: #ffffff;
+}
