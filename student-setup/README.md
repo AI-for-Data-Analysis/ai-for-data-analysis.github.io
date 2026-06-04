@@ -53,10 +53,16 @@ codex --version
 codex-acp --help
 ```
 
-If either command is missing, install Codex:
+If `codex` is missing, install Codex:
 
 ```bash
 npm install -g @openai/codex
+```
+
+If `codex-acp` is missing, install the Codex Jupyter connector:
+
+```bash
+npm install -g @zed-industries/codex-acp
 ```
 
 If the global npm install fails with a permissions error, ask for help or configure npm to install global tools into your home directory.
@@ -81,6 +87,12 @@ Run:
 
 ```bash
 CODEX_HOME="$HOME/.codex-litellm" codex exec "Reply with only: Codex LiteLLM is working" --skip-git-repo-check
+```
+
+If you added the optional `litellm` shell function, you can run the same check with:
+
+```bash
+litellm codex exec "Reply with only: Codex LiteLLM is working" --skip-git-repo-check
 ```
 
 You should see:

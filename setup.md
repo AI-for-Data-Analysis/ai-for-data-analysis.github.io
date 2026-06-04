@@ -262,6 +262,14 @@ npm install -g @openai/codex
 
 If this command fails with a permissions error, use the steps in [Troubleshoot npm global installs](#troubleshoot-npm-global-installs), then run the install command again.
 
+You will also need to install a connector for Codex and the Jupyter Lab interface:
+
+```bash
+npm install -g @zed-industries/codex-acp
+```
+
+If this command fails with a permissions error, use the steps in [Troubleshoot npm global installs](#troubleshoot-npm-global-installs), then run the install command again.
+
 (troubleshoot-npm-global-installs)=
 #### Troubleshoot npm global installs
 
@@ -308,14 +316,6 @@ codex --version
 ```
 
 If your terminal says that `codex` was not found, close and reopen your terminal, then try the version check again.
-
-You will also need to install a connector for Codex and the Jupyter Lab interface:
-
-```bash
-npm install -g @zed-industries/codex-acp
-```
-
-If this command fails with a permissions error, use the steps in [Troubleshoot npm global installs](#troubleshoot-npm-global-installs), then run the install command again.
 
 #### AI provider access
 
@@ -504,7 +504,7 @@ python -m pip install -r requirements.txt
 
 Before the workshop, open your terminal and run these checks to confirm your setup.
 
-### Run from any folder in your terminal
+### Basic system checks
 
 ```bash
 python3 --version        # should show Python 3.11 or newer
@@ -512,14 +512,33 @@ python3 -m venv --help   # should show venv help text
 python3 -m pip --version # should show a pip version
 node --version           # should show a Node.js version
 npm --version            # should show an npm version
+```
+
+### Codex command-line checks
+
+First check that the Codex command-line tool is installed:
+
+```bash
 codex --version          # should show a Codex version
+codex-acp --help         # should show codex-acp help text
+```
+
+If you were able to sign in with ChatGPT, you can also test normal Codex access:
+
+```bash
 codex exec "Reply with only: Codex is working" --skip-git-repo-check # should return: Codex is working
 ```
 
-Check the workshop API key setup:
+If you cannot sign in with ChatGPT, skip that normal Codex access test and use the workshop API key test instead:
 
 ```bash
 CODEX_HOME="$HOME/.codex-litellm" codex exec "Reply with only: Codex is working" --skip-git-repo-check # should return: Codex is working
+```
+
+If you added the optional `litellm` shell function, you can run the same check with:
+
+```bash
+litellm codex exec "Reply with only: Codex is working" --skip-git-repo-check # should return: Codex is working
 ```
 
 ### Run from the workshop materials folder in your terminal
