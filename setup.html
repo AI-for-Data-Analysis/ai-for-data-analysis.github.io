@@ -516,6 +516,11 @@ WSL/Linux</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 <p>If this command fails with a permissions error, use the steps in <a class="reference internal" href="#troubleshoot-npm-global-installs">Troubleshoot npm global installs</a>, then run the install command again.</p>
+<p>You will also need to install a connector for Codex and the Jupyter Lab interface:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@zed-industries/codex-acp
+</pre></div>
+</div>
+<p>If this command fails with a permissions error, use the steps in <a class="reference internal" href="#troubleshoot-npm-global-installs">Troubleshoot npm global installs</a>, then run the install command again.</p>
 <section id="troubleshoot-npm-global-installs">
 <span id="id1"></span><h4>Troubleshoot npm global installs<a class="headerlink" href="#troubleshoot-npm-global-installs" title="Link to this heading">#</a></h4>
 <p>Codex is installed as a global npm package. On some systems, global npm installs fail because the default global install folder requires administrator permissions.</p>
@@ -551,11 +556,6 @@ npm<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 </pre></div>
 </div>
 <p>If your terminal says that <code class="docutils literal notranslate"><span class="pre">codex</span></code> was not found, close and reopen your terminal, then try the version check again.</p>
-<p>You will also need to install a connector for Codex and the Jupyter Lab interface:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@zed-industries/codex-acp
-</pre></div>
-</div>
-<p>If this command fails with a permissions error, use the steps in <a class="reference internal" href="#troubleshoot-npm-global-installs">Troubleshoot npm global installs</a>, then run the install command again.</p>
 </section>
 <section id="ai-provider-access">
 <h4>AI provider access<a class="headerlink" href="#ai-provider-access" title="Link to this heading">#</a></h4>
@@ -697,19 +697,33 @@ WSL/Linux</label><div class="sd-tab-content docutils">
 <section id="checklist">
 <h2>Checklist<a class="headerlink" href="#checklist" title="Link to this heading">#</a></h2>
 <p>Before the workshop, open your terminal and run these checks to confirm your setup.</p>
-<section id="run-from-any-folder-in-your-terminal">
-<h3>Run from any folder in your terminal<a class="headerlink" href="#run-from-any-folder-in-your-terminal" title="Link to this heading">#</a></h3>
+<section id="basic-system-checks">
+<h3>Basic system checks<a class="headerlink" href="#basic-system-checks" title="Link to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>--version<span class="w">        </span><span class="c1"># should show Python 3.11 or newer</span>
 python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--help<span class="w">   </span><span class="c1"># should show venv help text</span>
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>--version<span class="w"> </span><span class="c1"># should show a pip version</span>
 node<span class="w"> </span>--version<span class="w">           </span><span class="c1"># should show a Node.js version</span>
 npm<span class="w"> </span>--version<span class="w">            </span><span class="c1"># should show an npm version</span>
-codex<span class="w"> </span>--version<span class="w">          </span><span class="c1"># should show a Codex version</span>
-codex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;Reply with only: Codex is working&quot;</span><span class="w"> </span>--skip-git-repo-check<span class="w"> </span><span class="c1"># should return: Codex is working</span>
 </pre></div>
 </div>
-<p>Check the workshop API key setup:</p>
+</section>
+<section id="codex-command-line-checks">
+<h3>Codex command-line checks<a class="headerlink" href="#codex-command-line-checks" title="Link to this heading">#</a></h3>
+<p>First check that the Codex command-line tool is installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>codex<span class="w"> </span>--version<span class="w">          </span><span class="c1"># should show a Codex version</span>
+codex-acp<span class="w"> </span>--help<span class="w">         </span><span class="c1"># should show codex-acp help text</span>
+</pre></div>
+</div>
+<p>If you were able to sign in with ChatGPT, you can also test normal Codex access:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>codex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;Reply with only: Codex is working&quot;</span><span class="w"> </span>--skip-git-repo-check<span class="w"> </span><span class="c1"># should return: Codex is working</span>
+</pre></div>
+</div>
+<p>If you cannot sign in with ChatGPT, skip that normal Codex access test and use the workshop API key test instead:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CODEX_HOME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.codex-litellm&quot;</span><span class="w"> </span>codex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;Reply with only: Codex is working&quot;</span><span class="w"> </span>--skip-git-repo-check<span class="w"> </span><span class="c1"># should return: Codex is working</span>
+</pre></div>
+</div>
+<p>If you added the optional <code class="docutils literal notranslate"><span class="pre">litellm</span></code> shell function, you can run the same check with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>litellm<span class="w"> </span>codex<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;Reply with only: Codex is working&quot;</span><span class="w"> </span>--skip-git-repo-check<span class="w"> </span><span class="c1"># should return: Codex is working</span>
 </pre></div>
 </div>
 </section>
@@ -801,7 +815,8 @@ jupyter<span class="w"> </span>lab<span class="w"> </span>--version<span class="
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist">Checklist</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-from-any-folder-in-your-terminal">Run from any folder in your terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-system-checks">Basic system checks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codex-command-line-checks">Codex command-line checks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-from-the-workshop-materials-folder-in-your-terminal">Run from the workshop materials folder in your terminal</a></li>
 </ul>
 </li>
