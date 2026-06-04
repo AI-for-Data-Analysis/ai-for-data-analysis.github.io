@@ -24,7 +24,7 @@ source_suffix = {
 }
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.venv']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.venv', 'student-setup']
 html_sidebars = {
     "index": ["root-sidebar-nav.html"],
     "**": ["sidebar-collapse.html", "sidebar-nav-bs.html"],

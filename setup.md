@@ -16,6 +16,14 @@ If the Microsoft Store installation does not work, follow Microsoft’s more det
 You may also want to install [Windows Terminal](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-us&gl=US&ocid=pdpshare), which provides a nicer interface for using WSL and other command-line tools.
 ```
 
+```{admonition} Download the Workshop Setup Installer
+:class: tip
+
+Download the [workshop setup installer](student-setup.zip) now, but do not run it yet. This page first walks you through computer-level setup: WSL if needed, Python, npm, Codex, and the Codex Jupyter connector.
+
+Later, in the AI provider access section, you will use the installer to create the workshop-specific Python/Jupyter environment and Codex API key configuration.
+```
+
 ## Set Up Your Development Environment
 
 In this section, you will check that the basic tools needed for the workshop are installed and available on your computer. You will run these checks from a terminal, which is the program we will use to type setup commands.
@@ -194,45 +202,6 @@ After installing Node.js and `npm`, run the checks again.
 
 ::::
 
-(troubleshoot-npm-global-installs)=
-#### Troubleshoot npm global installs
-
-Codex is installed as a global npm package. On some systems, global npm installs fail because the default global install folder requires administrator permissions.
-
-:::{warning}
-Do not run the commands in this section unless an `npm install -g` command fails with a permissions error. If the global install command works, skip this section.
-:::
-
-If `npm install -g` fails because npm cannot write to the global install folder, configure npm to install global packages into a folder in your home directory, then try the failed install command again.
-
-::::{tab-set}
-
-:::{tab-item} Mac
-:sync: mac
-
-```bash
-mkdir -p ~/.local
-npm config set prefix ~/.local
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zprofile
-source ~/.zprofile
-```
-
-:::
-
-:::{tab-item} WSL/Linux
-:sync: wsl-linux
-
-```bash
-mkdir -p ~/.local
-npm config set prefix ~/.local
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
-source ~/.profile
-```
-
-:::
-
-::::
-
 ### Code editor
 
 We recommend using **Visual Studio Code (VS Code)** as your code editor for this workshop.
@@ -293,6 +262,45 @@ npm install -g @openai/codex
 
 If this command fails with a permissions error, use the steps in [Troubleshoot npm global installs](#troubleshoot-npm-global-installs), then run the install command again.
 
+(troubleshoot-npm-global-installs)=
+#### Troubleshoot npm global installs
+
+Codex is installed as a global npm package. On some systems, global npm installs fail because the default global install folder requires administrator permissions.
+
+:::{warning}
+Do not run the commands in this section unless an `npm install -g` command fails with a permissions error. If the global install command works, skip this section.
+:::
+
+If `npm install -g` fails because npm cannot write to the global install folder, configure npm to install global packages into a folder in your home directory, then try the failed install command again.
+
+::::{tab-set}
+
+:::{tab-item} Mac
+:sync: mac
+
+```bash
+mkdir -p ~/.local
+npm config set prefix ~/.local
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zprofile
+source ~/.zprofile
+```
+
+:::
+
+:::{tab-item} WSL/Linux
+:sync: wsl-linux
+
+```bash
+mkdir -p ~/.local
+npm config set prefix ~/.local
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
+source ~/.profile
+```
+
+:::
+
+::::
+
 Then check that the `codex` command is available:
 
 ```bash
@@ -313,13 +321,17 @@ If this command fails with a permissions error, use the steps in [Troubleshoot n
 
 This workshop uses **Codex**, OpenAI's coding agent. 
 You will be using Codex both in the JupyterLab interface with the JupyterAI plugin and in the command line interface.
-We expect ChatGPT access to be available for workshop participants by the time the workshop begins.
+Some Duke departments cover access to ChatGPT. If you are able to get ChatGPT access through Duke without paying out of pocket, please [set it up through Duke Software Manager](https://oit.duke.edu/service/chatgpt-edu/) before the workshop.
 
-First, make sure you have access to Duke ChatGPT by [placing an order with Duke Software Manager](https://oit.duke.edu/service/chatgpt-edu/), if you have not already done so.
+If your department does not cover access, you do not need to pay for ChatGPT for this workshop unless you want to. We will also provide a workshop API key that you can use instead; [skip to the workshop API key setup](#workshop-api-key-setup).
 
 Open Codex by typing `codex` into your terminal.
 
 The first time you open Codex, choose the first option, **Sign in with ChatGPT**. This will open a web page where you should log in to ChatGPT using your Duke NetID.
+
+:::{note}
+If you cannot get ChatGPT access, or if access would require you to pay and you do not want to, use the workshop API key setup below.
+:::
 
 After logging in, check your login status:
 
@@ -333,60 +345,67 @@ If ChatGPT login works, you can use Codex normally.
 codex exec "Reply with only: Codex is working" --skip-git-repo-check
 ```
 
-##### API key fallback
+(workshop-api-key-setup)=
+##### Workshop API key setup
 
-We will provide API keys to all workshop participants. You only need to use the API key setup if you cannot log in with ChatGPT.
+We will provide API keys to all workshop participants. Set up the workshop API key configuration even if ChatGPT login works for you. This gives you a backup provider if ChatGPT login is unavailable or if you run out of usage during the workshop.
 
-If ChatGPT login does not work, configure Codex to use the workshop API key through a separate `litellm` profile. This keeps your default Codex setup on ChatGPT login while making the API key available when you explicitly use `--profile litellm`.
+After you have installed Python, npm, Codex, and the Codex Jupyter connector, use the [workshop setup installer](student-setup.zip). The zip includes a `README.md`, a `requirements.txt` for testing JupyterLab and Jupyter AI, and a script that creates the workshop Codex LiteLLM configuration after you paste in your API key.
 
-Create or open `~/.codex/litellm.config.toml` and add the following. Replace `YOUR_LITELLM_TOKEN_HERE` with the API key provided by the workshop instructors.
-
-```toml
-#:schema https://developers.openai.com/codex/config-schema.json
-
-# View all configuration
-# https://github.com/openai/codex/blob/main/codex-rs/config.md
-
-# Use the Duke LiteLLM provider only when Codex is launched with:
-# codex --profile litellm
-model = "gpt-5.3-codex"
-model_provider = "litellm"
-
-# Disable analytics
-[analytics]
-enabled = false
-
-# Prevent access to certain envs
-[shell_environment_policy]
-exclude = ["VAULT_*", "OP*"]
-
-# The responses API is generally preferred vs chat
-[model_providers.litellm]
-name = "litellm"
-base_url = "https://litellm.oit.duke.edu/v1"
-wire_api = "responses"
-
-# Directly embed your Duke LiteLLM token here.
-# Do not include "Bearer"; Codex uses this value as the bearer token.
-experimental_bearer_token = "YOUR_LITELLM_TOKEN_HERE"
-
-## Optionally set higher than default retries. This can help if you are being
-## rate limited in certain instances
-# request_max_retries = 10
-# stream_max_retries = 10
-```
-
-Then test the API-key profile:
+Move the downloaded zip file to the folder where you want to create your workshop setup, or retrieve it again from the terminal with `curl`. Replace `PASTE_STUDENT_SETUP_ZIP_URL_HERE` with the published link to `student-setup.zip`.
 
 ```bash
-codex exec --profile litellm "Reply with only: Codex is working" --skip-git-repo-check
+SETUP_ZIP_URL="PASTE_STUDENT_SETUP_ZIP_URL_HERE"
+curl -L "$SETUP_ZIP_URL" -o student-setup.zip
+unzip student-setup.zip
+cd student-setup
 ```
 
-If this works, use `--profile litellm` whenever you need Codex to use the workshop API key.
+:::{tip}
+In WSL, you can open the current Linux folder in Windows File Explorer with:
+
+```bash
+explorer.exe .
+```
+
+You can also open a specific path by replacing `.` with that path.
+:::
+
+Then create the Python environment and install the Jupyter/data-analysis packages:
+
+```bash
+bash scripts/setup_python_environment.sh
+```
+
+Then run the Codex API key setup script:
+
+```bash
+python scripts/setup_codex_litellm.py
+```
+
+When prompted, paste the API key provided by the workshop instructors.
+
+The script creates a separate Codex home directory named `~/.codex-litellm`. Codex will still use your regular `~/.codex` folder by default and will use `~/.codex-litellm` only when you explicitly launch it that way.
+
+Then test the workshop API key configuration:
+
+```bash
+CODEX_HOME="$HOME/.codex-litellm" codex exec "Reply with only: Codex is working" --skip-git-repo-check
+```
+
+To test Jupyter AI with the workshop API key configuration, start JupyterLab from the `student-setup` folder with `CODEX_HOME` set:
+
+```bash
+CODEX_HOME="$HOME/.codex-litellm" jupyter lab
+```
+
+In Jupyter AI, use the regular `Codex` persona. Because JupyterLab was launched with `CODEX_HOME="$HOME/.codex-litellm"`, that Codex persona will use the workshop API key configuration.
+
+During the workshop, use normal Codex for ChatGPT login when available. Launch commands with `CODEX_HOME="$HOME/.codex-litellm"` when you need the workshop API key.
 
 ## Obtaining Workshop Materials
 
-Download starting zip file. This will have data and `requirements.txt`
+Workshop materials will be distributed separately. For now, use the [student setup zip](student-setup.zip) to verify that your environment can run JupyterLab, Jupyter AI, and the workshop Codex API key configuration.
 
 ### Create a virtual environment
 
@@ -449,10 +468,10 @@ codex --version          # should show a Codex version
 codex exec "Reply with only: Codex is working" --skip-git-repo-check # should return: Codex is working
 ```
 
-If ChatGPT login does not work and you set up the workshop API key fallback, run:
+Check the workshop API key setup:
 
 ```bash
-codex exec --profile litellm "Reply with only: Codex is working" --skip-git-repo-check # should return: Codex is working
+CODEX_HOME="$HOME/.codex-litellm" codex exec "Reply with only: Codex is working" --skip-git-repo-check # should return: Codex is working
 ```
 
 ### Run from the workshop materials folder in your terminal
@@ -484,4 +503,5 @@ python --version        # should show Python 3.11 or newer
 python -m pip --version # should show pip from the virtual environment
 python -m pip check     # should show: No broken requirements found.
 jupyter lab --version   # should show a JupyterLab version
+CODEX_HOME="$HOME/.codex-litellm" jupyter lab # should open JupyterLab with the workshop Codex configuration
 ```

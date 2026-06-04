@@ -1,0 +1,22 @@
+# Jupyter environment
+jupyterlab
+jupyter-ai
+jupyter-ai-acp-client
+ipykernel
+ipywidgets
+nbformat
+
+# Data analysis stack
+numpy
+pandas
+scipy
+scikit-learn
+statsmodels
+pyarrow
+openpyxl
+
+# Visualization
+matplotlib
+seaborn
+plotly
+kaleido
