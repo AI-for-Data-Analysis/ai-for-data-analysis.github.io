@@ -97,19 +97,13 @@ python scripts/setup_codex_litellm.py
 
 ## 6. Start JupyterLab
 
-Start JupyterLab from this folder with the workshop Codex configuration:
+Start JupyterLab from this folder:
 
 ```bash
-CODEX_HOME="$HOME/.codex-litellm" jupyter lab
+jupyter lab
 ```
 
-Open the URL printed in the terminal. In Jupyter AI, use the regular `Codex` persona; because JupyterLab was launched with `CODEX_HOME="$HOME/.codex-litellm"`, that Codex persona will use the workshop API key configuration.
-
-Try a short message to `Codex`, such as:
-
-```text
-Can you reply with only: Jupyter AI is connected
-```
+Open the URL printed in the terminal. This confirms that JupyterLab starts from the environment you created.
 
 Optional: create a shorter command for running tools with the workshop Codex configuration. This is a shell function: a shortcut in your terminal that runs one command with `CODEX_HOME="$HOME/.codex-litellm"` set.
 
@@ -137,13 +131,7 @@ EOF
 source ~/.bashrc
 ```
 
-After that, you can start JupyterLab with:
-
-```bash
-litellm jupyter lab
-```
-
-You can also test Codex with:
+After that, you can test Codex with:
 
 ```bash
 litellm codex exec "Reply with only: Codex is working" --skip-git-repo-check
@@ -153,5 +141,4 @@ litellm codex exec "Reply with only: Codex is working" --skip-git-repo-check
 
 - Keep this folder on your computer for the workshop.
 - Your `.venv` is tied to this folder. Start JupyterLab from this folder when testing this setup.
-- To use the workshop API key in Jupyter AI, start JupyterLab with `CODEX_HOME="$HOME/.codex-litellm" jupyter lab`.
 - Do not share your API key or commit it to Git.

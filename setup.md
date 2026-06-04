@@ -392,14 +392,6 @@ Then test the workshop API key configuration:
 CODEX_HOME="$HOME/.codex-litellm" codex exec "Reply with only: Codex is working" --skip-git-repo-check
 ```
 
-To test Jupyter AI with the workshop API key configuration, start JupyterLab from the `student-setup` folder with `CODEX_HOME` set:
-
-```bash
-CODEX_HOME="$HOME/.codex-litellm" jupyter lab
-```
-
-In Jupyter AI, use the regular `Codex` persona. Because JupyterLab was launched with `CODEX_HOME="$HOME/.codex-litellm"`, that Codex persona will use the workshop API key configuration.
-
 ````{admonition} Optional shortcut
 :class: tip
 
@@ -439,13 +431,7 @@ source ~/.bashrc
 
 ::::
 
-After adding the function, you can start JupyterLab with the workshop API key configuration by running:
-
-```bash
-litellm jupyter lab
-```
-
-You can also test Codex with:
+After adding the function, you can test Codex with:
 
 ```bash
 litellm codex exec "Reply with only: Codex is working" --skip-git-repo-check
@@ -454,16 +440,15 @@ litellm codex exec "Reply with only: Codex is working" --skip-git-repo-check
 
 During the workshop, use normal Codex for ChatGPT login when available. Launch commands with `CODEX_HOME="$HOME/.codex-litellm"` when you need the workshop API key.
 
-## Obtaining Workshop Materials
+## Set Up the Student Installer Environment
 
-Workshop materials will be distributed separately. For now, use the [student setup zip](student-setup.zip) to verify that your environment can run JupyterLab, Jupyter AI, and the workshop Codex API key configuration.
+Workshop materials will be distributed separately. For now, use the [workshop setup installer](student-setup.zip) to verify that your environment can run JupyterLab, Jupyter AI, and the workshop Codex API key configuration.
 
 ### Create a virtual environment
 
-The workshop materials you created contain a list of Python packages that should be installed. 
-We will use a Python virtual environment for these packages. 
-You should execute the following commands from the repository root.
-Create a virtual environment for the workshop project:
+The setup installer contains a `requirements.txt` file with the Python packages needed for the setup check. We will use a Python virtual environment for these packages.
+
+You should execute the following commands from the `student-setup` folder. Create a virtual environment for the setup check:
 
 ```bash
 python3 -m venv .venv
@@ -554,5 +539,4 @@ python --version        # should show Python 3.11 or newer
 python -m pip --version # should show pip from the virtual environment
 python -m pip check     # should show: No broken requirements found.
 jupyter lab --version   # should show a JupyterLab version
-CODEX_HOME="$HOME/.codex-litellm" jupyter lab # should open JupyterLab with the workshop Codex configuration
 ```

@@ -73,10 +73,6 @@ def main() -> None:
         'CODEX_HOME="$HOME/.codex-litellm" codex exec '
         '"Reply with only: Codex LiteLLM is working" --skip-git-repo-check'
     )
-    print()
-    print("To start JupyterLab with this Codex configuration, run:")
-    print('CODEX_HOME="$HOME/.codex-litellm" jupyter lab')
-
 
 if __name__ == "__main__":
     main()
