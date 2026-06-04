@@ -370,12 +370,6 @@ explorer.exe .
 You can also open a specific path by replacing `.` with that path.
 :::
 
-Then create the Python environment and install the Jupyter/data-analysis packages:
-
-```bash
-bash scripts/setup_python_environment.sh
-```
-
 Then run the Codex API key setup script:
 
 ```bash
@@ -449,6 +443,24 @@ Workshop materials will be distributed separately. For now, use the [workshop se
 The setup installer contains a `requirements.txt` file with the Python packages needed for the setup check. We will use a Python virtual environment for these packages.
 
 You should execute the following commands from the `student-setup` folder. Create a virtual environment for the setup check:
+
+````{admonition} Recommended shortcut
+:class: tip
+
+The installer includes a script that creates `.venv`, activates it inside the script, upgrades `pip`, and installs `requirements.txt`.
+
+```bash
+bash scripts/setup_python_environment.sh
+```
+
+After the script finishes, activate the environment in your current terminal before running more commands:
+
+```bash
+source .venv/bin/activate
+```
+````
+
+If you prefer to run the steps manually, create the virtual environment with:
 
 ```bash
 python3 -m venv .venv
