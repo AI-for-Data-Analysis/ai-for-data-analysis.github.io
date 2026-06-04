@@ -35,6 +35,7 @@ html_static_path = ['_static', 'images']
 
 
 html_logo = "images/ai-duke-transparent.png"
+html_favicon = "images/favicon.png"
 
 html_css_files = [
 
