@@ -352,11 +352,10 @@ We will provide API keys to all workshop participants. Set up the workshop API k
 
 After you have installed Python, npm, Codex, and the Codex Jupyter connector, use the [workshop setup installer](student-setup.zip). The zip includes a `README.md`, a `requirements.txt` for testing JupyterLab and Jupyter AI, and a script that creates the workshop Codex LiteLLM configuration after you paste in your API key.
 
-Move the downloaded zip file to the folder where you want to create your workshop setup, or retrieve it again from the terminal with `curl`. Replace `PASTE_STUDENT_SETUP_ZIP_URL_HERE` with the published link to `student-setup.zip`.
+Move the downloaded zip file to the folder where you want to create your workshop setup, or retrieve it again from the terminal with `curl`.
 
 ```bash
-SETUP_ZIP_URL="PASTE_STUDENT_SETUP_ZIP_URL_HERE"
-curl -L "$SETUP_ZIP_URL" -o student-setup.zip
+curl -L 'https://gitlab.oit.duke.edu/jn242/ai-analytics-accelerator/-/raw/main/student-setup.zip' -o student-setup.zip
 unzip student-setup.zip
 cd student-setup
 ```
