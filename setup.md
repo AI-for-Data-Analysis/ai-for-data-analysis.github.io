@@ -401,6 +401,58 @@ CODEX_HOME="$HOME/.codex-litellm" jupyter lab
 
 In Jupyter AI, use the regular `Codex` persona. Because JupyterLab was launched with `CODEX_HOME="$HOME/.codex-litellm"`, that Codex persona will use the workshop API key configuration.
 
+````{admonition} Optional shortcut
+:class: tip
+
+A shell function is a shortcut in your terminal. The function below creates a command named `litellm` that runs one command with the workshop Codex configuration.
+
+This does not permanently set `CODEX_HOME`. It sets `CODEX_HOME` only for the command you run after `litellm`.
+
+::::{tab-set}
+
+:::{tab-item} Mac
+:sync: mac
+
+```bash
+cat >> ~/.zshrc <<'EOF'
+litellm() {
+  CODEX_HOME="$HOME/.codex-litellm" "$@"
+}
+EOF
+source ~/.zshrc
+```
+
+:::
+
+:::{tab-item} WSL/Linux
+:sync: wsl-linux
+
+```bash
+cat >> ~/.bashrc <<'EOF'
+litellm() {
+  CODEX_HOME="$HOME/.codex-litellm" "$@"
+}
+EOF
+source ~/.bashrc
+```
+
+:::
+
+::::
+
+After adding the function, you can start JupyterLab with the workshop API key configuration by running:
+
+```bash
+litellm jupyter lab
+```
+
+You can also test Codex with:
+
+```bash
+litellm codex exec "Reply with only: Codex is working" --skip-git-repo-check
+```
+````
+
 During the workshop, use normal Codex for ChatGPT login when available. Launch commands with `CODEX_HOME="$HOME/.codex-litellm"` when you need the workshop API key.
 
 ## Obtaining Workshop Materials

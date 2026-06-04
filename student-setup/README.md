@@ -111,6 +111,44 @@ Try a short message to `Codex`, such as:
 Can you reply with only: Jupyter AI is connected
 ```
 
+Optional: create a shorter command for running tools with the workshop Codex configuration. This is a shell function: a shortcut in your terminal that runs one command with `CODEX_HOME="$HOME/.codex-litellm"` set.
+
+This does not permanently set `CODEX_HOME`. It sets `CODEX_HOME` only for the command you run after `litellm`.
+
+On macOS:
+
+```bash
+cat >> ~/.zshrc <<'EOF'
+litellm() {
+  CODEX_HOME="$HOME/.codex-litellm" "$@"
+}
+EOF
+source ~/.zshrc
+```
+
+On WSL/Linux:
+
+```bash
+cat >> ~/.bashrc <<'EOF'
+litellm() {
+  CODEX_HOME="$HOME/.codex-litellm" "$@"
+}
+EOF
+source ~/.bashrc
+```
+
+After that, you can start JupyterLab with:
+
+```bash
+litellm jupyter lab
+```
+
+You can also test Codex with:
+
+```bash
+litellm codex exec "Reply with only: Codex is working" --skip-git-repo-check
+```
+
 ## Notes
 
 - Keep this folder on your computer for the workshop.
