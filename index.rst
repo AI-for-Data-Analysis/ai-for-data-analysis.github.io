@@ -22,6 +22,17 @@ Setup page: `Open Setup <setup.html>`_
   :file: csv_tables/setup.csv
   :header-rows: 1
 
+Session 1: Foundations for AI-Assisted Analytics Work
+######################################################
+
+Section page: `Open Session 1 <session-1-foundations/index.html>`_
+
+Use Codex as a coding agent for analytics work while keeping the analysis understandable, reviewable, and traceable.
+
+.. csv-table::
+  :file: csv_tables/session_1_foundations_pages.csv
+  :header-rows: 1
+
 
 .. toctree::
    :maxdepth: 2
@@ -30,3 +41,4 @@ Setup page: `Open Setup <setup.html>`_
 
    self
    setup
+   session-1-foundations/index
