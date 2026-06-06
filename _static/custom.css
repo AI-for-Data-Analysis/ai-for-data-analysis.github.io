@@ -397,6 +397,127 @@ a:focus {
   box-shadow: 0 12px 28px var(--brand-shadow);
 }
 
+/**********************************************************************************/
+/* Exercise and Solution Admonitions */
+
+/* Exercise and Solution - title div background */
+.admonition.exercise > .admonition-title,
+div.admonition.exercise > .admonition-title,
+.admonition.solution > .admonition-title,
+div.admonition.solution > .admonition-title {
+  position: relative;
+  margin: 0 -0.6rem !important;
+  padding: 0.4rem 0.6rem 0.4rem 2rem;
+  font-weight: 700;
+  background-color: #fd7e1433;
+}
+
+/* Exercise Admonition Icon */
+.admonition.exercise > .admonition-title::after,
+div.admonition.exercise > .admonition-title::after {
+  position: absolute;
+  left: 0.6rem;
+  width: 1rem;
+  height: 1rem;
+  color: #fd7e14;
+  font-family: "Font Awesome 5 Free", "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f303";
+}
+
+.admonition.exercise > .admonition-title::before,
+div.admonition.exercise > .admonition-title::before,
+.admonition.solution > .admonition-title::before,
+div.admonition.solution > .admonition-title::before {
+  position: absolute;
+  left: 0.6rem;
+  width: 1rem;
+  height: 1rem;
+  color: #fd7e14;
+  background-color: #fd7e1400;
+}
+
+/* Solution Left Icon */
+.admonition.solution > .admonition-title::after,
+div.admonition.solution > .admonition-title::after {
+  position: absolute;
+  left: 0.6rem;
+  width: 1rem;
+  height: 1rem;
+  color: #fd7e14;
+  font-family: "Font Awesome 5 Free", "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f06e";
+}
+
+/* Exercise and Solution - Left Border */
+.admonition.exercise,
+div.admonition.exercise,
+.admonition.solution,
+div.admonition.solution {
+  margin: 1.5625em auto;
+  padding: 0 0.6rem 0.8rem !important;
+  overflow: hidden;
+  page-break-inside: avoid;
+  border-left: 0.2rem solid #fd7e14;
+  border-radius: 0.1rem;
+  box-shadow: 0 0.2rem 0.5rem rgb(0 0 0 / 5%), 0 0 0.05rem rgb(0 0 0 / 10%);
+  transition: color 0.25s, background-color 0.25s, border-color 0.25s;
+}
+
+/**********************************************************************************/
+
+/**********************************************************************************/
+/* Key Points Admonition */
+
+/* Key Admonition Div Background */
+.admonition.key > .admonition-title,
+div.admonition.key > .admonition-title {
+  position: relative;
+  margin: 0 -0.6rem !important;
+  padding: 0.4rem 0.6rem 0.4rem 2rem;
+  font-weight: 700;
+  background-color: #00a30033;
+}
+
+/* Key Admonition Icon */
+.admonition.key > .admonition-title::before,
+div.admonition.key > .admonition-title::before {
+  position: absolute;
+  left: 0.6rem;
+  width: 1rem;
+  height: 1rem;
+  color: #00a300;
+  background-color: #00a30000;
+}
+
+.admonition.key > .admonition-title::after,
+div.admonition.key > .admonition-title::after {
+  position: absolute;
+  left: 0.6rem;
+  width: 1rem;
+  height: 1rem;
+  color: #00a300;
+  font-family: "Font Awesome 5 Free", "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f084";
+}
+
+/* Key Admonition left border */
+.admonition.key,
+div.admonition.key {
+  margin: 1.5625em auto;
+  padding: 0 0.6rem 0.8rem !important;
+  overflow: hidden;
+  page-break-inside: avoid;
+  border-left: 0.2rem solid #00a300;
+  border-radius: 0.1rem;
+  box-shadow: 0 0.2rem 0.5rem rgb(0 0 0 / 5%), 0 0 0.05rem rgb(0 0 0 / 10%);
+  transition: color 0.25s, background-color 0.25s, border-color 0.25s;
+}
+
+/**********************************************************************************/
+
 code,
 .rst-content tt {
   background: #f4f8fd;

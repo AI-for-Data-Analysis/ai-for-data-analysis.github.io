@@ -14,6 +14,8 @@ A general request ("tell me about this data") returns whatever the agent decides
 
 Frame the prompt around these questions, and constrain where the work goes and how far it proceeds:
 
+Ask Codex to create the first serious notebook artifact for this project:
+
 ```text
 Help me investigate the data in my data folder. I want to know what datasets
 are present, what one row represents in each, what values are being counted,
@@ -21,6 +23,8 @@ whether each dataset is sampled or aggregated, and how the datasets relate to
 each other. Add your investigation as traceable, readable code in my open
 notebook. Keep it simple, and don't make any plots yet.
 ```
+
+After Codex finishes, review the notebook section it created. Do not move on to plotting until the data structure is clear.
 
 Two parts of this prompt are doing specific work. "Don't make any plots yet" stops the agent from producing charts before the structure is confirmed. The instruction to work in the notebook is not strictly necessary here, because it is already a project rule — but the request still names the questions explicitly, since these are particular to the task rather than standing expectations.
 
@@ -34,11 +38,15 @@ In the checkout example, the investigation distinguishes two title-level *sample
 
 Once the relationships are established, have the agent express them visually so they can be checked at a glance:
 
+Ask Codex to summarize the dataset relationships visually:
+
 ```text
 Based on the investigation, add a Mermaid diagram to the notebook showing the
 datasets and how they relate. Make clear which file is the monthly aggregate and
 which are title-level samples.
 ```
+
+Review the diagram as an interpretation of the investigation, not as an automatically correct schema.
 
 ### Data relationship diagram
 
@@ -93,6 +101,18 @@ erDiagram
 
 The diagram shows a many-to-one relationship for context only: many sampled title-month rows can correspond to one monthly aggregate row. The aggregate keys are not title identifiers.
 
+### Discussion: Check the data model
+
+In groups, compare the notebook investigation with the relationship diagram.
+
+Discuss:
+
+- Does the diagram make the sample-versus-aggregate distinction visible?
+- What relationship is shown?
+- What relationship is not shown?
+- Which file should answer questions about total checkout volume?
+- Which files should answer questions about titles, creators, subjects, or material types?
+
 ## Review the generated code
 
 Code from a data investigation may run correctly while leaving the interpretation unclear. Reviewing the output is part of the technique, and recurring problems become additional rules for `AGENTS.md`. Three patterns are common in agent-generated analysis code:
@@ -115,4 +135,24 @@ Code from a data investigation may run correctly while leaving the interpretatio
 - Prefer plain phrasing like "what one row represents" before introducing terms like "grain."
 ```
 
+```{admonition} Group activity: Add one rule
+:class: exercise
+
+Review the notebook section Codex created and choose one issue that would benefit from a project rule. Add one rule to `AGENTS.md`, then ask Codex to revise the investigation section so it follows the updated rules.
+
+Compare before and after:
+
+- Did the new rule change Codex's behavior?
+- Was the rule specific enough?
+- Should the rule be kept, revised, or removed?
+```
+
 Re-running the investigation after adding these rules demonstrates their effect on the output. Once the data structure is established and confirmed, the analysis can proceed.
+
+```{admonition} Key points
+:class: key
+
+- Understanding what one row represents comes before plotting or interpreting trends.
+- Sample files and aggregate files answer different kinds of questions.
+- Reviewing the agent's notebook output is part of the analysis workflow, not a separate cleanup step.
+```

@@ -37,6 +37,18 @@ After opening both tiles, arrange the chat and notebook side by side. This keeps
 The coding agent chat and the analysis notebook can be open at the same time in the JupyterLab workspace.
 ```
 
+```{admonition} Exercise: Prepare the workspace
+:class: exercise
+
+Open JupyterLab and arrange the coding agent chat and a new Python notebook side by side. Confirm that the notebook is using the project Python environment prepared during setup.
+
+Before continuing, make sure you can identify:
+
+- where you will type prompts to Codex
+- where Codex should record code and outputs
+- where the project files and `data/` folder are located
+```
+
 
 ## What a coding agent does
 
@@ -65,3 +77,11 @@ Run again, then continue into the analysis.
 ```
 
 The remaining pages apply this cycle to the checkout dataset: an initial broad prompt, a set of project rules, a structured investigation of the data, and a trend analysis.
+
+```{admonition} Key points
+:class: key
+
+- A coding agent works inside a project environment, not only in a chat window.
+- The notebook is the analysis artifact students should be able to rerun and review.
+- Agent-produced analysis must be understandable, reviewable, and traceable.
+```

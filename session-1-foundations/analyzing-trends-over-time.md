@@ -21,6 +21,8 @@ notebook. Include annual totals, a trend chart, and a note about any partial
 years.
 ```
 
+When Codex finishes, use the review checklist below before accepting the result.
+
 The prompt does not restate the requirements defined in `AGENTS.md`, such as readable code and notebook output; those apply automatically. It specifies only what is particular to this task: the dataset, the required outputs, and the caveat to address.
 
 ## Expected output
@@ -51,12 +53,28 @@ How does publication year differ between digital and physical samples?
 
 Use a prompt that carries the same requirements:
 
+````{admonition} Group activity: Investigate a sample-data question
+:class: exercise
+
+Choose one granular question about the title-level sample files, or write your own. Use this prompt template:
+
 ```text
 Help me investigate this question: [QUESTION]. Use the title-level sample
 files. Before analyzing, state what one row represents and what is being
 counted. Add traceable, readable code to the notebook with short explanations.
 End with one finding and one caveat.
 ```
+
+Prepare a short share-out with:
+
+- the question your group investigated
+- the dataset used
+- what one row represents
+- the code or output that supports the finding
+- one finding
+- one caveat or uncertainty
+- one thing Codex did well or poorly
+````
 
 These files are samples, not the complete collection. A finding describes the sample; any statement about the full collection is an inference. State which one applies.
 
@@ -73,4 +91,10 @@ Add rules as further issues appear.
 Compare results before and after, and continue.
 ```
 
-A coding agent performs much of the analytical work. The analyst's role is to direct it toward output that is understandable, reviewable, and traceable, and to confirm those properties before the analysis proceeds.
+```{admonition} Key points
+:class: key
+
+- The aggregate file answers questions about total checkout volume.
+- The title-level sample files answer more granular questions about titles, subjects, material types, and publishers.
+- A coding agent can do much of the analytical work, but the analyst must confirm that the output is understandable, reviewable, and traceable.
+```
