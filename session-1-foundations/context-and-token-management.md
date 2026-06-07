@@ -86,6 +86,9 @@ interactive HTML report. Those values are a closer view of how much context was
 sent to the model for a turn. The per-turn token delta is broader: it includes
 the token usage added during that user turn, which may include multiple model
 calls, tool loops, output tokens, and reasoning tokens when those are recorded.
+Cached input tokens are part of the input count, not an additional cost on top
+of input. They are useful because they show how much of a turn's input was
+recognized as repeated or cache-eligible context.
 ```
 
 ## Why notebooks can amplify context

@@ -32,4 +32,3 @@ Complete the environment and assistant setup before starting:
    prompting-and-project-rules
    understanding-your-data
    analyzing-trends-over-time
-   context-and-token-management
