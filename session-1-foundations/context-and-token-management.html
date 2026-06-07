@@ -320,16 +320,24 @@
   <section id="context-and-token-management">
 <h1>Context and Token Management<a class="headerlink" href="#context-and-token-management" title="Link to this heading">#</a></h1>
 <p>AI-assisted analysis is not only about writing better prompts. It is also about
-managing the working context that the agent carries from one step to the next.
-This becomes especially important if you are using a pay-by-use plan or are
-working through an API.
-This page explains why context can become expensive, how notebook workflows can
-increase that cost, and how to decide when to continue a session versus starting
-fresh.</p>
-<section id="what-context-means">
-<h2>What context means<a class="headerlink" href="#what-context-means" title="Link to this heading">#</a></h2>
-<p>A Codex session is a working conversation plus the project information Codex has
-loaded while helping you. That context can include:</p>
+managing what the agent is carrying from one step to the next.</p>
+<p>For Session 1, use a simple mental model:</p>
+<div class="note admonition">
+<p class="admonition-title">Mental model</p>
+<p>The current Codex conversation is temporary working context. The notebook,
+<code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>, README files, and saved outputs are the project record.</p>
+</div>
+<p>Temporary context is useful while you are solving one problem. It lets Codex
+keep track of what it just inspected, what code it wrote, what errors appeared,
+and what decisions you made. But it can also become cluttered. A long session
+may contain old file previews, debugging output, abandoned approaches, large
+notebook outputs, and decisions from a task that is already finished.</p>
+<p>The goal is not to make every conversation short. The goal is to know when the
+current conversation is still helping and when it is time to save the important
+facts in the project and start fresh.</p>
+<section id="what-context-includes">
+<h2>What context includes<a class="headerlink" href="#what-context-includes" title="Link to this heading">#</a></h2>
+<p>In a Codex session, context can include:</p>
 <ul class="simple">
 <li><p>system and project instructions</p></li>
 <li><p>the current conversation</p></li>
@@ -338,196 +346,122 @@ loaded while helping you. That context can include:</p>
 <li><p>notebook code and saved outputs</p></li>
 <li><p>error messages, plots, tables, and summaries</p></li>
 </ul>
-<p>Tokens are the pieces of text the model processes. Your typed prompt is only one
-part of the total. Every time you type a message to a model in a conversation,
-that message and response become part of the session history. In general, later
-model calls need enough of that history to answer coherently, so long sessions
-often send much more input than the few words in your newest prompt.</p>
-<p>The simple mental model is: <strong>a long conversation gets carried forward.</strong> The
-exact accounting can vary because systems may compact old history into a
-summary, omit irrelevant details, or bill cached input differently. But the
-practical consequence is the same: old conversation, tool output, file contents,
-and notebook output can keep costing tokens after the original task is finished.</p>
-<p><strong>A short follow-up near the end of a long session can still be
-expensive because the model will need to process a large amount of accumulated
-context before answering.</strong></p>
-<figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/context-snowball.png"><img alt="Conceptual representation of context growing larger for long sessions vs. being small for focused tasks" src="../_images/context-snowball.png" style="width: 100%;" />
-</a>
-<figcaption>
-<p><span class="caption-text">Context tends to grow across turns because prior conversation and tool results
-remain available to the model. Using smaller, more focused conversations keeps
-working context and token input smaller.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<div class="note admonition">
-<p class="admonition-title">Mental model</p>
-<p>Think of context as the agent’s working memory for the current task. It is useful
-because it lets Codex remember what just happened. It becomes expensive when the
-working memory contains old scratch work, large outputs, or details from a task
-you have already finished.</p>
-</div>
+<p>That context helps Codex answer follow-up questions. It also means a short
+follow-up prompt may involve more work than the words you typed suggest. Codex
+may need to use previous conversation, inspect files, read notebook cells, or
+verify earlier work before answering.</p>
+<p>The exact token accounting is system-dependent. For this lesson, the important
+practice is simpler: do not rely on a long conversation as the only place where
+important project knowledge lives.</p>
 </section>
-<section id="why-context-gets-expensive">
-<h2>Why context gets expensive<a class="headerlink" href="#why-context-gets-expensive" title="Link to this heading">#</a></h2>
-<p>Context usually grows for practical reasons:</p>
-<ul class="simple">
-<li><p>Codex reads files to understand the project.</p></li>
-<li><p>It runs commands and receives outputs.</p></li>
-<li><p>It inspects notebook cells and saved notebook outputs.</p></li>
-<li><p>It sees error traces during debugging.</p></li>
-<li><p>It keeps earlier decisions available for follow-up prompts.</p></li>
-</ul>
-<p>That is helpful while you are still working on the same problem. It is less
-helpful after the problem changes. If a session began with broad data profiling,
-then moved into chart design, then debugging, then lesson writing, each new
-request may carry context from all of those phases.</p>
-<p>The important point is that tokens are not mostly the words you type. They are
-often the accumulated working record being sent back through the model so it can
-respond coherently.</p>
-<div class="note admonition">
-<p class="admonition-title">Reading usage charts carefully</p>
-<p>In the usage report, the cumulative token line means “how many tokens this
-session has used so far.” It is useful for seeing which sessions became large,
-but it is not the same thing as “how many tokens were sent as input on this
-turn.”</p>
-<p>For that question, look at the turn-level input-token fields in the CSV or the
-interactive HTML report. Those values are a closer view of how much context was
-sent to the model for a turn. The per-turn token delta is broader: it includes
-the token usage added during that user turn, which may include multiple model
-calls, tool loops, output tokens, and reasoning tokens when those are recorded.
-Cached input tokens are part of the input count, not an additional cost on top
-of input. They are useful because they show how much of a turn’s input was
-recognized as repeated or cache-eligible context.</p>
-</div>
-</section>
-<section id="why-notebooks-can-amplify-context">
-<h2>Why notebooks can amplify context<a class="headerlink" href="#why-notebooks-can-amplify-context" title="Link to this heading">#</a></h2>
+<section id="why-notebooks-need-boundaries">
+<h2>Why notebooks need boundaries<a class="headerlink" href="#why-notebooks-need-boundaries" title="Link to this heading">#</a></h2>
 <p>Notebooks are valuable because they keep code, output, and explanation together.
-That same strength can make agent context larger:</p>
-<ul class="simple">
-<li><p>Data previews can include many rows and columns.</p></li>
-<li><p>Plotting errors can produce long stack traces.</p></li>
-<li><p>Saved cell outputs can be read back by the agent.</p></li>
-<li><p>Repeated profiling can rediscover the same file shapes, schemas, and counts.</p></li>
-<li><p>Notebook-editing tools may read cells, edit cells, run cells, then read cells
-again to verify the result.</p></li>
-</ul>
-<p>This does not mean notebooks are bad for Codex. It means notebook work needs
-boundaries. Keep durable analysis in the notebook, but avoid repeatedly asking
-the agent to reread large outputs when a smaller summary would answer the next
-question.</p>
+That is why we use them as the analysis artifact in this workshop.</p>
+<p>But a notebook should not become a transcript of every scratch step. If Codex
+repeatedly adds large previews, failed experiments, long stack traces, or
+duplicated checks, the notebook becomes harder for people to review and harder
+for future agent sessions to use.</p>
+<p>A good notebook contains the code, output, and explanation needed to support the
+analysis. It does not need every temporary preview or every abandoned attempt.</p>
 </section>
 <section id="when-to-start-a-fresh-session">
 <h2>When to start a fresh session<a class="headerlink" href="#when-to-start-a-fresh-session" title="Link to this heading">#</a></h2>
 <p>Start a new Codex session when the task changes enough that the old working
-memory is no longer useful.</p>
+context is no longer useful.</p>
 <p>Good boundaries include:</p>
 <ul class="simple">
 <li><p>after broad data profiling is complete</p></li>
 <li><p>before starting a new analysis question</p></li>
-<li><p>before switching from analysis to writing lesson text</p></li>
+<li><p>before switching from analysis to dashboard building</p></li>
+<li><p>before switching from analysis to stakeholder-facing explanation</p></li>
 <li><p>after a long debugging sequence</p></li>
 <li><p>after creating or revising <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code></p></li>
-<li><p>when a previous session contains large outputs that are no longer needed</p></li>
+<li><p>when the session has become mostly correction, cleanup, or backtracking</p></li>
 </ul>
 <p>Starting fresh does not mean starting from nothing. It means moving verified
-facts out of the conversation and into durable project files.</p>
+facts out of the conversation and into project files first.</p>
 </section>
 <section id="what-to-save-before-starting-fresh">
 <h2>What to save before starting fresh<a class="headerlink" href="#what-to-save-before-starting-fresh" title="Link to this heading">#</a></h2>
 <p>Before ending a session, ask what future Codex sessions and future humans need
 to know.</p>
-<p>Good durable context includes:</p>
+<p>Good project records include:</p>
 <ul class="simple">
 <li><p>a clean notebook section with code, output, and short explanation</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data/README.md</span></code> with file meanings, row counts, schemas, and caveats</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> with standing project rules</p></li>
 <li><p>a short TODO list or decision note in a project Markdown file</p></li>
 <li><p>saved plots or tables that are referenced by the notebook</p></li>
+<li><p>notes about analysis choices, assumptions, caveats, and next steps</p></li>
 </ul>
-<p>Poor durable context includes:</p>
+<p>Poor project records include:</p>
 <ul class="simple">
 <li><p>a long terminal transcript that no one will reread</p></li>
-<li><p>a chat-only summary with no code behind it</p></li>
+<li><p>a chat-only conclusion with no code behind it</p></li>
 <li><p>repeated data previews that do not add new information</p></li>
 <li><p>unverified conclusions copied from an agent response</p></li>
 </ul>
+<p>A fresh session works best when Codex can start from compact, trustworthy
+project files instead of reconstructing the project from a long chat.</p>
 </section>
-<section id="use-subagents-carefully">
-<h2>Use subagents carefully<a class="headerlink" href="#use-subagents-carefully" title="Link to this heading">#</a></h2>
-<p>Subagents can reduce the amount of detail carried into the main session. For
-example, a subagent can inspect a narrow issue and return only a short summary to
-the parent conversation.</p>
-<p>They are most useful when the task is bounded:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Inspect the notebook for places where total checkout claims are based on sample
-files. Return only file names, cell numbers if available, and the issue found.
-</pre></div>
-</div>
-<p>They are less useful when the task is vague:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Look through everything and tell me what you think.
-</pre></div>
-</div>
-<p>A vague subagent can burn tokens in a separate context and still return an
-unfocused summary. Use subagents for targeted review, not as a substitute for
-deciding what question you are asking.</p>
-</section>
-<section id="run-your-own-usage-analysis">
-<h2>Run your own usage analysis<a class="headerlink" href="#run-your-own-usage-analysis" title="Link to this heading">#</a></h2>
-<p>The repository includes a small script that summarizes recent Codex usage from
-your local <code class="docutils literal notranslate"><span class="pre">~/.codex</span></code> folder:</p>
+<section id="run-a-quick-usage-report">
+<h2>Run a quick usage report<a class="headerlink" href="#run-a-quick-usage-report" title="Link to this heading">#</a></h2>
+<p>This repository includes a small script that summarizes recent Codex sessions
+from your local <code class="docutils literal notranslate"><span class="pre">~/.codex</span></code> folder:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python tools/analyze_codex_usage.py --days 2
 </pre></div>
 </div>
-<p>The script writes:</p>
+<p>The script writes a <code class="docutils literal notranslate"><span class="pre">usage_reports/</span></code> folder with a Markdown summary, an HTML
+report, and CSV files. For Session 1, use the report as a reflection tool. Look
+for:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">usage_reports/codex_usage_summary.md</span></code>, a readable Markdown report</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">usage_reports/codex_usage_report.html</span></code>, an interactive report with hoverable turn charts</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">usage_reports/codex_usage_sessions.csv</span></code>, a per-session table</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">usage_reports/codex_usage_turns.csv</span></code>, a turn-level table for the largest sessions</p></li>
-</ul>
-<p>Open the HTML or Markdown report and look for:</p>
-<ul class="simple">
-<li><p>the largest sessions</p></li>
-<li><p>whether they were terminal, Jupyter-related, MCP-related, or unknown</p></li>
 <li><p>sessions with many turns</p></li>
-<li><p>sessions where the title suggests a broad or mixed task</p></li>
-<li><p>repeated profiling or repeated notebook inspection</p></li>
-<li><p>turns where input tokens are high even though the typed prompt is short</p></li>
+<li><p>sessions that mixed several phases of work</p></li>
+<li><p>sessions where Codex repeatedly inspected files or notebook outputs</p></li>
+<li><p>places where a project note, README update, or fresh session might have helped</p></li>
 </ul>
-<p>The goal is not to shame expensive sessions. Sometimes a large session reflects
-real work. The goal is to notice which patterns create avoidable cost and decide
-where a fresh session or durable project note would have helped.</p>
-<div class="exercise admonition">
-<p class="admonition-title">Exercise: Find a context boundary</p>
-<p>Run the usage script for the last two days. Choose one large session and answer:</p>
+<p>Do not treat the report as a perfect explanation of token billing. Use it to
+notice patterns in how you worked.</p>
+</section>
+<section id="a-quick-check">
+<h2>A quick check<a class="headerlink" href="#a-quick-check" title="Link to this heading">#</a></h2>
+<p>Before you continue a long session, ask:</p>
 <ul class="simple">
-<li><p>What was the task?</p></li>
-<li><p>Did the session mix more than one phase of work?</p></li>
-<li><p>What information should have been written to a project file?</p></li>
-<li><p>Where would you start a fresh Codex session next time?</p></li>
+<li><p>Am I still working on the same task?</p></li>
+<li><p>Does Codex still need the previous debugging or exploration details?</p></li>
+<li><p>Have the important facts been saved in the notebook, <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>, a README, or
+another project file?</p></li>
+<li><p>Would a new session with a focused prompt be easier to review?</p></li>
 </ul>
-</div>
+<p>Keep going when the old context is still helping with the current task. Start
+fresh when the useful facts have been saved and the remaining conversation is
+mostly old exploration, debugging, or cleanup.</p>
 </section>
 <section id="practical-rules">
 <h2>Practical rules<a class="headerlink" href="#practical-rules" title="Link to this heading">#</a></h2>
 <p>Use these rules during the rest of the workshop:</p>
 <ul class="simple">
-<li><p>Keep the notebook as the durable analysis artifact, not as a transcript of
+<li><p>Keep the notebook as the analysis record, not as a transcript of
 every scratch step.</p></li>
-<li><p>Keep <code class="docutils literal notranslate"><span class="pre">data/README.md</span></code> as shared memory about the dataset.</p></li>
+<li><p>Keep <code class="docutils literal notranslate"><span class="pre">data/README.md</span></code> as reusable project knowledge about the dataset.</p></li>
 <li><p>Start fresh when the phase of work changes.</p></li>
 <li><p>Ask Codex to inspect only the files or cells needed for the current question.</p></li>
 <li><p>Avoid printing large tables when a shape, column list, or compact summary is
 enough.</p></li>
+<li><p>Ask for a plan before implementation when the task is broad or ambiguous.</p></li>
+<li><p>Do not ask Codex to rediscover facts that are already in the notebook,
+<code class="docutils literal notranslate"><span class="pre">data/README.md</span></code>, <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>, or another project note.</p></li>
 <li><p>Move verified decisions into files before relying on them in later sessions.</p></li>
 </ul>
 <div class="key admonition">
 <p class="admonition-title">Key points</p>
 <ul class="simple">
-<li><p>Context is useful working memory, but old working memory costs tokens.</p></li>
-<li><p>Notebook outputs and repeated profiling can make context large.</p></li>
-<li><p>Fresh sessions are effective when verified facts have been saved in project files.</p></li>
+<li><p>Context is useful while it helps Codex solve the current task.</p></li>
+<li><p>Context becomes baggage when it contains old scratch work, large outputs, or
+details from a completed task.</p></li>
+<li><p>Fresh sessions are most useful when verified facts have already been saved in
+project files.</p></li>
 <li><p>The terminal-in-JupyterLab workflow keeps the notebook central while making
 context boundaries easier to control.</p></li>
 </ul>
@@ -564,13 +498,12 @@ context boundaries easier to control.</p></li>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-context-means">What context means</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-context-gets-expensive">Why context gets expensive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-notebooks-can-amplify-context">Why notebooks can amplify context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-context-includes">What context includes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-notebooks-need-boundaries">Why notebooks need boundaries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-start-a-fresh-session">When to start a fresh session</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-save-before-starting-fresh">What to save before starting fresh</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-subagents-carefully">Use subagents carefully</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-your-own-usage-analysis">Run your own usage analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-quick-usage-report">Run a quick usage report</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-check">A quick check</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-rules">Practical rules</a></li>
 </ul>
   </nav></div>
