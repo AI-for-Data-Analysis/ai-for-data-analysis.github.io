@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Mini Analytics Challenge &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+    <title>Context and Token Management &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8105e7f7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=935f6971" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-duke-ai.css?v=fb250738" />
   
   <!-- So that users can add custom icons -->
@@ -54,11 +54,12 @@
     <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'session-1-foundations/mini-analytics-challenge';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'session-1-foundations/context-and-token-management';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Planning and Running an Analysis" href="analyzing-trends-over-time.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -275,9 +276,18 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">AI Accelerator: Analytics and Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Session 1: Foundations for AI-Assisted Analytics Work</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coding-agents-for-analytics.html">Coding Agents for Analytics Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prompting-and-project-rules.html">Prompting and Project Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="understanding-your-data.html">Understanding the Data Before Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analyzing-trends-over-time.html">Planning and Running an Analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Context and Token Management</a></li>
+</ul>
+</details></li>
 </ul>
 </div>
 </nav></div>
@@ -318,7 +328,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Mini Analytics Challenge</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Context and Token Management</span></li>
   </ul>
 </nav>
 </div>
@@ -335,74 +348,195 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="mini-analytics-challenge">
-<h1>Mini Analytics Challenge<a class="headerlink" href="#mini-analytics-challenge" title="Link to this heading">#</a></h1>
-<section id="lab-goal">
-<h2>Lab Goal<a class="headerlink" href="#lab-goal" title="Link to this heading">#</a></h2>
-<p>Practice the discovery-to-production handoff in one short cycle using cohort datasets.</p>
+  <section id="context-and-token-management">
+<h1>Context and Token Management<a class="headerlink" href="#context-and-token-management" title="Link to this heading">#</a></h1>
+<p>AI-assisted analysis is not only about writing better prompts. It is also about
+managing the working context that the agent carries from one step to the next.
+This becomes especially important if you are using have a totally pay-by-use plan or
+are using the API.
+This page explains why context can become expensive, how notebook workflows can
+increase that cost, and how to decide when to continue a session versus starting
+fresh.</p>
+<section id="what-context-means">
+<h2>What context means<a class="headerlink" href="#what-context-means" title="Link to this heading">#</a></h2>
+<p>A Codex session is a working conversation plus the project information Codex has
+loaded while helping you. That context can include:</p>
+<ul class="simple">
+<li><p>system and project instructions</p></li>
+<li><p>the current conversation</p></li>
+<li><p>previous tool calls and their outputs</p></li>
+<li><p>file contents Codex has read</p></li>
+<li><p>notebook code and saved outputs</p></li>
+<li><p>error messages, plots, tables, and summaries</p></li>
+</ul>
+<p>Tokens are the pieces of text the model processes. Your typed prompt is only one
+part of the total. Every time you type a message to a model in a conversation,
+that message and response gets added to the full session thread.
+The full session is sent EVERY time you send a message to the model.</p>
+<p><strong>A short follow-up near the end of a long session can still be
+expensive because the model will need to process a large amount of accumulated
+context before answering.</strong></p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/context-snowball.png"><img alt="Conceptual representation of context growing larger for long sessions vs. being small for focused tasks" src="../_images/context-snowball.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Context grows on each turn because the full conversation is sent with each new message. Using smaller, more focused conversations keeps context down and token input smaller</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="note admonition">
+<p class="admonition-title">Mental model</p>
+<p>Think of context as the agent’s working memory for the current task. It is useful
+because it lets Codex remember what just happened. It becomes expensive when the
+working memory contains old scratch work, large outputs, or details from a task
+you have already finished.</p>
+</div>
 </section>
-<section id="timebox">
-<h2>Timebox<a class="headerlink" href="#timebox" title="Link to this heading">#</a></h2>
+<section id="why-context-gets-expensive">
+<h2>Why context gets expensive<a class="headerlink" href="#why-context-gets-expensive" title="Link to this heading">#</a></h2>
+<p>Context usually grows for practical reasons:</p>
 <ul class="simple">
-<li><p>Discovery sprint: 20 minutes</p></li>
-<li><p>Build sprint: 20 minutes</p></li>
-<li><p>QA + share-out: 15 minutes</p></li>
+<li><p>Codex reads files to understand the project.</p></li>
+<li><p>It runs commands and receives outputs.</p></li>
+<li><p>It inspects notebook cells and saved notebook outputs.</p></li>
+<li><p>It sees error traces during debugging.</p></li>
+<li><p>It keeps earlier decisions available for follow-up prompts.</p></li>
+</ul>
+<p>That is helpful while you are still working on the same problem. It is less
+helpful after the problem changes. If a session began with broad data profiling,
+then moved into chart design, then debugging, then lesson writing, each new
+request may carry context from all of those phases.</p>
+<p>The important point is that tokens are not mostly the words you type. They are
+often the accumulated working record being sent back through the model so it can
+respond coherently.</p>
+</section>
+<section id="why-notebooks-can-amplify-context">
+<h2>Why notebooks can amplify context<a class="headerlink" href="#why-notebooks-can-amplify-context" title="Link to this heading">#</a></h2>
+<p>Notebooks are valuable because they keep code, output, and explanation together.
+That same strength can make agent context larger:</p>
+<ul class="simple">
+<li><p>Data previews can include many rows and columns.</p></li>
+<li><p>Plotting errors can produce long stack traces.</p></li>
+<li><p>Saved cell outputs can be read back by the agent.</p></li>
+<li><p>Repeated profiling can rediscover the same file shapes, schemas, and counts.</p></li>
+<li><p>Notebook-editing tools may read cells, edit cells, run cells, then read cells
+again to verify the result.</p></li>
+</ul>
+<p>This does not mean notebooks are bad for Codex. It means notebook work needs
+boundaries. Keep durable analysis in the notebook, but avoid repeatedly asking
+the agent to reread large outputs when a smaller summary would answer the next
+question.</p>
+</section>
+<section id="when-to-start-a-fresh-session">
+<h2>When to start a fresh session<a class="headerlink" href="#when-to-start-a-fresh-session" title="Link to this heading">#</a></h2>
+<p>Start a new Codex session when the task changes enough that the old working
+memory is no longer useful.</p>
+<p>Good boundaries include:</p>
+<ul class="simple">
+<li><p>after broad data profiling is complete</p></li>
+<li><p>before starting a new analysis question</p></li>
+<li><p>before switching from analysis to writing lesson text</p></li>
+<li><p>after a long debugging sequence</p></li>
+<li><p>after creating or revising <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code></p></li>
+<li><p>when a previous session contains large outputs that are no longer needed</p></li>
+</ul>
+<p>Starting fresh does not mean starting from nothing. It means moving verified
+facts out of the conversation and into durable project files.</p>
+</section>
+<section id="what-to-save-before-starting-fresh">
+<h2>What to save before starting fresh<a class="headerlink" href="#what-to-save-before-starting-fresh" title="Link to this heading">#</a></h2>
+<p>Before ending a session, ask what future Codex sessions and future humans need
+to know.</p>
+<p>Good durable context includes:</p>
+<ul class="simple">
+<li><p>a clean notebook section with code, output, and short explanation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data/README.md</span></code> with file meanings, row counts, schemas, and caveats</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> with standing project rules</p></li>
+<li><p>a short TODO list or decision note in a project Markdown file</p></li>
+<li><p>saved plots or tables that are referenced by the notebook</p></li>
+</ul>
+<p>Poor durable context includes:</p>
+<ul class="simple">
+<li><p>a long terminal transcript that no one will reread</p></li>
+<li><p>a chat-only summary with no code behind it</p></li>
+<li><p>repeated data previews that do not add new information</p></li>
+<li><p>unverified conclusions copied from an agent response</p></li>
 </ul>
 </section>
-<section id="challenge-prompt">
-<h2>Challenge Prompt<a class="headerlink" href="#challenge-prompt" title="Link to this heading">#</a></h2>
-<p>Choose one question:</p>
-<ul class="simple">
-<li><p>Which locations show the highest activity over time?</p></li>
-<li><p>Where do we see potential capacity pressure?</p></li>
-<li><p>Which metric is most stable across days?</p></li>
-</ul>
+<section id="use-subagents-carefully">
+<h2>Use subagents carefully<a class="headerlink" href="#use-subagents-carefully" title="Link to this heading">#</a></h2>
+<p>Subagents can reduce the amount of detail carried into the main session. For
+example, a subagent can inspect a narrow issue and return only a short summary to
+the parent conversation.</p>
+<p>They are most useful when the task is bounded:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Inspect the notebook for places where total checkout claims are based on sample
+files. Return only file names, cell numbers if available, and the issue found.
+</pre></div>
+</div>
+<p>They are less useful when the task is vague:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Look through everything and tell me what you think.
+</pre></div>
+</div>
+<p>A vague subagent can burn tokens in a separate context and still return an
+unfocused summary. Use subagents for targeted review, not as a substitute for
+deciding what question you are asking.</p>
 </section>
-<section id="required-steps">
-<h2>Required Steps<a class="headerlink" href="#required-steps" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Discovery mode</p></li>
-</ol>
+<section id="run-your-own-usage-analysis">
+<h2>Run your own usage analysis<a class="headerlink" href="#run-your-own-usage-analysis" title="Link to this heading">#</a></h2>
+<p>The repository includes a small script that summarizes recent Codex usage from
+your local <code class="docutils literal notranslate"><span class="pre">~/.codex</span></code> folder:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python tools/analyze_codex_usage.py --days 2 --out codex_usage_summary.md
+</pre></div>
+</div>
+<p>The script writes:</p>
 <ul class="simple">
-<li><p>Ask assistant for 3 ways to answer your chosen question.</p></li>
-<li><p>Identify required columns and table grain.</p></li>
-<li><p>Record at least 2 data risks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">codex_usage_summary.md</span></code>, a readable report</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">codex_usage_sessions.csv</span></code>, a per-session table</p></li>
 </ul>
-<ol class="arabic simple" start="2">
-<li><p>Production mode</p></li>
-</ol>
+<p>Open the Markdown report and look for:</p>
 <ul class="simple">
-<li><p>Build one reproducible script or notebook cell sequence.</p></li>
-<li><p>Compute at least 2 KPIs.</p></li>
-<li><p>Save one output artifact (CSV or chart).</p></li>
+<li><p>the largest sessions</p></li>
+<li><p>whether they were terminal, Jupyter-related, MCP-related, or unknown</p></li>
+<li><p>sessions with many turns</p></li>
+<li><p>sessions where the title suggests a broad or mixed task</p></li>
+<li><p>repeated profiling or repeated notebook inspection</p></li>
 </ul>
-<ol class="arabic simple" start="3">
-<li><p>Validation</p></li>
-</ol>
+<p>The goal is not to shame expensive sessions. Sometimes a large session reflects
+real work. The goal is to notice which patterns create avoidable cost and decide
+where a fresh session or durable project note would have helped.</p>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise: Find a context boundary</p>
+<p>Run the usage script for the last two days. Choose one large session and answer:</p>
 <ul class="simple">
-<li><p>Check for nulls in required fields.</p></li>
-<li><p>Check for duplicate keys at expected grain.</p></li>
-<li><p>Check for impossible values (for example, negative counts).</p></li>
+<li><p>What was the task?</p></li>
+<li><p>Did the session mix more than one phase of work?</p></li>
+<li><p>What information should have been written to a project file?</p></li>
+<li><p>Where would you start a fresh Codex session next time?</p></li>
 </ul>
+</div>
 </section>
-<section id="deliverable-template">
-<h2>Deliverable Template<a class="headerlink" href="#deliverable-template" title="Link to this heading">#</a></h2>
-<p>Submit:</p>
+<section id="practical-rules">
+<h2>Practical rules<a class="headerlink" href="#practical-rules" title="Link to this heading">#</a></h2>
+<p>Use these rules during the rest of the workshop:</p>
 <ul class="simple">
-<li><p>Question</p></li>
-<li><p>Data used</p></li>
-<li><p>Method summary (3-5 bullets)</p></li>
-<li><p>Validation checks performed</p></li>
-<li><p>One finding and one limitation</p></li>
+<li><p>Keep the notebook as the durable analysis artifact, not as a transcript of
+every scratch step.</p></li>
+<li><p>Keep <code class="docutils literal notranslate"><span class="pre">data/README.md</span></code> as shared memory about the dataset.</p></li>
+<li><p>Start fresh when the phase of work changes.</p></li>
+<li><p>Ask Codex to inspect only the files or cells needed for the current question.</p></li>
+<li><p>Avoid printing large tables when a shape, column list, or compact summary is
+enough.</p></li>
+<li><p>Move verified decisions into files before relying on them in later sessions.</p></li>
 </ul>
-</section>
-<section id="reflection-prompts">
-<h2>Reflection Prompts<a class="headerlink" href="#reflection-prompts" title="Link to this heading">#</a></h2>
+<div class="key admonition">
+<p class="admonition-title">Key points</p>
 <ul class="simple">
-<li><p>What changed between your first idea and final method?</p></li>
-<li><p>What did the assistant get wrong or leave out?</p></li>
-<li><p>What would you automate before Session 2?</p></li>
+<li><p>Context is useful working memory, but old working memory costs tokens.</p></li>
+<li><p>Notebook outputs and repeated profiling can make context large.</p></li>
+<li><p>Fresh sessions are effective when verified facts have been saved in project files.</p></li>
+<li><p>The terminal-in-JupyterLab workflow keeps the notebook central while making
+context boundaries easier to control.</p></li>
 </ul>
+</div>
 </section>
 </section>
 
@@ -416,6 +550,15 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="analyzing-trends-over-time.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Planning and Running an Analysis</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -435,19 +578,21 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-goal">Lab Goal</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timebox">Timebox</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-prompt">Challenge Prompt</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-steps">Required Steps</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverable-template">Deliverable Template</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection-prompts">Reflection Prompts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-context-means">What context means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-context-gets-expensive">Why context gets expensive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-notebooks-can-amplify-context">Why notebooks can amplify context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-start-a-fresh-session">When to start a fresh session</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-save-before-starting-fresh">What to save before starting fresh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-subagents-carefully">Use subagents carefully</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-your-own-usage-analysis">Run your own usage analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-rules">Practical rules</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/session-1-foundations/mini-analytics-challenge.md.txt">
+    <a href="../_sources/session-1-foundations/context-and-token-management.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

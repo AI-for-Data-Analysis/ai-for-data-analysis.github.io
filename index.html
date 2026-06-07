@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=8105e7f7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=935f6971" />
     <link rel="stylesheet" type="text/css" href="_static/theme-duke-ai.css?v=fb250738" />
   
   <!-- So that users can add custom icons -->
@@ -273,6 +273,15 @@
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">AI Accelerator: Analytics and Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="session-1-foundations/index.html">Session 1: Foundations for AI-Assisted Analytics Work</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="session-1-foundations/index.html">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session-1-foundations/coding-agents-for-analytics.html">Coding Agents for Analytics Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session-1-foundations/prompting-and-project-rules.html">Prompting and Project Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session-1-foundations/understanding-your-data.html">Understanding the Data Before Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session-1-foundations/analyzing-trends-over-time.html">Planning and Running an Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session-1-foundations/context-and-token-management.html">Context and Token Management</a></li>
+</ul>
+</details></li>
 </ul>
 </div>
 </nav></div>
@@ -315,7 +324,7 @@
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Tool Progression</p>
-<p>The learning material starts notebook-first (JupyterLab + Jupyter-AI) for exploration and transitions to CLI/project workflows for reproducible dashboard delivery.</p>
+<p>The learning material starts notebook-first with Codex in a JupyterLab terminal, then transitions to broader CLI/project workflows for reproducible dashboard delivery.</p>
 </div>
 <section id="pre-workshop-set-up-your-environment-and-coding-assistant">
 <h2>Pre-Workshop: Set Up Your Environment and Coding Assistant<a class="headerlink" href="#pre-workshop-set-up-your-environment-and-coding-assistant" title="Link to this heading">#</a></h2>
@@ -339,6 +348,72 @@
 <li><p>Install Codex and the connector needed for the workshop</p></li>
 <li><p>Sign in to Codex using the method for your Duke affiliation</p></li>
 <li><p>Set up your project environment, install the required packages, and run the final setup checklist</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="session-1-foundations-for-ai-assisted-analytics-work">
+<h2>Session 1: Foundations for AI-Assisted Analytics Work<a class="headerlink" href="#session-1-foundations-for-ai-assisted-analytics-work" title="Link to this heading">#</a></h2>
+<p>Section page: <a class="reference external" href="session-1-foundations/index.html">Open Session 1</a></p>
+<p>Use Codex as a coding agent for analytics work while keeping the analysis understandable, reviewable, and traceable.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Page</p></th>
+<th class="head"><p>Questions</p></th>
+<th class="head"><p>Objectives</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="session-1-foundations/coding-agents-for-analytics.html"><span class="doc">Coding Agents for Analytics Work</span></a></p></td>
+<td><ul class="simple">
+<li><p>What can a coding agent do, and what must its output satisfy?</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Identify the understandable, reviewable, and traceable requirements for agent-produced analysis.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="session-1-foundations/prompting-and-project-rules.html"><span class="doc">Prompting and Project Rules</span></a></p></td>
+<td><ul class="simple">
+<li><p>How do prompts and an AGENTS.md file determine what Codex produces?</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Write prompts and project rules that produce reproducible notebook artifacts.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="session-1-foundations/understanding-your-data.html"><span class="doc">Understanding the Data Before Analysis</span></a></p></td>
+<td><ul class="simple">
+<li><p>What does one row represent, and which file answers which question?</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Investigate data structure before plotting or interpreting trends.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="session-1-foundations/analyzing-trends-over-time.html"><span class="doc">Planning and Running an Analysis</span></a></p></td>
+<td><ul class="simple">
+<li><p>How have physical and digital checkouts changed over time, and how can Codex help plan a new visualization?</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Select the correct dataset, account for partial years, compare visualization approaches, and trace results to code.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="session-1-foundations/context-and-token-management.html"><span class="doc">Context and Token Management</span></a></p></td>
+<td><ul class="simple">
+<li><p>Why can a short Codex prompt still use many tokens?</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Identify context boundaries, save durable project memory, and analyze recent Codex usage with a local script.</p></li>
 </ul>
 </td>
 </tr>
@@ -389,6 +464,7 @@
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-workshop-set-up-your-environment-and-coding-assistant">Pre-Workshop: Set Up Your Environment and Coding Assistant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-1-foundations-for-ai-assisted-analytics-work">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
 </ul>
   </nav></div>
 

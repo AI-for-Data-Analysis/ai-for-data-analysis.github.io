@@ -1,0 +1,1171 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Understanding the Data Before Analysis &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=935f6971" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme-duke-ai.css?v=fb250738" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'session-1-foundations/understanding-your-data';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Planning and Running an Analysis" href="analyzing-trends-over-time.html" />
+    <link rel="prev" title="Prompting and Project Rules" href="prompting-and-project-rules.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/ai-duke-transparent.png" class="logo__image only-light" alt="AI Accelerator: Analytics and Data Analysis  documentation - Home"/>
+    <img src="../_static/ai-duke-transparent.png" class="logo__image only-dark pst-js-only" alt="AI Accelerator: Analytics and Data Analysis  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="../latex/ai-training-analytics-data-analysis.pdf" title="Download PDF" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-file-pdf fa-lg" aria-hidden="true"></i><span class="visually-hidden">Download PDF</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="../latex/ai-training-analytics-data-analysis.pdf" title="Download PDF" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-file-pdf fa-lg" aria-hidden="true"></i><span class="visually-hidden">Download PDF</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">AI Accelerator: Analytics and Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Session 1: Foundations for AI-Assisted Analytics Work</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coding-agents-for-analytics.html">Coding Agents for Analytics Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prompting-and-project-rules.html">Prompting and Project Rules</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Understanding the Data Before Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analyzing-trends-over-time.html">Planning and Running an Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="context-and-token-management.html">Context and Token Management</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Understanding the Data Before Analysis</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="understanding-the-data-before-analysis">
+<h1>Understanding the Data Before Analysis<a class="headerlink" href="#understanding-the-data-before-analysis" title="Link to this heading">#</a></h1>
+<p>A coding agent will generate summaries and plots for any input, including data that cannot support the intended conclusion. The person doing the analysis is responsible for establishing what the data represents before interpreting results. This page covers how to direct Codex to characterize a dataset, and how to review what it returns.</p>
+<section id="direct-the-investigation-with-specific-questions">
+<h2>Direct the investigation with specific questions<a class="headerlink" href="#direct-the-investigation-with-specific-questions" title="Link to this heading">#</a></h2>
+<p>A general request (“tell me about this data”) returns whatever the agent decides is relevant. A more reliable approach is to specify the questions that characterize any dataset and require the agent to answer them from the data:</p>
+<ul class="simple">
+<li><p>What does one row represent?</p></li>
+<li><p>What value is being counted or aggregated?</p></li>
+<li><p>Is the data a sample, an aggregate, or a complete extract?</p></li>
+<li><p>How do the datasets relate to one another?</p></li>
+<li><p>Which dataset answers which kind of question, and what would be misleading to infer from each?</p></li>
+</ul>
+<p>These questions are the goal of the investigation, but they do not all need to
+go into the first prompt. Start with a smaller profiling task so Codex creates a
+simple notebook artifact before moving into interpretation.</p>
+<p>Ask Codex to create the first serious notebook artifact for this project:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Add a simple data profile to my notebook for the data in data/. Load the files, print the first few rows, report non-null values and data types.
+</pre></div>
+</div>
+<p>After Codex finishes, review the notebook section it created. Use the profile to
+start asking what the files represent, but do not move on to plotting until the
+data structure is clear.</p>
+<p>Two parts of this prompt are doing specific work. “Don’t make any plots yet”
+stops the agent from producing charts before the structure is confirmed. The
+request asks for basic profiling outputs rather than interpretation, which helps
+keep the first notebook section compact and reviewable.</p>
+</section>
+<section id="why-this-prompt-is-more-specific">
+<h2>Why this prompt is more specific<a class="headerlink" href="#why-this-prompt-is-more-specific" title="Link to this heading">#</a></h2>
+<p>The previous lesson used a narrower prompt:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Can you help me investigate the data in my data folder? I would like to know what the dataset or datasets are and the relationships between the items.
+</pre></div>
+</div>
+<p>That prompt was better than broad EDA because it focused on data inventory and relationships. In testing, Codex identified the three datasets and explained that the title-level files connect to the aggregate table by year, month, and usage class.</p>
+<p>However, later testing showed that asking for all of the interpretation at once
+made Codex write too much code and too much explanation. We still need to answer
+the data-shape questions, but it is better to build up to them from a simple
+profile:</p>
+<ul class="simple">
+<li><p>What does one row represent?</p></li>
+<li><p>What is being counted?</p></li>
+<li><p>Is this sampled or aggregated?</p></li>
+<li><p>What would be misleading to infer?</p></li>
+</ul>
+<p>The revised prompt asks only for the facts needed to begin that discussion:
+files, rows, columns, data types, and non-null counts.</p>
+</section>
+<section id="confirm-the-profile">
+<h2>Confirm the profile<a class="headerlink" href="#confirm-the-profile" title="Link to this heading">#</a></h2>
+<p>Codex may add a notebook section with a compact profile for each file. Treat the
+profile as a starting point, not a complete understanding of the data. The next
+interpretive question is whether each file is a sample, an aggregate, or a
+complete extract, because that determines which questions the file can
+legitimately answer.</p>
+<p>Review whether the notebook includes:</p>
+<ul class="simple">
+<li><p>files present</p></li>
+<li><p>row counts and shapes</p></li>
+<li><p>column names</p></li>
+<li><p>data types</p></li>
+<li><p>non-null counts</p></li>
+<li><p>a small preview of each file, if useful</p></li>
+</ul>
+<p>After reviewing the profile, use the column names and sample rows to discuss:</p>
+<ul class="simple">
+<li><p>What does one row represent in each file?</p></li>
+<li><p>What value is being counted or aggregated?</p></li>
+<li><p>Which files appear sampled, aggregated, or complete?</p></li>
+<li><p>How might the files relate to each other?</p></li>
+</ul>
+<p>In the checkout example, the full investigation eventually distinguishes two
+title-level <em>sample</em> files from one monthly <em>aggregate</em> file, and establishes
+that the samples relate to the aggregate by checkout year, month, and usage
+class. The practical consequence is immediate: a question about total volume
+must use the aggregate, not the samples.</p>
+<p>In an earlier test, Codex identified:</p>
+<p><strong>Digital title sample</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">digital_checkout_title_sample_balanced_250k.csv</span></code></p></li>
+<li><p>250,000 title-month rows</p></li>
+<li><p>digital checkouts</p></li>
+<li><p>covers January 2006 through December 2025</p></li>
+<li><p>includes title metadata and checkout counts</p></li>
+</ul>
+<p><strong>Physical title sample</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">physical_checkout_title_sample_balanced_250k.csv</span></code></p></li>
+<li><p>250,000 title-month rows</p></li>
+<li><p>physical checkouts</p></li>
+<li><p>covers January 2006 through December 2025</p></li>
+<li><p>has the same schema as the digital file</p></li>
+</ul>
+<p><strong>Combined monthly totals</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">combined_checkout_totals_by_month_usageclass.csv</span></code></p></li>
+<li><p>501 monthly aggregate rows</p></li>
+<li><p>covers April 2005 through April 2026</p></li>
+<li><p>aggregated by <code class="docutils literal notranslate"><span class="pre">checkout_year</span></code>, <code class="docutils literal notranslate"><span class="pre">checkout_month</span></code>, and <code class="docutils literal notranslate"><span class="pre">usageclass</span></code></p></li>
+<li><p>includes <code class="docutils literal notranslate"><span class="pre">total_checkouts</span></code>, <code class="docutils literal notranslate"><span class="pre">month_total_checkouts</span></code>, <code class="docutils literal notranslate"><span class="pre">usageclass_share</span></code>, <code class="docutils literal notranslate"><span class="pre">title_month_rows</span></code>, and <code class="docutils literal notranslate"><span class="pre">sample_rows</span></code></p></li>
+</ul>
+<p>Codex also tested the relationship between files:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>combined_checkout_totals_by_month_usageclass
+  keyed by: checkout_year + checkout_month + usageclass
+        |
+        | matches
+        v
+digital_checkout_title_sample_balanced_250k
+physical_checkout_title_sample_balanced_250k
+  keyed by: checkoutyear + checkoutmonth + usageclass
+</pre></div>
+</div>
+<p>It reported that the aggregate file’s <code class="docutils literal notranslate"><span class="pre">sample_rows</span></code> column matched the number of rows in the title-level sample files for each month and usage class.</p>
+</section>
+<section id="document-the-data-for-future-sessions">
+<h2>Document the data for future sessions<a class="headerlink" href="#document-the-data-for-future-sessions" title="Link to this heading">#</a></h2>
+<p>At this point, Codex has done useful investigation that future sessions should not
+need to repeat from scratch. The notebook records the analysis process, but the
+basic dataset facts also belong in a durable reference file. Dataset
+documentation belongs somewhere humans and agents would both expect to find it:
+inside the <code class="docutils literal notranslate"><span class="pre">data/</span></code> folder.</p>
+<p>Ask Codex to create a data README:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please create a README.md file in the data folder documenting the raw data files with enough detail that future sessions do not have to rediscover the basic dataset structure every time.
+</pre></div>
+</div>
+<p>Review <code class="docutils literal notranslate"><span class="pre">data/README.md</span></code> before keeping it. Check that Codex did not invent
+dataset meanings, overstate what the data can support, or turn sampled data into
+full-population claims.</p>
+<p>Then ask Codex to update <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> so future assistants know to use the data
+documentation before starting new analysis:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please update AGENTS.md to tell future assistants to read data/README.md before analyzing the raw data files.
+</pre></div>
+</div>
+<p>This is an important teaching moment. If Codex has to inspect the same files,
+schemas, row counts, and relationships in every new session, the project is missing
+shared memory. Once those facts have been verified, <code class="docutils literal notranslate"><span class="pre">data/README.md</span></code> can record
+them so later sessions can start from known dataset orientation and spend their work
+on the new question.</p>
+</section>
+<section id="request-a-relationship-diagram">
+<h2>Request a relationship diagram<a class="headerlink" href="#request-a-relationship-diagram" title="Link to this heading">#</a></h2>
+<p>Once the relationships are established, have the agent express them visually so they can be checked at a glance:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Mermaid is a text-based diagram syntax. Instead of drawing boxes and arrows by hand, you write a small block of structured text, and a renderer turns it into a visual diagram. JupyterLab can render Mermaid diagrams in notebooks, and Codex can write Mermaid syntax for common diagram types.</p>
+<p>In this lesson, we use Mermaid to make the dataset relationships visible. This is not a separate charting library for analyzing values; it is a way to document structure.</p>
+</div>
+<p>Ask Codex to summarize the dataset relationships visually:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Based on the investigation, add a Mermaid diagram to the notebook showing the
+datasets and how they relate. It should look like an Entity Relationship diagram.
+</pre></div>
+</div>
+<p>Review the diagram as an interpretation of the investigation, not as an automatically correct schema.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to export a Mermaid diagram outside the notebook, the official Mermaid CLI can render Mermaid text to SVG, PNG, or PDF. Mermaid CLI is a Node.js tool installed with <code class="docutils literal notranslate"><span class="pre">npm</span></code>, not a Python package. If Node.js and npm are available, one option is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>npm install -g @mermaid-js/mermaid-cli
+</pre></div>
+</div>
+<p>Then this command converts a Mermaid file to SVG:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mmdc -i input.mmd -o output.svg
+</pre></div>
+</div>
+<p>If you do not want to install it globally, see the <a class="reference external" href="https://github.com/mermaid-js/mermaid-cli">Mermaid CLI documentation</a> for local, Docker, and other installation options.</p>
+</div>
+<section id="data-relationship-diagram">
+<h3>Data relationship diagram<a class="headerlink" href="#data-relationship-diagram" title="Link to this heading">#</a></h3>
+<pre  class="mermaid">
+        erDiagram
+    COMBINED_MONTHLY_TOTALS {
+        int checkout_year
+        int checkout_month
+        string usageclass
+        int total_checkouts
+        int month_total_checkouts
+        float usageclass_share
+        int title_month_rows
+        int sample_rows
+    }
+
+    DIGITAL_TITLE_SAMPLE {
+        string usageclass
+        string checkouttype
+        string materialtype
+        int checkoutyear
+        int checkoutmonth
+        int checkouts
+        string title
+        string isbn
+        string creator
+        string subjects
+        string publisher
+        string publicationyear
+        string sample_design
+    }
+
+    PHYSICAL_TITLE_SAMPLE {
+        string usageclass
+        string checkouttype
+        string materialtype
+        int checkoutyear
+        int checkoutmonth
+        int checkouts
+        string title
+        string isbn
+        string creator
+        string subjects
+        string publisher
+        string publicationyear
+        string sample_design
+    }
+
+    COMBINED_MONTHLY_TOTALS ||--o{ DIGITAL_TITLE_SAMPLE : &quot;monthly context by year-month-usageclass&quot;
+    COMBINED_MONTHLY_TOTALS ||--o{ PHYSICAL_TITLE_SAMPLE : &quot;monthly context by year-month-usageclass&quot;
+    </pre><p>The diagram shows a many-to-one relationship for context only: many sampled title-month rows can correspond to one monthly aggregate row. The aggregate keys are not title identifiers.</p>
+</section>
+<section id="discussion-check-the-data-model">
+<h3>Discussion: Check the data model<a class="headerlink" href="#discussion-check-the-data-model" title="Link to this heading">#</a></h3>
+<p>In groups, compare the notebook investigation with the relationship diagram.</p>
+<p>Discuss:</p>
+<ul class="simple">
+<li><p>Does the diagram make the sample-versus-aggregate distinction visible?</p></li>
+<li><p>What relationship is shown?</p></li>
+<li><p>What relationship is not shown?</p></li>
+<li><p>Which file should answer questions about total checkout volume?</p></li>
+<li><p>Which files should answer questions about titles, creators, subjects, or material types?</p></li>
+</ul>
+</section>
+</section>
+<section id="review-the-generated-code">
+<h2>Review the generated code<a class="headerlink" href="#review-the-generated-code" title="Link to this heading">#</a></h2>
+<p>Code from a data investigation may run correctly while leaving the interpretation unclear. Reviewing the output is part of the technique, and recurring problems become additional rules for <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>. Three patterns are common in agent-generated analysis code:</p>
+<div class="exercise admonition">
+<p class="admonition-title">Group activity: Add one rule</p>
+<p>Review the notebook section Codex created and choose one issue that would benefit from a project rule. Add one rule to <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>, then ask Codex to revise the investigation section so it follows the updated rules.</p>
+<p>Compare before and after:</p>
+<ul class="simple">
+<li><p>Did the new rule change Codex’s behavior?</p></li>
+<li><p>Was the rule specific enough?</p></li>
+<li><p>Should the rule be kept, revised, or removed?</p></li>
+</ul>
+</div>
+<p>Re-running the investigation after adding these rules demonstrates their effect on the output. Once the data structure is established and confirmed, the analysis can proceed.</p>
+<div class="key admonition">
+<p class="admonition-title">Key points</p>
+<ul class="simple">
+<li><p>Understanding what one row represents comes before plotting or interpreting trends.</p></li>
+<li><p>Sample files and aggregate files answer different kinds of questions.</p></li>
+<li><p>Reviewing the agent’s notebook output is part of the analysis workflow, not a separate cleanup step.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="prompting-and-project-rules.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Prompting and Project Rules</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="analyzing-trends-over-time.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Planning and Running an Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-the-investigation-with-specific-questions">Direct the investigation with specific questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-prompt-is-more-specific">Why this prompt is more specific</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confirm-the-profile">Confirm the profile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#document-the-data-for-future-sessions">Document the data for future sessions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#request-a-relationship-diagram">Request a relationship diagram</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-relationship-diagram">Data relationship diagram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-check-the-data-model">Discussion: Check the data model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-the-generated-code">Review the generated code</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/session-1-foundations/understanding-your-data.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+<div class="site-footer row align-items-center">
+  <div class="site-footer__content col-12 col-md-8">
+    <p>
+      Created by the <a href="https://oit.duke.edu/" target="_blank" rel="noopener">Duke University Office of Information Technology</a>.
+    </p>
+    <p>
+      The lesson materials are licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0 International License</a>.
+      You are free to adapt and share this material with attribution.
+    </p>
+
+    
+    <p class="sphinx-version">
+      Created using <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a> 9.0.4.
+    </p>
+    
+
+    <p class="theme-version">
+      Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html" target="_blank" rel="noopener">PyData Sphinx Theme</a> 0.18.0.
+    </p>
+  </div>
+
+  <div class="site-footer__duke col-12 col-md-4">
+    <a href="https://duke.edu/" target="_blank" rel="noopener" title="Go to Duke University in a new tab">
+      <img src="../_static/duke_wordmark_white_cropped.svg" class="site-footer__wordmark" alt="Duke University">
+    </a>
+  </div>
+</div></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

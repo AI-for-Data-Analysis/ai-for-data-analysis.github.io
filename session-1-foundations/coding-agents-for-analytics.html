@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Prompting Planning Context &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+    <title>Coding Agents for Analytics Work &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8105e7f7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=935f6971" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-duke-ai.css?v=fb250738" />
   
   <!-- So that users can add custom icons -->
@@ -54,11 +54,13 @@
     <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'session-1-foundations/prompting-planning-context';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'session-1-foundations/coding-agents-for-analytics';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Prompting and Project Rules" href="prompting-and-project-rules.html" />
+    <link rel="prev" title="Session 1: Foundations for AI-Assisted Analytics Work" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -275,9 +277,18 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">AI Accelerator: Analytics and Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Session 1: Foundations for AI-Assisted Analytics Work</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Coding Agents for Analytics Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prompting-and-project-rules.html">Prompting and Project Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="understanding-your-data.html">Understanding the Data Before Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analyzing-trends-over-time.html">Planning and Running an Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="context-and-token-management.html">Context and Token Management</a></li>
+</ul>
+</details></li>
 </ul>
 </div>
 </nav></div>
@@ -318,7 +329,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Prompting Planning Context</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Coding Agents for Analytics Work</span></li>
   </ul>
 </nav>
 </div>
@@ -335,63 +349,135 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="prompting-planning-context">
-<h1>Prompting Planning Context<a class="headerlink" href="#prompting-planning-context" title="Link to this heading">#</a></h1>
-<section id="why-this-matters">
-<h2>Why This Matters<a class="headerlink" href="#why-this-matters" title="Link to this heading">#</a></h2>
-<p>AI assistant quality depends on problem framing and context quality. Analysts should request plans first, then code, then validation.</p>
-</section>
-<section id="learning-objectives">
-<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+  <section id="coding-agents-for-analytics-work">
+<h1>Coding Agents for Analytics Work<a class="headerlink" href="#coding-agents-for-analytics-work" title="Link to this heading">#</a></h1>
+<p>This session uses Codex, a coding agent from OpenAI, to investigate a dataset and answer questions about it while keeping the work reproducible. This page covers the workspace and the requirements your analysis must meet before you write the first prompt.</p>
+<section id="workspace">
+<h2>Workspace<a class="headerlink" href="#workspace" title="Link to this heading">#</a></h2>
+<p>The setup step prepares everything required. For this session:</p>
 <ul class="simple">
-<li><p>Write prompts that produce useful analytics outputs.</p></li>
-<li><p>Use a consistent sequence: plan -&gt; implementation -&gt; validation -&gt; critique.</p></li>
-<li><p>Manage context so the assistant has grain, constraints, and expected outputs.</p></li>
+<li><p><strong>JupyterLab</strong> is the working environment.</p></li>
+<li><p>The <strong>notebook</strong> is the analysis artifact: the file you keep, rerun, and share.</p></li>
+<li><p><strong>Codex</strong> is the coding agent, run from a terminal inside JupyterLab.</p></li>
+<li><p>The project contains a <strong><code class="docutils literal notranslate"><span class="pre">data/</span></code></strong> folder with the files to analyze.</p></li>
 </ul>
+<p>Codex’s work should run in the project environment created during setup and be written into the notebook.</p>
 </section>
-<section id="prompt-structure-for-analysts">
-<h2>Prompt Structure for Analysts<a class="headerlink" href="#prompt-structure-for-analysts" title="Link to this heading">#</a></h2>
-<p>Include:</p>
-<ul class="simple">
-<li><p>Objective: what decision or question the analysis supports</p></li>
-<li><p>Data context: files, grain, known joins, caveats</p></li>
-<li><p>Constraints: tool/language, runtime limits, file outputs</p></li>
-<li><p>Validation: required checks and success criteria</p></li>
-</ul>
-</section>
-<section id="suggested-prompt-sequence">
-<h2>Suggested Prompt Sequence<a class="headerlink" href="#suggested-prompt-sequence" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Ask for a plan.</p></li>
-<li><p>Ask for implementation from that plan.</p></li>
-<li><p>Ask for validation and edge-case checks.</p></li>
-<li><p>Ask for critique and failure modes.</p></li>
-</ol>
-</section>
-<section id="example-plan-prompt">
-<h2>Example: Plan Prompt<a class="headerlink" href="#example-plan-prompt" title="Link to this heading">#</a></h2>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Goal: analyze daily building activity trends for a tutorial.
-Data: building_activity_by_day_affiliation.csv and building_activity_by_day_ssid.csv.
-Give me a step-by-step analysis plan with joins, checks, and outputs.
-Do not write code yet.
+<section id="why-this-workshop-uses-terminal-codex-in-jupyterlab">
+<h2>Why this workshop uses terminal Codex in JupyterLab<a class="headerlink" href="#why-this-workshop-uses-terminal-codex-in-jupyterlab" title="Link to this heading">#</a></h2>
+<p>During preparation, we tested a Jupyter-based agent workflow and a terminal
+Codex workflow inside the same JupyterLab environment. The comparison was not a
+simple “one is always cheaper” result. For a focused plotting task, the token
+usage was similar. The bigger problem was workflow friction: the Jupyter plugin
+required frequent approvals and tended to read notebook state repeatedly while
+profiling and editing.</p>
+<p>For the workshop, we will use Codex in a JupyterLab terminal. The notebook remains the
+analysis artifact, but the agent interaction happens in the terminal. This gives
+participants one consistent place to approve actions, see commands, and decide
+when to start a fresh session.</p>
+<section id="opening-jupyterlab-and-codex">
+<h3>Opening JupyterLab and Codex<a class="headerlink" href="#opening-jupyterlab-and-codex" title="Link to this heading">#</a></h3>
+<p>When JupyterLab opens, it usually starts on the launcher screen. The launcher is
+the starting point for creating new notebooks, opening terminals, and accessing
+project files.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/jupyter-lab-with-chat.png"><img alt="JupyterLab launcher showing notebook and terminal-related tiles" src="../_images/jupyter-lab-with-chat.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">The JupyterLab launcher is where you open the notebook and terminal workspace.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In the screenshot, <strong>A</strong> marks the Python notebook tile. Use this tile to create a new notebook for the analysis. The notebook is where the code, outputs, notes, and final analytical steps should live.</p>
+<p>For this workshop, open a <strong>Terminal</strong> from the launcher or the JupyterLab menu,
+then start Codex in the project folder. The exact command may depend on your
+setup, but the workflow is the same: Codex runs in the terminal, and the notebook
+records the analysis.</p>
+<p>Arrange the terminal and notebook side by side. This keeps the agent interaction
+visible while you review the code and output in the notebook.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/jupyter-lab-codex-notebook-side-by-side.png"><img alt="JupyterLab with a terminal panel on the left and a Python notebook open on the right" src="../_images/jupyter-lab-codex-notebook-side-by-side.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Keep the terminal and the analysis notebook visible at the same time in the JupyterLab workspace.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>You can open Codex by typing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">codex</span>
 </pre></div>
 </div>
+<p>into your terminal.</p>
 </section>
-<section id="example-validation-prompt">
-<h2>Example: Validation Prompt<a class="headerlink" href="#example-validation-prompt" title="Link to this heading">#</a></h2>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Review this analysis logic as if you are a strict code reviewer.
-Identify risks, missing checks, and assumptions that could break conclusions.
-</pre></div>
+<section id="codex-terminal-basics">
+<h3>Codex terminal basics<a class="headerlink" href="#codex-terminal-basics" title="Link to this heading">#</a></h3>
+<p>In the Codex terminal, most of what you type is a normal prompt. Messages such
+as “profile the data in <code class="docutils literal notranslate"><span class="pre">data/</span></code>” or “add a short notebook section explaining
+this chart” are sent to the agent as work requests.</p>
+<p>Codex also has <strong>slash commands</strong> for controlling the session. Slash commands
+start with <code class="docutils literal notranslate"><span class="pre">/</span></code> and are handled by the Codex interface rather than treated as
+analysis prompts.</p>
+<p>Useful commands to know:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/help</span></code> shows the commands available in your installed Codex version.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/status</span></code> shows session and environment information.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/model</span></code> lets you inspect or change the model for the session.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/new</span></code> starts a fresh session.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/compact</span></code> summarizes the current conversation to reduce context.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/quit</span></code> exits Codex.</p></li>
+</ul>
+<p>Use <code class="docutils literal notranslate"><span class="pre">/help</span></code> as the source of truth. Codex versions can differ, and the available
+commands may change.</p>
+<div class="note admonition">
+<p class="admonition-title">Prompt or command?</p>
+<p>If you want Codex to do analysis work, write a normal prompt. If you want to
+control the Codex session itself, use a slash command.</p>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise: Prepare the workspace</p>
+<p>Open JupyterLab and arrange a terminal and a new Python notebook side by
+side. Confirm that the notebook is using the project Python environment prepared
+during setup.</p>
+<p>Before continuing, make sure you can identify:</p>
+<ul class="simple">
+<li><p>where you will type prompts to Codex</p></li>
+<li><p>where Codex should record code and outputs</p></li>
+<li><p>where the project files and <code class="docutils literal notranslate"><span class="pre">data/</span></code> folder are located</p></li>
+</ul>
 </div>
 </section>
-<section id="context-hygiene-rules">
-<h2>Context Hygiene Rules<a class="headerlink" href="#context-hygiene-rules" title="Link to this heading">#</a></h2>
+</section>
+<section id="what-a-coding-agent-does">
+<h2>What a coding agent does<a class="headerlink" href="#what-a-coding-agent-does" title="Link to this heading">#</a></h2>
+<p>A coding agent is an AI assistant connected to a working project environment. Codex can read files, write Python, run that Python, edit files, and produce plots in the course of answering one request. It can change the project rather than only describing it.</p>
+<p>This raises a requirement that does not apply to a chat assistant. When the output is code and analysis, that output must be possible to follow and verify because the answer depends on specific data, transformations, calculations, and assumptions. As we will see in the lessons, by default, Codex may run calculations in a temporary terminal, report a conclusion, and leave no corresponding code in the notebook. The result cannot then be checked or reproduced.</p>
+</section>
+<section id="requirements-for-the-analysis">
+<h2>Requirements for the analysis<a class="headerlink" href="#requirements-for-the-analysis" title="Link to this heading">#</a></h2>
+<p>Each analysis in this session must be:</p>
 <ul class="simple">
-<li><p>Provide only necessary files and schema details.</p></li>
-<li><p>Restate key assumptions in each major prompt.</p></li>
-<li><p>Ask for explicit unknowns instead of implicit guesses.</p></li>
-<li><p>Keep outputs file-based when moving to production mode.</p></li>
+<li><p><strong>Understandable</strong> — the code and explanations can be read and followed.</p></li>
+<li><p><strong>Reviewable</strong> — analytical steps are separated clearly enough to check individually.</p></li>
+<li><p><strong>Traceable</strong> — every stated result corresponds to specific code and output.</p></li>
 </ul>
+</section>
+<section id="the-process">
+<h2>The process<a class="headerlink" href="#the-process" title="Link to this heading">#</a></h2>
+<p>The work proceeds as an iterative cycle rather than a single prompt:</p>
+<ul class="simple">
+<li><p>Run a prompt.</p></li>
+<li><p>Review what Codex did.</p></li>
+<li><p>Identify what was missing or incorrect.</p></li>
+<li><p>Record a rule to correct it.</p></li>
+<li><p>Run again, then continue into the analysis.</p></li>
+</ul>
+<p>The remaining pages apply this cycle to the checkout dataset: an initial broad prompt, a set of project rules, a structured investigation of the data, and a trend analysis.</p>
+<div class="key admonition">
+<p class="admonition-title">Key points</p>
+<ul class="simple">
+<li><p>A coding agent works inside a project environment, not only in a chat window.</p></li>
+<li><p>The notebook is the analysis artifact students should be able to rerun and review.</p></li>
+<li><p>Agent-produced analysis must be understandable, reviewable, and traceable.</p></li>
+</ul>
+</div>
 </section>
 </section>
 
@@ -405,6 +491,24 @@ Identify risks, missing checks, and assumptions that could break conclusions.
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Session 1: Foundations for AI-Assisted Analytics Work</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="prompting-and-project-rules.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Prompting and Project Rules</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -424,20 +528,22 @@ Identify risks, missing checks, and assumptions that could break conclusions.
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-matters">Why This Matters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-structure-for-analysts">Prompt Structure for Analysts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#suggested-prompt-sequence">Suggested Prompt Sequence</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-plan-prompt">Example: Plan Prompt</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-validation-prompt">Example: Validation Prompt</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-hygiene-rules">Context Hygiene Rules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workspace">Workspace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-workshop-uses-terminal-codex-in-jupyterlab">Why this workshop uses terminal Codex in JupyterLab</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-jupyterlab-and-codex">Opening JupyterLab and Codex</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codex-terminal-basics">Codex terminal basics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-a-coding-agent-does">What a coding agent does</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-for-the-analysis">Requirements for the analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-process">The process</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/session-1-foundations/prompting-planning-context.md.txt">
+    <a href="../_sources/session-1-foundations/coding-agents-for-analytics.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

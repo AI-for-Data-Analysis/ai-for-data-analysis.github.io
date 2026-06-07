@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Environments Version Control &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+    <title>Planning and Running an Analysis &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8105e7f7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=935f6971" />
     <link rel="stylesheet" type="text/css" href="../_static/theme-duke-ai.css?v=fb250738" />
   
   <!-- So that users can add custom icons -->
@@ -54,11 +54,13 @@
     <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'session-1-foundations/environments-version-control';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'session-1-foundations/analyzing-trends-over-time';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Context and Token Management" href="context-and-token-management.html" />
+    <link rel="prev" title="Understanding the Data Before Analysis" href="understanding-your-data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -275,9 +277,18 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">AI Accelerator: Analytics and Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Session 1: Foundations for AI-Assisted Analytics Work</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coding-agents-for-analytics.html">Coding Agents for Analytics Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prompting-and-project-rules.html">Prompting and Project Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="understanding-your-data.html">Understanding the Data Before Analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Planning and Running an Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="context-and-token-management.html">Context and Token Management</a></li>
+</ul>
+</details></li>
 </ul>
 </div>
 </nav></div>
@@ -318,7 +329,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Environments Version Control</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Planning and Running an Analysis</span></li>
   </ul>
 </nav>
 </div>
@@ -335,82 +349,121 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="environments-version-control">
-<h1>Environments Version Control<a class="headerlink" href="#environments-version-control" title="Link to this heading">#</a></h1>
-<section id="why-this-matters">
-<h2>Why This Matters<a class="headerlink" href="#why-this-matters" title="Link to this heading">#</a></h2>
-<p>Reproducibility is required for analytics review. Teams should execute environment setup themselves, with assistant guidance.</p>
+  <section id="planning-and-running-an-analysis">
+<h1>Planning and Running an Analysis<a class="headerlink" href="#planning-and-running-an-analysis" title="Link to this heading">#</a></h1>
+<p>This page applies the preceding steps to a complete analysis question:</p>
+<blockquote>
+<div><p>How have physical and digital checkouts changed over time?</p>
+</div></blockquote>
+<p>It also shows how to use Codex for planning before implementation when the next analysis might require a library or visualization approach we have not already chosen.</p>
+<section id="select-the-appropriate-file">
+<h2>Select the appropriate file<a class="headerlink" href="#select-the-appropriate-file" title="Link to this heading">#</a></h2>
+<p>Determine which file can answer the question before writing a prompt. The dataset contains two title-level samples and one monthly aggregate. Overall borrowing volume over time is a question about totals, so it must use the 501-row aggregate file. The 250,000-row sample files describe patterns and do not represent total volume.</p>
+<p>This is the purpose of the previous investigation: knowing the structure of the data determines which file is correct. State the chosen dataset in the prompt.</p>
 </section>
-<section id="learning-objectives">
-<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Create and use a project-local Python environment.</p></li>
-<li><p>Capture dependencies and run steps for repeatable analysis.</p></li>
-<li><p>Use version control checkpoints during assistant-driven development.</p></li>
-</ul>
-</section>
-<section id="assistant-guided-learner-executed-setup">
-<h2>Assistant-Guided, Learner-Executed Setup<a class="headerlink" href="#assistant-guided-learner-executed-setup" title="Link to this heading">#</a></h2>
-<p>Use the assistant to propose commands, then run and verify them yourself.</p>
-</section>
-<section id="notebook-first-setup-session-1-baseline">
-<h2>Notebook-First Setup (Session 1 Baseline)<a class="headerlink" href="#notebook-first-setup-session-1-baseline" title="Link to this heading">#</a></h2>
-<p>Mirror the cohort notebook setup:</p>
-<p><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>jupyterlab
-jupyter-ai
-pandas
-matplotlib
-plotly
+<section id="run-the-analysis">
+<h2>Run the analysis<a class="headerlink" href="#run-the-analysis" title="Link to this heading">#</a></h2>
+<p>In the Codex terminal, enter:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Using the monthly aggregate checkout dataset, analyze how physical and digital
+checkouts changed over time. Add traceable code and short explanations to the
+notebook. Include annual totals, a trend chart, and a note about any partial
+years.
 </pre></div>
 </div>
-<p>Environment setup and launch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
-<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
-python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-jupyter<span class="w"> </span>lab
-</pre></div>
-</div>
+<p>When Codex finishes, use the review checklist below before accepting the result.</p>
+<p>The prompt does not restate the requirements defined in <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>, such as readable code and notebook output; those apply automatically. It specifies only what is particular to this task: the dataset, the required outputs, and the caveat to address.</p>
 </section>
-<section id="verification-checks">
-<h2>Verification Checks<a class="headerlink" href="#verification-checks" title="Link to this heading">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-V
-which<span class="w"> </span>python
-</pre></div>
-</div>
-<p>Verification targets:</p>
+<section id="expected-output">
+<h2>Expected output<a class="headerlink" href="#expected-output" title="Link to this heading">#</a></h2>
+<p>Codex adds annual totals split by physical and digital, a trend chart across the full range, and the digital share over time. The data shows physical checkouts higher in the early years, digital checkouts increasing over time, and a crossover around 2020.</p>
+<p>The aggregate file runs through April 2026, so the final year is incomplete. If 2026 is summed and charted alongside full years, it will appear as a sharp decline because four months are compared against twelve. The analysis must flag the partial year. Confirm that Codex did so; if it did not, instruct it to add the note.</p>
+</section>
+<section id="review-checklist">
+<h2>Review checklist<a class="headerlink" href="#review-checklist" title="Link to this heading">#</a></h2>
+<p>Review the output against the following:</p>
 <ul class="simple">
-<li><p>Interpreter path points to <code class="docutils literal notranslate"><span class="pre">.venv</span></code>.</p></li>
-<li><p>JupyterLab launches from the project environment.</p></li>
-<li><p>Dependencies install without using global/base environments.</p></li>
-<li><p>A teammate can rerun the same steps from <code class="docutils literal notranslate"><span class="pre">README</span></code>.</p></li>
+<li><p>Did it use the aggregate file rather than a sample file?</p></li>
+<li><p>Did it state what one row represents before interpreting the data?</p></li>
+<li><p>Did it account for the partial 2026 year?</p></li>
+<li><p>Does each stated result correspond to specific code and output?</p></li>
 </ul>
 </section>
-<section id="minimal-project-contract">
-<h2>Minimal Project Contract<a class="headerlink" href="#minimal-project-contract" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">README.md</span></code>: setup and run instructions</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> or <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>: dependency spec</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">notebooks/</span></code> or <code class="docutils literal notranslate"><span class="pre">src/</span></code>: analysis code</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">outputs/</span></code>: generated artifacts</p></li>
-</ul>
-</section>
-<section id="version-control-milestones">
-<h2>Version Control Milestones<a class="headerlink" href="#version-control-milestones" title="Link to this heading">#</a></h2>
-<p>Make small, meaningful commits:</p>
-<ol class="arabic simple">
-<li><p>Environment + baseline structure</p></li>
-<li><p>Discovery artifact</p></li>
-<li><p>First reproducible analysis</p></li>
-<li><p>Validation/check updates</p></li>
-</ol>
-</section>
-<section id="review-prompts-for-this-stage">
-<h2>Review Prompts for This Stage<a class="headerlink" href="#review-prompts-for-this-stage" title="Link to this heading">#</a></h2>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Check my repository for reproducibility gaps.
-What would fail for a teammate cloning this project fresh?
+<section id="plan-a-new-visualization-before-implementing">
+<h2>Plan a new visualization before implementing<a class="headerlink" href="#plan-a-new-visualization-before-implementing" title="Link to this heading">#</a></h2>
+<p>Not every prompt needs to ask Codex to make changes immediately. When the next step involves choosing an approach, a library, or a visualization type, use Codex as a planning partner first.</p>
+<blockquote>
+<div><p>Does the data show any seasonal patterns for checkouts over time?</p>
+</div></blockquote>
+<p>This question still uses the monthly aggregate file, but the best visualization is less obvious than a basic trend line. A heatmap, faceted chart, small multiples, or an interactive chart might each work. Before installing anything or adding notebook cells, ask Codex to discuss possible approaches:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I&#39;d like to discuss investigating checkout seasonality over time for checkouts. I&#39;m curious if
+there is any time of year where checkouts occur more or less often. How might we do that?
 </pre></div>
+</div>
+<p>A key phrase used here is “I’d like to discuss…”.
+This will keep Codex from acting until you have discussed the topic and greenlighted an action.</p>
+<p>Review the options before moving forward. The useful output is not just the name
+of a chart type; it should explain tradeoffs such as readability, complexity,
+whether the chart will render reliably in the notebook, and whether the code
+will be easy to review.</p>
+<p>If the recommendation is appropriate, then ask Codex to implement the chosen approach:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Use the recommended approach to add a simple, readable notebook section
+showing monthly checkout seasonality by usage class. Explain what the
+visualization shows and include one caveat.
+</pre></div>
+</div>
+<p>This demonstrates a different prompting pattern: discuss and decide first, then implement. That pattern is useful whenever the analysis goal is clear but the method is still uncertain.</p>
+</section>
+<section id="apply-the-workflow-to-the-sample-data">
+<h2>Apply the workflow to the sample data<a class="headerlink" href="#apply-the-workflow-to-the-sample-data" title="Link to this heading">#</a></h2>
+<p>The aggregate file answers questions about totals. The title-level sample files answer more granular questions about titles, subjects, material types, and publishers. Select one such question and apply the same workflow:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>What material types dominate the digital vs physical samples?
+Which subjects appear most often in each sample?
+What titles or creators appear in both the digital and physical samples?
+How does publication year differ between digital and physical samples?
+</pre></div>
+</div>
+<p>Use a prompt that carries the same requirements:</p>
+<div class="exercise admonition">
+<p class="admonition-title">Group activity: Investigate a sample-data question</p>
+<p>Choose one granular question about the title-level sample files, or write your own. Use this prompt template:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Help me investigate this question: [QUESTION]. Use the title-level sample
+files. Before analyzing, state what one row represents and what is being
+counted. Add traceable, readable code to the notebook with short explanations.
+End with one finding and one caveat.
+</pre></div>
+</div>
+<p>Prepare a short share-out with:</p>
+<ul class="simple">
+<li><p>the question your group investigated</p></li>
+<li><p>the dataset used</p></li>
+<li><p>what one row represents</p></li>
+<li><p>the code or output that supports the finding</p></li>
+<li><p>one finding</p></li>
+<li><p>one caveat or uncertainty</p></li>
+<li><p>one thing Codex did well or poorly</p></li>
+</ul>
+</div>
+<p>These files are samples, not the complete collection. A finding describes the sample; any statement about the full collection is an inference. State which one applies.</p>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>The workflow completes one full iteration of the cycle: an initial broad prompt produced results without an artifact; reviewing the output produced project rules; the data structure was established before analysis; and the correct file was used to answer the question with traceable code.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Run a prompt.
+Review what Codex did.
+Define rules early.
+Apply the rules while continuing the analysis.
+Add rules as further issues appear.
+Compare results before and after, and continue.
+</pre></div>
+</div>
+<div class="key admonition">
+<p class="admonition-title">Key points</p>
+<ul class="simple">
+<li><p>The aggregate file answers questions about total checkout volume.</p></li>
+<li><p>The title-level sample files answer more granular questions about titles, subjects, material types, and publishers.</p></li>
+<li><p>Codex can help compare analysis approaches before writing code or installing anything.</p></li>
+<li><p>A coding agent can do much of the analytical work, but the person interpreting the results must confirm that the output is understandable, reviewable, and traceable.</p></li>
+</ul>
 </div>
 </section>
 </section>
@@ -425,6 +478,24 @@ What would fail for a teammate cloning this project fresh?
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="understanding-your-data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Understanding the Data Before Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="context-and-token-management.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Context and Token Management</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -444,21 +515,20 @@ What would fail for a teammate cloning this project fresh?
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-matters">Why This Matters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assistant-guided-learner-executed-setup">Assistant-Guided, Learner-Executed Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-first-setup-session-1-baseline">Notebook-First Setup (Session 1 Baseline)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-checks">Verification Checks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-project-contract">Minimal Project Contract</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control-milestones">Version Control Milestones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-prompts-for-this-stage">Review Prompts for This Stage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-appropriate-file">Select the appropriate file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-analysis">Run the analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-output">Expected output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-checklist">Review checklist</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-a-new-visualization-before-implementing">Plan a new visualization before implementing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-the-workflow-to-the-sample-data">Apply the workflow to the sample data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/session-1-foundations/environments-version-control.md.txt">
+    <a href="../_sources/session-1-foundations/analyzing-trends-over-time.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
