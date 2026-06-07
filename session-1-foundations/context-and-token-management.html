@@ -352,8 +352,8 @@
 <h1>Context and Token Management<a class="headerlink" href="#context-and-token-management" title="Link to this heading">#</a></h1>
 <p>AI-assisted analysis is not only about writing better prompts. It is also about
 managing the working context that the agent carries from one step to the next.
-This becomes especially important if you are using have a totally pay-by-use plan or
-are using the API.
+This becomes especially important if you are using a pay-by-use plan or are
+working through an API.
 This page explains why context can become expensive, how notebook workflows can
 increase that cost, and how to decide when to continue a session versus starting
 fresh.</p>
@@ -371,8 +371,14 @@ loaded while helping you. That context can include:</p>
 </ul>
 <p>Tokens are the pieces of text the model processes. Your typed prompt is only one
 part of the total. Every time you type a message to a model in a conversation,
-that message and response gets added to the full session thread.
-The full session is sent EVERY time you send a message to the model.</p>
+that message and response become part of the session history. In general, later
+model calls need enough of that history to answer coherently, so long sessions
+often send much more input than the few words in your newest prompt.</p>
+<p>The simple mental model is: <strong>a long conversation gets carried forward.</strong> The
+exact accounting can vary because systems may compact old history into a
+summary, omit irrelevant details, or bill cached input differently. But the
+practical consequence is the same: old conversation, tool output, file contents,
+and notebook output can keep costing tokens after the original task is finished.</p>
 <p><strong>A short follow-up near the end of a long session can still be
 expensive because the model will need to process a large amount of accumulated
 context before answering.</strong></p>
@@ -380,7 +386,9 @@ context before answering.</strong></p>
 <a class="reference internal image-reference" href="../_images/context-snowball.png"><img alt="Conceptual representation of context growing larger for long sessions vs. being small for focused tasks" src="../_images/context-snowball.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Context grows on each turn because the full conversation is sent with each new message. Using smaller, more focused conversations keeps context down and token input smaller</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">Context tends to grow across turns because prior conversation and tool results
+remain available to the model. Using smaller, more focused conversations keeps
+working context and token input smaller.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="note admonition">
@@ -408,6 +416,18 @@ request may carry context from all of those phases.</p>
 <p>The important point is that tokens are not mostly the words you type. They are
 often the accumulated working record being sent back through the model so it can
 respond coherently.</p>
+<div class="note admonition">
+<p class="admonition-title">Reading usage charts carefully</p>
+<p>In the usage report, the cumulative token line means “how many tokens this
+session has used so far.” It is useful for seeing which sessions became large,
+but it is not the same thing as “how many tokens were sent as input on this
+turn.”</p>
+<p>For that question, look at the turn-level input-token fields in the CSV or the
+interactive HTML report. Those values are a closer view of how much context was
+sent to the model for a turn. The per-turn token delta is broader: it includes
+the token usage added during that user turn, which may include multiple model
+calls, tool loops, output tokens, and reasoning tokens when those are recorded.</p>
+</div>
 </section>
 <section id="why-notebooks-can-amplify-context">
 <h2>Why notebooks can amplify context<a class="headerlink" href="#why-notebooks-can-amplify-context" title="Link to this heading">#</a></h2>
@@ -484,21 +504,24 @@ deciding what question you are asking.</p>
 <h2>Run your own usage analysis<a class="headerlink" href="#run-your-own-usage-analysis" title="Link to this heading">#</a></h2>
 <p>The repository includes a small script that summarizes recent Codex usage from
 your local <code class="docutils literal notranslate"><span class="pre">~/.codex</span></code> folder:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python tools/analyze_codex_usage.py --days 2 --out codex_usage_summary.md
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python tools/analyze_codex_usage.py --days 2
 </pre></div>
 </div>
 <p>The script writes:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">codex_usage_summary.md</span></code>, a readable report</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">codex_usage_sessions.csv</span></code>, a per-session table</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usage_reports/codex_usage_summary.md</span></code>, a readable Markdown report</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usage_reports/codex_usage_report.html</span></code>, an interactive report with hoverable turn charts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usage_reports/codex_usage_sessions.csv</span></code>, a per-session table</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usage_reports/codex_usage_turns.csv</span></code>, a turn-level table for the largest sessions</p></li>
 </ul>
-<p>Open the Markdown report and look for:</p>
+<p>Open the HTML or Markdown report and look for:</p>
 <ul class="simple">
 <li><p>the largest sessions</p></li>
 <li><p>whether they were terminal, Jupyter-related, MCP-related, or unknown</p></li>
 <li><p>sessions with many turns</p></li>
 <li><p>sessions where the title suggests a broad or mixed task</p></li>
 <li><p>repeated profiling or repeated notebook inspection</p></li>
+<li><p>turns where input tokens are high even though the typed prompt is short</p></li>
 </ul>
 <p>The goal is not to shame expensive sessions. Sometimes a large session reflects
 real work. The goal is to notice which patterns create avoidable cost and decide

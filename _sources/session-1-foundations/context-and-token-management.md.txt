@@ -2,8 +2,8 @@
 
 AI-assisted analysis is not only about writing better prompts. It is also about
 managing the working context that the agent carries from one step to the next. 
-This becomes especially important if you are using have a totally pay-by-use plan or 
-are using the API.
+This becomes especially important if you are using a pay-by-use plan or are
+working through an API.
 This page explains why context can become expensive, how notebook workflows can
 increase that cost, and how to decide when to continue a session versus starting
 fresh.
@@ -22,8 +22,15 @@ loaded while helping you. That context can include:
 
 Tokens are the pieces of text the model processes. Your typed prompt is only one
 part of the total. Every time you type a message to a model in a conversation,
-that message and response gets added to the full session thread. 
-The full session is sent EVERY time you send a message to the model.
+that message and response become part of the session history. In general, later
+model calls need enough of that history to answer coherently, so long sessions
+often send much more input than the few words in your newest prompt.
+
+The simple mental model is: **a long conversation gets carried forward.** The
+exact accounting can vary because systems may compact old history into a
+summary, omit irrelevant details, or bill cached input differently. But the
+practical consequence is the same: old conversation, tool output, file contents,
+and notebook output can keep costing tokens after the original task is finished.
 
 **A short follow-up near the end of a long session can still be
 expensive because the model will need to process a large amount of accumulated
@@ -33,7 +40,9 @@ context before answering.**
 :alt: Conceptual representation of context growing larger for long sessions vs. being small for focused tasks
 :width: 100%
 
-Context grows on each turn because the full conversation is sent with each new message. Using smaller, more focused conversations keeps context down and token input smaller
+Context tends to grow across turns because prior conversation and tool results
+remain available to the model. Using smaller, more focused conversations keeps
+working context and token input smaller.
 ```
 
 ```{admonition} Mental model
@@ -63,6 +72,21 @@ request may carry context from all of those phases.
 The important point is that tokens are not mostly the words you type. They are
 often the accumulated working record being sent back through the model so it can
 respond coherently.
+
+```{admonition} Reading usage charts carefully
+:class: note
+
+In the usage report, the cumulative token line means "how many tokens this
+session has used so far." It is useful for seeing which sessions became large,
+but it is not the same thing as "how many tokens were sent as input on this
+turn."
+
+For that question, look at the turn-level input-token fields in the CSV or the
+interactive HTML report. Those values are a closer view of how much context was
+sent to the model for a turn. The per-turn token delta is broader: it includes
+the token usage added during that user turn, which may include multiple model
+calls, tool loops, output tokens, and reasoning tokens when those are recorded.
+```
 
 ## Why notebooks can amplify context
 
@@ -147,21 +171,24 @@ The repository includes a small script that summarizes recent Codex usage from
 your local `~/.codex` folder:
 
 ```text
-python tools/analyze_codex_usage.py --days 2 --out codex_usage_summary.md
+python tools/analyze_codex_usage.py --days 2
 ```
 
 The script writes:
 
-- `codex_usage_summary.md`, a readable report
-- `codex_usage_sessions.csv`, a per-session table
+- `usage_reports/codex_usage_summary.md`, a readable Markdown report
+- `usage_reports/codex_usage_report.html`, an interactive report with hoverable turn charts
+- `usage_reports/codex_usage_sessions.csv`, a per-session table
+- `usage_reports/codex_usage_turns.csv`, a turn-level table for the largest sessions
 
-Open the Markdown report and look for:
+Open the HTML or Markdown report and look for:
 
 - the largest sessions
 - whether they were terminal, Jupyter-related, MCP-related, or unknown
 - sessions with many turns
 - sessions where the title suggests a broad or mixed task
 - repeated profiling or repeated notebook inspection
+- turns where input tokens are high even though the typed prompt is short
 
 The goal is not to shame expensive sessions. Sometimes a large session reflects
 real work. The goal is to notice which patterns create avoidable cost and decide
