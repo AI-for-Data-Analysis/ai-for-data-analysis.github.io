@@ -1,8 +1,10 @@
-# Analyzing Checkout Trends Over Time
+# Planning and Running an Analysis
 
-This page applies the preceding steps to a complete question:
+This page applies the preceding steps to a complete analysis question:
 
 > How have physical and digital checkouts changed over time?
+
+It also shows how to use Codex for planning before implementation when the next analysis might require a library or visualization approach we have not already chosen.
 
 ## Select the appropriate file
 
@@ -12,7 +14,7 @@ This is the purpose of the previous investigation: knowing the structure of the 
 
 ## Run the analysis
 
-In the Codex panel, enter:
+In the Codex terminal, enter:
 
 ```text
 Using the monthly aggregate checkout dataset, analyze how physical and digital
@@ -39,6 +41,37 @@ Review the output against the following:
 - Did it state what one row represents before interpreting the data?
 - Did it account for the partial 2026 year?
 - Does each stated result correspond to specific code and output?
+
+## Plan a new visualization before implementing
+
+Not every prompt needs to ask Codex to make changes immediately. When the next step involves choosing an approach, a library, or a visualization type, use Codex as a planning partner first.
+
+> Does the data show any seasonal patterns for checkouts over time?
+
+This question still uses the monthly aggregate file, but the best visualization is less obvious than a basic trend line. A heatmap, faceted chart, small multiples, or an interactive chart might each work. Before installing anything or adding notebook cells, ask Codex to discuss possible approaches:
+
+```text
+I'd like to discuss investigating checkout seasonality over time for checkouts. I'm curious if
+there is any time of year where checkouts occur more or less often. How might we do that?
+```
+
+A key phrase used here is "I'd like to discuss...". 
+This will keep Codex from acting until you have discussed the topic and greenlighted an action.
+
+Review the options before moving forward. The useful output is not just the name
+of a chart type; it should explain tradeoffs such as readability, complexity,
+whether the chart will render reliably in the notebook, and whether the code
+will be easy to review.
+
+If the recommendation is appropriate, then ask Codex to implement the chosen approach:
+
+```text
+Use the recommended approach to add a simple, readable notebook section
+showing monthly checkout seasonality by usage class. Explain what the
+visualization shows and include one caveat.
+```
+
+This demonstrates a different prompting pattern: discuss and decide first, then implement. That pattern is useful whenever the analysis goal is clear but the method is still uncertain.
 
 ## Apply the workflow to the sample data
 
@@ -96,5 +129,6 @@ Compare results before and after, and continue.
 
 - The aggregate file answers questions about total checkout volume.
 - The title-level sample files answer more granular questions about titles, subjects, material types, and publishers.
-- A coding agent can do much of the analytical work, but the analyst must confirm that the output is understandable, reviewable, and traceable.
+- Codex can help compare analysis approaches before writing code or installing anything.
+- A coding agent can do much of the analytical work, but the person interpreting the results must confirm that the output is understandable, reviewable, and traceable.
 ```

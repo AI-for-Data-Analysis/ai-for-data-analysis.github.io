@@ -413,20 +413,20 @@ div.admonition.solution > .admonition-title {
 }
 
 /* Exercise Admonition Icon */
-.admonition.exercise > .admonition-title::after,
-div.admonition.exercise > .admonition-title::after {
+.admonition.exercise > .admonition-title::before,
+div.admonition.exercise > .admonition-title::before {
   position: absolute;
   left: 0.6rem;
   width: 1rem;
   height: 1rem;
   color: #fd7e14;
-  font-family: "Font Awesome 5 Free", "Font Awesome 6 Free";
+  background-color: #fd7e1400;
+  font-family: "Font Awesome 7 Free", "Font Awesome 6 Free", "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f303";
 }
 
-.admonition.exercise > .admonition-title::before,
-div.admonition.exercise > .admonition-title::before,
+/* Solution Left Icon */
 .admonition.solution > .admonition-title::before,
 div.admonition.solution > .admonition-title::before {
   position: absolute;
@@ -435,19 +435,16 @@ div.admonition.solution > .admonition-title::before {
   height: 1rem;
   color: #fd7e14;
   background-color: #fd7e1400;
-}
-
-/* Solution Left Icon */
-.admonition.solution > .admonition-title::after,
-div.admonition.solution > .admonition-title::after {
-  position: absolute;
-  left: 0.6rem;
-  width: 1rem;
-  height: 1rem;
-  color: #fd7e14;
-  font-family: "Font Awesome 5 Free", "Font Awesome 6 Free";
+  font-family: "Font Awesome 7 Free", "Font Awesome 6 Free", "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f06e";
+}
+
+.admonition.exercise > .admonition-title::after,
+div.admonition.exercise > .admonition-title::after,
+.admonition.solution > .admonition-title::after,
+div.admonition.solution > .admonition-title::after {
+  content: none;
 }
 
 /* Exercise and Solution - Left Border */
@@ -489,18 +486,14 @@ div.admonition.key > .admonition-title::before {
   height: 1rem;
   color: #00a300;
   background-color: #00a30000;
+  font-family: "Font Awesome 7 Free", "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f084";
 }
 
 .admonition.key > .admonition-title::after,
 div.admonition.key > .admonition-title::after {
-  position: absolute;
-  left: 0.6rem;
-  width: 1rem;
-  height: 1rem;
-  color: #00a300;
-  font-family: "Font Awesome 5 Free", "Font Awesome 6 Free";
-  font-weight: 900;
-  content: "\f084";
+  content: none;
 }
 
 /* Key Admonition left border */

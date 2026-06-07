@@ -7,8 +7,8 @@ traceable**. The example dataset is two decades of library checkout records.
 
 The session covers how prompts and an ``AGENTS.md`` rules file determine what
 Codex produces, how to establish what the data represents before analyzing it,
-and how to produce a trend analysis in which each result is traceable to its
-code.
+how to produce a trend analysis in which each result is traceable to its code,
+and how to manage context so agent sessions stay focused.
 
 .. admonition:: The iterative cycle
    :class: note
@@ -32,3 +32,4 @@ Complete the environment and assistant setup before starting:
    prompting-and-project-rules
    understanding-your-data
    analyzing-trends-over-time
+   context-and-token-management

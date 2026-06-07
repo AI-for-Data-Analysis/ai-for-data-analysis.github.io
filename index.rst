@@ -11,7 +11,7 @@ Tutorial-style lessons for AI-assisted analytics from exploration to dashboard d
 .. admonition:: Tool Progression
    :class: tip
 
-   The learning material starts notebook-first (JupyterLab + Jupyter-AI) for exploration and transitions to CLI/project workflows for reproducible dashboard delivery.
+   The learning material starts notebook-first with Codex in a JupyterLab terminal, then transitions to broader CLI/project workflows for reproducible dashboard delivery.
 
 Pre-Workshop: Set Up Your Environment and Coding Assistant
 ###########################################################

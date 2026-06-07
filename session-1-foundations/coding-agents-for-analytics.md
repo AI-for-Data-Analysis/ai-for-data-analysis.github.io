@@ -8,39 +8,98 @@ The setup step prepares everything required. For this session:
 
 - **JupyterLab** is the working environment.
 - The **notebook** is the analysis artifact: the file you keep, rerun, and share.
-- **Codex** is the coding agent, available in the assistant panel.
+- **Codex** is the coding agent, run from a terminal inside JupyterLab.
 - The project contains a **`data/`** folder with the files to analyze.
 
 Codex's work should run in the project environment created during setup and be written into the notebook.
 
-### Opening JupyterLab and Accessing the Agent
+## Why this workshop uses terminal Codex in JupyterLab
 
-When JupyterLab opens, it usually starts on the launcher screen. The launcher is the starting point for creating new notebooks, opening terminals or text files, and accessing extensions such as the coding agent chat.
+During preparation, we tested a Jupyter-based agent workflow and a terminal
+Codex workflow inside the same JupyterLab environment. The comparison was not a
+simple "one is always cheaper" result. For a focused plotting task, the token
+usage was similar. The bigger problem was workflow friction: the Jupyter plugin
+required frequent approvals and tended to read notebook state repeatedly while
+profiling and editing.
+
+For the workshop, we will use Codex in a JupyterLab terminal. The notebook remains the
+analysis artifact, but the agent interaction happens in the terminal. This gives
+participants one consistent place to approve actions, see commands, and decide
+when to start a fresh session.
+
+### Opening JupyterLab and Codex
+
+When JupyterLab opens, it usually starts on the launcher screen. The launcher is
+the starting point for creating new notebooks, opening terminals, and accessing
+project files.
 
 ```{figure} ../images/session-1/jupyter-lab-with-chat.png
-:alt: JupyterLab launcher showing the Python notebook tile and the Chat tile
+:alt: JupyterLab launcher showing notebook and terminal-related tiles
 :width: 100%
 
-The JupyterLab launcher includes both the notebook environment and the coding agent interface.
+The JupyterLab launcher is where you open the notebook and terminal workspace.
 ```
 
 In the screenshot, **A** marks the Python notebook tile. Use this tile to create a new notebook for the analysis. The notebook is where the code, outputs, notes, and final analytical steps should live.
 
-**B** marks the Chat tile. Use this tile to open the coding agent. The agent can help inspect files, write and revise code, run analysis, and update the notebook, but its work still needs to be reviewed and made traceable in the notebook.
+For this workshop, open a **Terminal** from the launcher or the JupyterLab menu,
+then start Codex in the project folder. The exact command may depend on your
+setup, but the workflow is the same: Codex runs in the terminal, and the notebook
+records the analysis.
 
-After opening both tiles, arrange the chat and notebook side by side. This keeps the agent conversation visible while you review the code and output in the notebook.
+Arrange the terminal and notebook side by side. This keeps the agent interaction
+visible while you review the code and output in the notebook.
 
-```{figure} ../images/session-1/jupyter-lab-chat-notebook-side-by-side.png
-:alt: JupyterLab with the coding agent chat open on the left and a Python notebook open on the right
+```{figure} ../images/session-1/jupyter-lab-codex-notebook-side-by-side.png
+:alt: JupyterLab with a terminal panel on the left and a Python notebook open on the right
 :width: 100%
 
-The coding agent chat and the analysis notebook can be open at the same time in the JupyterLab workspace.
+Keep the terminal and the analysis notebook visible at the same time in the JupyterLab workspace.
+```
+
+You can open Codex by typing 
+
+```
+codex
+```
+
+into your terminal.
+
+### Codex terminal basics
+
+In the Codex terminal, most of what you type is a normal prompt. Messages such
+as "profile the data in `data/`" or "add a short notebook section explaining
+this chart" are sent to the agent as work requests.
+
+Codex also has **slash commands** for controlling the session. Slash commands
+start with `/` and are handled by the Codex interface rather than treated as
+analysis prompts.
+
+Useful commands to know:
+
+- `/help` shows the commands available in your installed Codex version.
+- `/status` shows session and environment information.
+- `/model` lets you inspect or change the model for the session.
+- `/new` starts a fresh session.
+- `/compact` summarizes the current conversation to reduce context.
+- `/quit` exits Codex.
+
+Use `/help` as the source of truth. Codex versions can differ, and the available
+commands may change.
+
+```{admonition} Prompt or command?
+:class: note
+
+If you want Codex to do analysis work, write a normal prompt. If you want to
+control the Codex session itself, use a slash command.
 ```
 
 ```{admonition} Exercise: Prepare the workspace
 :class: exercise
 
-Open JupyterLab and arrange the coding agent chat and a new Python notebook side by side. Confirm that the notebook is using the project Python environment prepared during setup.
+Open JupyterLab and arrange a terminal and a new Python notebook side by
+side. Confirm that the notebook is using the project Python environment prepared
+during setup.
 
 Before continuing, make sure you can identify:
 
@@ -48,7 +107,6 @@ Before continuing, make sure you can identify:
 - where Codex should record code and outputs
 - where the project files and `data/` folder are located
 ```
-
 
 ## What a coding agent does
 
@@ -68,13 +126,11 @@ Each analysis in this session must be:
 
 The work proceeds as an iterative cycle rather than a single prompt:
 
-```text
-Run a prompt.
-Review what Codex did.
-Identify what was missing or incorrect.
-Record a rule to correct it.
-Run again, then continue into the analysis.
-```
+* Run a prompt.
+* Review what Codex did.
+* Identify what was missing or incorrect.
+* Record a rule to correct it.
+* Run again, then continue into the analysis.
 
 The remaining pages apply this cycle to the checkout dataset: an initial broad prompt, a set of project rules, a structured investigation of the data, and a trend analysis.
 
