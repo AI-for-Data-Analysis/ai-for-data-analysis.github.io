@@ -357,7 +357,6 @@ Move the downloaded zip file to the folder where you want to create your worksho
 ```bash
 curl -L 'https://gitlab.oit.duke.edu/jn242/ai-analytics-accelerator/-/raw/main/student-setup.zip' -o student-setup.zip
 unzip student-setup.zip
-cd student-setup
 ```
 
 :::{tip}
@@ -373,7 +372,8 @@ You can also open a specific path by replacing `.` with that path.
 Then run the Codex API key setup script:
 
 ```bash
-python scripts/setup_codex_litellm.py
+cd student-setup
+python3 scripts/setup_codex_litellm.py
 ```
 
 When prompted, paste the API key provided by the workshop instructors.

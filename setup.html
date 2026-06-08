@@ -594,7 +594,6 @@ Some Duke departments cover access to ChatGPT. If you are able to get ChatGPT ac
 <p>Move the downloaded zip file to the folder where you want to create your workshop setup, or retrieve it again from the terminal with <code class="docutils literal notranslate"><span class="pre">curl</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-L<span class="w"> </span><span class="s1">&#39;https://gitlab.oit.duke.edu/jn242/ai-analytics-accelerator/-/raw/main/student-setup.zip&#39;</span><span class="w"> </span>-o<span class="w"> </span>student-setup.zip
 unzip<span class="w"> </span>student-setup.zip
-<span class="nb">cd</span><span class="w"> </span>student-setup
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -606,7 +605,8 @@ unzip<span class="w"> </span>student-setup.zip
 <p>You can also open a specific path by replacing <code class="docutils literal notranslate"><span class="pre">.</span></code> with that path.</p>
 </div>
 <p>Then run the Codex API key setup script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/setup_codex_litellm.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>student-setup
+python3<span class="w"> </span>scripts/setup_codex_litellm.py
 </pre></div>
 </div>
 <p>When prompted, paste the API key provided by the workshop instructors.</p>
