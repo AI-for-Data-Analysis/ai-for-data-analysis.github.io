@@ -41,7 +41,15 @@ when to start a fresh session.
 To open JupyterLab, you should navigate to the directory where you would like to work using your terminal. You can then launch JupyterLab using the `jupyter lab` command:
 
 ```bash
-cd /to/project/path
+cd analytics-accelerator
+ls 
+```
+
+You should see your `seattle-public-library` folder.
+
+Next, start JupyterLab
+
+```bash
 jupyter lab
 ```
 
