@@ -722,6 +722,7 @@ window.runMermaid = runMermaid;</script>
 <li class="toctree-l2"><a class="reference internal" href="prompting-and-project-rules.html">Prompting and Project Rules</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Understanding the Data Before Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="analyzing-trends-over-time.html">Planning and Running an Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="context-and-token-management.html">Managing Context in Coding Agent Conversations</a></li>
 </ul>
 </details></li>
 </ul>
@@ -801,7 +802,7 @@ window.runMermaid = runMermaid;</script>
 go into the first prompt. Start with a smaller profiling task so Codex creates a
 simple notebook artifact before moving into interpretation.</p>
 <p>Ask Codex to create the first serious notebook artifact for this project:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Add a simple data profile to my notebook for the data in data/. Load the files, print the first few rows, report non-null values and data types.
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Add a simple data profile to my notebook for the data in seattle-public-library/. Load the files, print the first few rows, report non-null values and data types.
 </pre></div>
 </div>
 <p>After Codex finishes, review the notebook section it created. Use the profile to
@@ -904,22 +905,22 @@ physical_checkout_title_sample_balanced_250k
 need to repeat from scratch. The notebook records the analysis process, but the
 basic dataset facts also belong in a durable reference file. Dataset
 documentation belongs somewhere humans and agents would both expect to find it:
-inside the <code class="docutils literal notranslate"><span class="pre">data/</span></code> folder.</p>
+inside the <code class="docutils literal notranslate"><span class="pre">seattle-public-library/</span></code> folder.</p>
 <p>Ask Codex to create a data README:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please create a README.md file in the data folder documenting the raw data files with enough detail that future sessions do not have to rediscover the basic dataset structure every time.
 </pre></div>
 </div>
-<p>Review <code class="docutils literal notranslate"><span class="pre">data/README.md</span></code> before keeping it. Check that Codex did not invent
+<p>Review <code class="docutils literal notranslate"><span class="pre">seattle-public-library/README.md</span></code> before keeping it. Check that Codex did not invent
 dataset meanings, overstate what the data can support, or turn sampled data into
 full-population claims.</p>
 <p>Then ask Codex to update <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> so future assistants know to use the data
 documentation before starting new analysis:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please update AGENTS.md to tell future assistants to read data/README.md before analyzing the raw data files.
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please update AGENTS.md to tell future assistants to read seattle-public-library/README.md before analyzing the raw data files.
 </pre></div>
 </div>
 <p>This is an important teaching moment. If Codex has to inspect the same files,
 schemas, row counts, and relationships in every new session, the project is missing
-shared memory. Once those facts have been verified, <code class="docutils literal notranslate"><span class="pre">data/README.md</span></code> can record
+shared memory. Once those facts have been verified, <code class="docutils literal notranslate"><span class="pre">seattle-public-library/README.md</span></code> can record
 them so later sessions can start from known dataset orientation and spend their work
 on the new question.</p>
 </section>
