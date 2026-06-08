@@ -19,10 +19,29 @@ You may also want to install [Windows Terminal](https://apps.microsoft.com/detai
 ```{admonition} Download the Workshop Setup Installer
 :class: tip
 
-Download the [workshop setup installer](student-setup.zip) now, but do not run it yet. This page first walks you through computer-level setup: WSL if needed, Python, npm, Codex, and the Codex Jupyter connector.
+Download the [workshop setup installer](https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/student-setup.zip) now, but do not run it yet. This page first walks you through computer-level setup: WSL if needed, Python, npm, Codex, and the Codex Jupyter connector.
 
 Later, in the AI provider access section, you will use the installer to create the workshop-specific Python/Jupyter environment and Codex API key configuration.
 ```
+
+````{admonition} Download the Student Materials
+:class: tip
+
+Download the [student materials](https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip) and put them in a folder named `analytics-accelerator`.
+
+Full download instructions are also available in the [Student Materials](#student-materials) section at the bottom of this page.
+
+If you use the terminal, you can create the folder, download the zip, and unzip it with:
+
+```bash
+mkdir -p ~/analytics-accelerator
+cd ~/analytics-accelerator
+curl -L 'https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip' -o seattle-public-library.zip
+unzip seattle-public-library.zip
+```
+
+After unzipping, you should have a folder named `seattle-public-library` inside `analytics-accelerator`.
+````
 
 ## Set Up Your Development Environment
 
@@ -350,12 +369,12 @@ codex exec "Reply with only: Codex is working" --skip-git-repo-check
 
 We will provide API keys to all workshop participants. Set up the workshop API key configuration even if ChatGPT login works for you. This gives you a backup provider if ChatGPT login is unavailable or if you run out of usage during the workshop.
 
-After you have installed Python, npm, Codex, and the Codex Jupyter connector, use the [workshop setup installer](student-setup.zip). The zip includes a `README.md`, a `requirements.txt` for testing JupyterLab and Jupyter AI, and a script that creates the workshop Codex LiteLLM configuration after you paste in your API key.
+After you have installed Python, npm, Codex, and the Codex Jupyter connector, use the [workshop setup installer](https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/student-setup.zip). The zip includes a `README.md`, a `requirements.txt` for testing JupyterLab and Jupyter AI, and a script that creates the workshop Codex LiteLLM configuration after you paste in your API key.
 
 Move the downloaded zip file to the folder where you want to create your workshop setup, or retrieve it again from the terminal with `curl`.
 
 ```bash
-curl -L 'https://gitlab.oit.duke.edu/jn242/ai-analytics-accelerator/-/raw/main/student-setup.zip' -o student-setup.zip
+curl -L 'https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/student-setup.zip' -o student-setup.zip
 unzip student-setup.zip
 ```
 
@@ -436,7 +455,7 @@ During the workshop, use normal Codex for ChatGPT login when available. Launch c
 
 ## Set Up the Student Installer Environment
 
-Workshop materials will be distributed separately. For now, use the [workshop setup installer](student-setup.zip) to verify that your environment can run JupyterLab, Jupyter AI, and the workshop Codex API key configuration.
+Use the [workshop setup installer](https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/student-setup.zip) to verify that your environment can run JupyterLab, Jupyter AI, and the workshop Codex API key configuration.
 
 ### Create a virtual environment
 
@@ -570,4 +589,27 @@ python --version        # should show Python 3.11 or newer
 python -m pip --version # should show pip from the virtual environment
 python -m pip check     # should show: No broken requirements found.
 jupyter lab --version   # should show a JupyterLab version
+```
+
+(student-materials)=
+## Student Materials
+
+Download the student materials zip and put it inside a folder named `analytics-accelerator`.
+
+Use this link if you want to download the zip in your browser:
+[student materials](https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip)
+
+If you use the terminal, run:
+
+```bash
+mkdir -p ~/analytics-accelerator
+cd ~/analytics-accelerator
+curl -L 'https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip' -o seattle-public-library.zip
+unzip seattle-public-library.zip
+```
+
+After unzipping, you should have:
+
+```text
+~/analytics-accelerator/seattle-public-library/
 ```

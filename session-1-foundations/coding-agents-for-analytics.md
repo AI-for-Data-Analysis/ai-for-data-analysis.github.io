@@ -2,6 +2,24 @@
 
 This session uses Codex, a coding agent from OpenAI, to investigate a dataset and answer questions about it while keeping the work reproducible. This page covers the workspace and the requirements your analysis must meet before you write the first prompt.
 
+````{admonition} Download the student materials before starting
+:class: tip
+
+Create a folder for this lesson, put the student materials zip inside it, unzip the materials, and move into the unzipped project folder before starting JupyterLab or Codex.
+
+If you use the terminal, run:
+
+```bash
+mkdir -p ~/analytics-accelerator
+cd ~/analytics-accelerator
+curl -L 'https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip' -o seattle-public-library.zip
+unzip seattle-public-library.zip
+cd seattle-public-library
+```
+
+If you downloaded the zip in your browser instead, move `seattle-public-library.zip` into your `analytics-accelerator` folder before unzipping it.
+````
+
 ## Workspace
 
 The setup step prepares everything required. For this session:

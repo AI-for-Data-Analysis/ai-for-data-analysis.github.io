@@ -44,7 +44,7 @@ In the terminal workflow, type the prompt directly into Codex. Do not include `@
 In the Codex terminal, enter:
 
 ```text
-I need to do EDA on the data in my data folder. Can you investigate and tell me about it?
+I need to do exploratory data analysis on the data in my seattle-public-library folder. Can you investigate and tell me about it?
 ```
 
 Watch what Codex does before evaluating the answer. Note whether it writes reusable notebook code, works in the terminal, summarizes in the response, creates files, or makes assumptions about the data.
@@ -118,24 +118,12 @@ Codex may do a lot from a vague prompt. That is useful for quick orientation, bu
 
 The broad prompt is useful here as a teaching demonstration, but it is not the most efficient way to work. It may spend tokens on a wide scan, a long summary, or analysis steps that do not become part of the notebook. The request also did not specify where the work should be recorded, ask Codex to keep the code simple, explain the data structure before interpreting trends, or leave behind a notebook section that another person could review.
 
-## Try a narrower prompt
-
-The broad prompt shows that Codex can move quickly, but it may also mix orientation, summary, and analysis. Before asking Codex to edit the notebook, try a narrower prompt that focuses on the data inventory and relationships:
-
-```text
-Can you help me investigate the data in my data folder? I would like to know what the dataset or datasets are and the relationships between the items.
-```
-
-This prompt is better than the broad EDA request because it points Codex toward a specific kind of investigation. In testing, Codex identified the three datasets and explained that the title-level files connect to the aggregate table by year, month, and usage class. Your run might phrase this differently or emphasize different details.
-
-However, the output may still be mostly a response summary. It may help orient you to the data, but it still may not leave behind a notebook artifact that another person can inspect and rerun.
-
 ## Try a notebook prompt
 
 Next, ask Codex to put the investigation into the notebook:
 
 ```text
-Can you help me investigate the data in my data folder? I would like to know what the dataset or datasets are and the relationships between the items.
+Can you help me investigate the data in my seattle-public-library folder? I would like to know what the dataset or datasets are and the relationships between the items.
 
 I have a notebook open. Please add a brief Data Inventory section that previews each file, summarizes the rows and columns, and explains what one row seems to represent.
 ```
