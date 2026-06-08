@@ -13,15 +13,6 @@ The setup step prepares everything required. For this session:
 
 Codex's work should run in the project environment created during setup and be written into the notebook.
 
-## Why this workshop uses terminal Codex in JupyterLab
-
-During preparation, we tested a Jupyter-based agent workflow and a terminal
-Codex workflow inside the same JupyterLab environment. The comparison was not a
-simple "one is always cheaper" result. For a focused plotting task, the token
-usage was similar. The bigger problem was workflow friction: the Jupyter plugin
-required frequent approvals and tended to read notebook state repeatedly while
-profiling and editing.
-
 For the workshop, we will use Codex in a JupyterLab terminal. The notebook remains the
 analysis artifact, but the agent interaction happens in the terminal. This gives
 participants one consistent place to approve actions, see commands, and decide
@@ -29,11 +20,18 @@ when to start a fresh session.
 
 ### Opening JupyterLab and Codex
 
+To open JupyterLab, you should navigate to the directory where you would like to work using your terminal. You can then launch JupyterLab using the `jupyter lab` command:
+
+```bash
+cd /to/project/path
+jupyter lab
+```
+
 When JupyterLab opens, it usually starts on the launcher screen. The launcher is
 the starting point for creating new notebooks, opening terminals, and accessing
 project files.
 
-```{figure} ../images/session-1/jupyter-lab-with-chat.png
+```{figure} ../images/session-1/jupyter-lab-notebook-terminal.png
 :alt: JupyterLab launcher showing notebook and terminal-related tiles
 :width: 100%
 
@@ -132,7 +130,7 @@ The work proceeds as an iterative cycle rather than a single prompt:
 * Record a rule to correct it.
 * Run again, then continue into the analysis.
 
-The remaining pages apply this cycle to the checkout dataset: an initial broad prompt, a set of project rules, a structured investigation of the data, and a trend analysis.
+The remaining pages apply this cycle to the checkout dataset: an initial broad prompt, a set of project rules, a structured investigation of the data, and a trend analysis.    
 
 ```{admonition} Key points
 :class: key

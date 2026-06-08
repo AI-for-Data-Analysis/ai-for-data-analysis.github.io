@@ -361,26 +361,22 @@
 <li><p>The project contains a <strong><code class="docutils literal notranslate"><span class="pre">data/</span></code></strong> folder with the files to analyze.</p></li>
 </ul>
 <p>Codex’s work should run in the project environment created during setup and be written into the notebook.</p>
-</section>
-<section id="why-this-workshop-uses-terminal-codex-in-jupyterlab">
-<h2>Why this workshop uses terminal Codex in JupyterLab<a class="headerlink" href="#why-this-workshop-uses-terminal-codex-in-jupyterlab" title="Link to this heading">#</a></h2>
-<p>During preparation, we tested a Jupyter-based agent workflow and a terminal
-Codex workflow inside the same JupyterLab environment. The comparison was not a
-simple “one is always cheaper” result. For a focused plotting task, the token
-usage was similar. The bigger problem was workflow friction: the Jupyter plugin
-required frequent approvals and tended to read notebook state repeatedly while
-profiling and editing.</p>
 <p>For the workshop, we will use Codex in a JupyterLab terminal. The notebook remains the
 analysis artifact, but the agent interaction happens in the terminal. This gives
 participants one consistent place to approve actions, see commands, and decide
 when to start a fresh session.</p>
 <section id="opening-jupyterlab-and-codex">
 <h3>Opening JupyterLab and Codex<a class="headerlink" href="#opening-jupyterlab-and-codex" title="Link to this heading">#</a></h3>
+<p>To open JupyterLab, you should navigate to the directory where you would like to work using your terminal. You can then launch JupyterLab using the <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/to/project/path
+jupyter<span class="w"> </span>lab
+</pre></div>
+</div>
 <p>When JupyterLab opens, it usually starts on the launcher screen. The launcher is
 the starting point for creating new notebooks, opening terminals, and accessing
 project files.</p>
 <figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/jupyter-lab-with-chat.png"><img alt="JupyterLab launcher showing notebook and terminal-related tiles" src="../_images/jupyter-lab-with-chat.png" style="width: 100%;" />
+<a class="reference internal image-reference" href="../_images/jupyter-lab-notebook-terminal.png"><img alt="JupyterLab launcher showing notebook and terminal-related tiles" src="../_images/jupyter-lab-notebook-terminal.png" style="width: 100%;" />
 </a>
 <figcaption>
 <p><span class="caption-text">The JupyterLab launcher is where you open the notebook and terminal workspace.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
@@ -527,8 +523,7 @@ during setup.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workspace">Workspace</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-workshop-uses-terminal-codex-in-jupyterlab">Why this workshop uses terminal Codex in JupyterLab</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workspace">Workspace</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-jupyterlab-and-codex">Opening JupyterLab and Codex</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codex-terminal-basics">Codex terminal basics</a></li>
 </ul>
