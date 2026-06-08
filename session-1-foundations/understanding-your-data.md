@@ -19,7 +19,7 @@ simple notebook artifact before moving into interpretation.
 Ask Codex to create the first serious notebook artifact for this project:
 
 ```text
-Add a simple data profile to my notebook for the data in data/. Load the files, print the first few rows, report non-null values and data types.
+Add a simple data profile to my notebook for the data in seattle-public-library/. Load the files, print the first few rows, report non-null values and data types.
 ```
 
 After Codex finishes, review the notebook section it created. Use the profile to
@@ -131,7 +131,7 @@ At this point, Codex has done useful investigation that future sessions should n
 need to repeat from scratch. The notebook records the analysis process, but the
 basic dataset facts also belong in a durable reference file. Dataset
 documentation belongs somewhere humans and agents would both expect to find it:
-inside the `data/` folder.
+inside the `seattle-public-library/` folder.
 
 Ask Codex to create a data README:
 
@@ -139,7 +139,7 @@ Ask Codex to create a data README:
 Please create a README.md file in the data folder documenting the raw data files with enough detail that future sessions do not have to rediscover the basic dataset structure every time.
 ```
 
-Review `data/README.md` before keeping it. Check that Codex did not invent
+Review `seattle-public-library/README.md` before keeping it. Check that Codex did not invent
 dataset meanings, overstate what the data can support, or turn sampled data into
 full-population claims.
 
@@ -147,12 +147,12 @@ Then ask Codex to update `AGENTS.md` so future assistants know to use the data
 documentation before starting new analysis:
 
 ```text
-Please update AGENTS.md to tell future assistants to read data/README.md before analyzing the raw data files.
+Please update AGENTS.md to tell future assistants to read seattle-public-library/README.md before analyzing the raw data files.
 ```
 
 This is an important teaching moment. If Codex has to inspect the same files,
 schemas, row counts, and relationships in every new session, the project is missing
-shared memory. Once those facts have been verified, `data/README.md` can record
+shared memory. Once those facts have been verified, `seattle-public-library/README.md` can record
 them so later sessions can start from known dataset orientation and spend their work
 on the new question.
 

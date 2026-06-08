@@ -42,7 +42,7 @@ To open JupyterLab, you should navigate to the directory where you would like to
 ```bash
 cd ~/analytics-accelerator/
 cd student_setup
-source activate .venv/bin/activate
+source .venv/bin/activate
 ls 
 ```
 

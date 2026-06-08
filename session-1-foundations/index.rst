@@ -30,5 +30,6 @@ Complete the environment and assistant setup before starting:
    self
    coding-agents-for-analytics
    prompting-and-project-rules
+   context-and-token-management
    understanding-your-data
    analyzing-trends-over-time

@@ -1,401 +1,190 @@
----
-orphan: true
----
-
 # Managing Context in Coding Agent Conversations
 
-When you work with Codex, it can feel as if the agent remembers the whole
-project. It may refer to files it inspected earlier, errors it saw, code it
-edited, or decisions you made ten prompts ago.
+Codex can appear to remember the whole project. It may refer to files it
+inspected earlier, errors it saw, code it edited, or decisions you made several
+prompts ago.
 
-That feeling is useful, but it can also be misleading. The language model does
-not remember the project on its own. Codex is an application around the model.
-For each response, the application gives the model a working context: selected
-instructions, conversation history, tool results, file excerpts, and the latest
-request.
+That behavior is useful, but it can also hide an important boundary. Codex does
+not independently remember the project. Each response is generated from the
+context the application gives the model: project instructions, conversation
+history, file excerpts, tool results, command output, and the latest request.
 
-For data analysis, the practical question is not only:
-
-```text
-What should I ask Codex next?
-```
-
-It is also:
-
-```text
-What context should Codex keep using, and what should be saved somewhere more durable?
-```
+For analytics work, the practical question is not only what to ask next. It is
+also what should stay in the conversation and what should be written into the
+project.
 
 ```{admonition} The central distinction
 :class: note
 
 Use the conversation for **working context**.
 
-Use project files for **durable context**.
+Use project files for **saved project context**.
 ```
 
-## Why this matters for analysts
+Working context is the temporary material Codex needs to continue the current
+task. It includes the current conversation, recent errors, command output,
+notebook cells, file excerpts, and decisions made during the session.
 
-Data analysis work creates a lot of temporary information:
+Saved project context is different. It is information written into files so that
+future humans and future Codex sessions can find it. The notebook, `AGENTS.md`,
+`README.md`, `data/README.md`, scripts, tests, and short decision notes can all
+serve this purpose.
 
-* file previews
-* column lists
-* missing-value checks
-* failed plotting attempts
-* stack traces
-* partial interpretations
-* caveats about sampling or aggregation
-* decisions about which dataset answers which question
-
-Some of that information is useful only for the next few minutes. Some of it is
-important project knowledge.
-
-For example, suppose Codex inspects the checkout data and learns this:
-
-```text
-combined_checkout_totals_by_month_usageclass.csv is monthly aggregate data.
-The two title-level checkout files are balanced samples.
-The aggregate file should be used for full checkout volume trends.
-The 2026 data is partial.
-```
-
-Those facts should not live only in the chat. They affect which analysis is
-valid, which plots are misleading, and how future work should proceed. They
-belong in the notebook, a `data/README.md`, or another project note.
-
-The conversation can help discover the facts. The project should become the
+The conversation can help discover facts. The project files should become the
 place where verified facts live.
 
-## Working context and durable context
+## Why this matters
 
-**Working context** is what helps Codex continue the current task. It may
-include:
+A short prompt late in a session can depend on a long history of work:
 
-* the current conversation
-* project instructions
-* files Codex has inspected
-* commands Codex has run
-* tool outputs
-* error messages
-* notebook cells and outputs
-* decisions made during the current task
-
-Working context is valuable while you are solving one problem. If Codex just ran
-a cell, saw an error, and is about to fix it, that error is useful context. If
-Codex just compared two plotting approaches and you chose one, that decision is
-useful context.
-
-**Durable context** is information saved where future humans and future agent
-sessions can find it. It may include:
-
-* the notebook
-* `AGENTS.md`
-* `README.md`
-* `data/README.md`
-* saved plots and tables
-* tests
-* scripts
-* commit history
-* short decision notes
-
-Durable context is what lets a fresh session start from trusted project
-knowledge instead of reconstructing the project from an old chat.
-
-```{list-table}
-:header-rows: 1
-
-* - If Codex learns...
-  - Save it in...
-* - what each data file contains
-  - `data/README.md` or a notebook data inventory section
-* - what one row represents
-  - the notebook and data notes
-* - which file should answer a question
-  - the notebook near the analysis code
-* - raw data should not be modified
-  - `AGENTS.md`
-* - the command to run the analysis
-  - `README.md`
-* - a caveat such as "2026 is partial"
-  - the notebook near the chart or conclusion
-* - a temporary stack trace from one failed attempt
-  - usually nowhere, unless it explains a lasting decision
+```text
+Make the chart clearer.
 ```
 
-## A coding agent is a system, not just a chat box
+That prompt may depend on earlier decisions about which CSV contains full
+checkout totals, which files are samples, whether 2026 is partial, and what the
+notebook section is trying to show. If those facts live only in the conversation,
+Codex may need to carry them forward, summarize them, or rediscover them later.
 
-It helps to separate the parts of the system.
+That can waste time, tokens, and attention. More importantly, it can make the
+analysis harder to review. A result is not very traceable if the reason for it is
+buried in an old chat turn instead of recorded near the notebook code or in a
+data note.
 
-The **model** generates the next response from the context it receives. It does
-not independently remember earlier conversations.
+In the checkout project, suppose Codex learns that
+`combined_checkout_totals_by_month_usageclass.csv` is monthly aggregate data,
+that the two title-level files are balanced samples, that the aggregate file
+should be used for full checkout volume trends, and that 2026 is partial.
+Those facts affect which analysis is valid. They should not live only in the
+chat. They belong in the notebook, `data/README.md`, or another project note.
 
-The **Codex application** manages the session. It can keep conversation history,
-send tool definitions, pass along tool results, and decide what setup context is
-needed for the next model call.
+## What should be saved
 
-The **tools** act on the project. They can read files, run commands, edit code,
-or inspect outputs, depending on what is available and permitted.
+Not every detail deserves a permanent note. A temporary stack trace usually does
+not need to be saved after the bug is fixed. A failed plotting attempt usually
+does not belong in the final notebook unless it explains a lasting decision.
 
-The **project files** are the durable record. They are the source future humans
-and future agent sessions can inspect.
+Save context when it will help a future session avoid rediscovering something
+important or avoid repeating a mistake. Dataset meanings, row-level definitions,
+sample-versus-aggregate distinctions, partial-year caveats, reusable commands,
+and standing workflow rules are usually worth saving. Put them where someone
+would naturally look: dataset facts in `data/README.md`, analysis decisions near
+the relevant notebook code, and standing instructions in `AGENTS.md`.
 
-This boundary matters. If Codex gives a good explanation in chat but does not
-write the reasoning into the notebook, the analysis is not yet traceable. If it
-discovers a dataset caveat but the caveat stays only in the conversation, the
-next session may have to rediscover it.
+Good saved context is short, verified, and placed close to the work it explains.
+Poor saved context is a long terminal transcript, a chat-only conclusion,
+repeated previews, or unverified claims copied from an agent response.
 
-## Context affects token use
+## Manage context while you work
 
-Tokens are the pieces of text the model processes. Your latest prompt is only
-one part of token use.
+The goal is not to keep conversations short at all costs. A long session can be
+useful when it stays focused on one task. The problem is old context that no
+longer helps with the current task.
 
-In a coding-agent session, token use may also reflect:
+Use the same conversation when the previous context is still helping: for
+example, while working through one bug, one analysis question, one notebook
+section, one visualization, or one focused data investigation.
 
-* earlier conversation
-* project instructions
-* file excerpts
-* command output
-* notebook output
-* error messages
-* summaries of earlier work
-* the model's own response
+Start fresh when the phase of work changes and the important facts have been
+saved. This is often useful after broad data profiling, before starting a new
+analysis question, after a long debugging sequence, or when Codex keeps referring
+to an old assumption.
 
-That is why a short prompt late in a long session may involve more context than
-the visible words suggest.
-
-The exact accounting can be more complicated than "the whole chat is resent
-every time." Systems may use stored conversation state, prompt caching, or
-compaction. Those mechanisms can change what is physically sent or how repeated
-context is billed.
-
-For this lesson, the practical rule is simpler:
+If the conversation is long but still relevant, `/compact` can help by replacing
+older history with a summary. Compaction is useful, but it is lossy. A summary
+may lose exact file names, column names, code details, or the reason a decision
+was made. Compaction is not a substitute for saving important context in project
+files.
 
 ```{admonition} Practical rule
 :class: tip
 
-Do not manage cost by looking only at the length of your latest message.
-
-Manage cost by managing the relevance of the working context.
+Before starting fresh or compacting, ask: what would the next analyst need to
+know?
 ```
 
-Relevant context helps Codex do the task. Irrelevant context creates clutter.
+## Ask for focused evidence
 
-## How context gets cluttered
+Context also grows when Codex prints more than the task requires. Ask for the
+smallest useful evidence.
 
-Context clutter is common in exploratory analytics work.
+For example, instead of asking Codex to print a whole file, ask for the column
+names, row count, data types, and first three rows. Instead of asking for every
+group count, ask for the top ten values and the number of distinct values.
+Instead of asking for a broad project scan, ask Codex to inspect only the
+notebook and data files needed for the current trend question.
 
-It can happen when:
+Focused output keeps the working context smaller and makes human review easier.
 
-* one conversation mixes data inventory, cleaning, plotting, debugging, and
-  stakeholder writing
-* Codex repeatedly inspects the same files because important findings were not
-  saved
-* large tables are printed when a compact summary would do
-* broad searches return many irrelevant files
-* long stack traces remain central after the bug is fixed
-* abandoned analysis paths stay mixed with the current direction
-* notebook outputs become large enough that they distract from the analysis
+## Activity: decide where context belongs
 
-The issue is not that long sessions are always bad. A long session can be useful
-when it is focused on one task. The issue is whether the old context still helps
-with the current task.
+At the end of an analysis step, choose three facts or decisions Codex learned
+during the session. For each one, decide whether it should stay only in the
+conversation, be added to the notebook, be added to `data/README.md`, or become a
+rule in `AGENTS.md`.
 
-## Keep going, compact, or start fresh
-
-Keep using the same conversation when the previous context is still helping.
-That is usually true when you are working on:
-
-* one bug
-* one analysis question
-* one notebook section
-* one visualization
-* one focused data investigation
-
-Start fresh when the old context is no longer helping. That is often true:
-
-* after broad data profiling is complete
-* before starting a new analysis question
-* before switching from exploration to dashboard building
-* before switching from analysis to stakeholder-facing explanation
-* after a long debugging sequence
-* after important findings have been saved into project files
-* when Codex keeps referring to an old assumption
-* when the session has become mostly correction, cleanup, or backtracking
-
-If the conversation is long but still relevant, compaction can help by replacing
-older history with a summary. Compaction is useful, but it is lossy. A summary
-may lose exact file names, column names, code details, or the reason a decision
-was made.
-
-That is why compaction is not a substitute for project records.
-
-## What to save before starting fresh
-
-Before ending a session, ask:
+Then ask Codex to update only the appropriate file:
 
 ```text
-What would the next analyst need to know?
-What would a fresh Codex session need to know?
-What would be expensive or risky to rediscover?
+Please update the project notes so a fresh Codex session can continue from the
+verified context we just established.
+
+Put dataset facts in data/README.md, analysis decisions near the relevant
+notebook section, and standing workflow rules in AGENTS.md. Do not preserve
+temporary errors unless they explain a lasting decision.
 ```
 
-Good things to save include:
-
-* dataset names and meanings
-* row counts and column names
-* what one row represents
-* whether data is sampled, aggregated, or complete
-* which file supports which question
-* assumptions and caveats
-* commands that run the analysis
-* decisions about plots or methods
-* project rules Codex should follow next time
-* next steps
-
-Poor project records include:
-
-* a long terminal transcript no one will reread
-* a chat-only conclusion with no code behind it
-* repeated data previews that do not add new information
-* unverified claims copied from an agent response
-* notebook sections full of failed scratch attempts
-
-## Ask for targeted output
-
-One of the easiest ways to manage context is to ask for the smallest useful
-evidence.
-
-Instead of asking Codex to print a whole file, ask for:
-
-```text
-Show the column names, row count, data types, and the first 3 rows.
-```
-
-Instead of asking for every group count, ask for:
-
-```text
-Show the top 10 values for this column and report how many distinct values it has.
-```
-
-Instead of asking for a broad project scan, ask for:
-
-```text
-Inspect the notebook and the files in data/ that are needed to answer this trend question.
-```
-
-Targeted output is not just tidier. It makes the agent's working context more
-focused and the human review easier.
-
-## Activity: move context into the project
-
-At the end of an analysis step, choose three facts Codex learned during the
-session.
-
-For each one, decide where it belongs:
-
-```{list-table}
-:header-rows: 1
-
-* - Fact or decision
-  - Keep only in conversation?
-  - Save in notebook?
-  - Save in `data/README.md`?
-  - Save in `AGENTS.md`?
-* - What does one row represent?
-  - No
-  - Yes
-  - Yes
-  - No
-* - Raw data files should not be modified
-  - No
-  - Maybe
-  - No
-  - Yes
-* - One failed plotting attempt produced a temporary error
-  - Usually yes
-  - Only if it affects the final method
-  - No
-  - No
-```
-
-Then write or update the appropriate project note.
-
-The goal is not to document everything. The goal is to save the facts that make
-future work more accurate, reproducible, and efficient.
+Review the edits before keeping them. Make sure Codex saved verified facts, not
+guesses.
 
 ## Useful Codex commands
 
 In the Codex CLI, type `/` to see available slash commands. The exact list may
-change, but these are useful for context management:
+change, so use `/help` as the source of truth.
 
-```{list-table}
-:header-rows: 1
-
-* - Command
-  - Use it when...
-* - `/status`
-  - you want to check the current session state, including context-window information
-* - `/compact`
-  - the conversation is long but still relevant, and you want Codex to summarize older context
-* - `/new`
-  - the old context is no longer useful and you want a fresh conversation
-* - `/resume`
-  - you intentionally want to return to a saved conversation
-* - `/fork`
-  - you want to branch from the current conversation and try a different direction
-```
+For context management, `/status` is useful when you want to check the current
+session state. `/compact` is useful when the conversation is long but still
+relevant. `/new` is useful when old context is no longer helping. `/resume` and
+`/fork` are useful when you intentionally want to return to or branch from a
+saved conversation.
 
 These commands manage the conversation. They do not replace good project
 records.
 
 ## Optional: run a usage report
 
-This repository includes a small script that summarizes recent Codex sessions
-from your local `~/.codex` folder:
+You can download a small analysis script that summarizes recent Codex sessions
+from your local `~/.codex` folder. From the project folder, create a `scripts/`
+directory and retrieve the script with `curl`:
 
-```text
-python tools/analyze_codex_usage.py --days 2
+```bash
+mkdir -p scripts
+curl -L \
+  -o scripts/analyze_codex.py \
+  https://gist.githubusercontent.com/janash/d057c92b75f5a3f7990eedf3ecb0927a/raw/01958db1bcc0360b6f22d0d7ff3af42ecab0aee0/analyze_codex.py
+```
+
+Then run it:
+
+```bash
+python scripts/analyze_codex.py --days 2
 ```
 
 The script writes a `usage_reports/` folder with a Markdown summary, an HTML
-report, and CSV files.
-
-Use the report as a reflection tool. Look for:
-
-* sessions with many turns
-* sessions that mixed several phases of work
-* sessions where Codex repeatedly inspected files or notebook outputs
-* places where a project note, README update, or fresh session might have helped
+report, and CSV files. Use the report as a reflection tool. Look for sessions
+that mixed several phases of work, repeatedly inspected the same files, or
+produced large outputs where a project note or fresh session might have helped.
 
 Do not treat the report as a perfect explanation of billing. Use it to notice
 patterns in how you worked.
 
-## Practical rules for the workshop
-
-Use these rules during the rest of the workshop:
-
-* Keep the notebook as the analysis record, not a transcript of every scratch
-  step.
-* Keep `data/README.md` as reusable project knowledge about the dataset.
-* Keep `AGENTS.md` for standing rules Codex should follow.
-* Ask Codex to inspect only the files or cells needed for the current question.
-* Avoid printing large tables when a shape, column list, or compact summary is
-  enough.
-* Ask for a plan before implementation when the task is broad or ambiguous.
-* Start fresh when the phase of work changes and the important facts have been
-  saved.
-* Do not ask Codex to rediscover facts that are already in the notebook,
-  `data/README.md`, `AGENTS.md`, or another project note.
-
 ```{admonition} Key points
 :class: key
 
-* Codex conversations are useful working context, not durable project memory.
-* A short prompt can still depend on a large amount of prior context.
-* Large outputs, repeated failed attempts, and old assumptions can make context
-  less useful.
-* Verified facts, decisions, caveats, and reusable commands should be written
+- Codex conversations are useful working context, not saved project context.
+- Verified facts, decisions, caveats, and reusable commands should be written
   into project files.
-* Start fresh when the old conversation stops helping, but start from the files
-  that now contain the important context.
+- Start fresh when old context stops helping, but only after the important facts
+  have been saved.
+- Ask for focused evidence instead of large outputs.
 ```
