@@ -40,6 +40,8 @@ curl -L 'https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/
 unzip seattle-public-library.zip
 ```
 
+If the `unzip` command is not available, install it first. On Ubuntu/WSL, run `sudo apt update` and then `sudo apt install unzip`. On macOS, `unzip` is usually already installed; if it is missing, install the Xcode Command Line Tools with `xcode-select --install`.
+
 After unzipping, you should have a folder named `seattle-public-library` inside `analytics-accelerator`.
 ````
 
