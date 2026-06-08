@@ -92,7 +92,7 @@ into your terminal.
 ### Codex terminal basics
 
 In the Codex terminal, most of what you type is a normal prompt. Messages such
-as "profile the data in `data/`" or "add a short notebook section explaining
+as "profile the data in `seattle-public-library/`" or "add a short notebook section explaining
 this chart" are sent to the agent as work requests.
 
 Codex also has **slash commands** for controlling the session. Slash commands
@@ -122,14 +122,13 @@ control the Codex session itself, use a slash command.
 :class: exercise
 
 Open JupyterLab and arrange a terminal and a new Python notebook side by
-side. Confirm that the notebook is using the project Python environment prepared
-during setup.
+side.
 
 Before continuing, make sure you can identify:
 
 - where you will type prompts to Codex
 - where Codex should record code and outputs
-- where the project files and `data/` folder are located
+- where the project files and `seattle-public-library/` folder are located
 ```
 
 ## What a coding agent does
