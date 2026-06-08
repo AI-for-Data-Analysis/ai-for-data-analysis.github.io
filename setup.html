@@ -358,8 +358,21 @@
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Download the Workshop Setup Installer</p>
-<p>Download the <a class="reference download internal" download="" href="_downloads/d1ae9060c175ff480b9350f03cf6ad86/student-setup.zip"><span class="xref download myst">workshop setup installer</span></a> now, but do not run it yet. This page first walks you through computer-level setup: WSL if needed, Python, npm, Codex, and the Codex Jupyter connector.</p>
+<p>Download the <a class="reference external" href="https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/student-setup.zip">workshop setup installer</a> now, but do not run it yet. This page first walks you through computer-level setup: WSL if needed, Python, npm, Codex, and the Codex Jupyter connector.</p>
 <p>Later, in the AI provider access section, you will use the installer to create the workshop-specific Python/Jupyter environment and Codex API key configuration.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Download the Student Materials</p>
+<p>Download the <a class="reference external" href="https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip">student materials</a> and put them in a folder named <code class="docutils literal notranslate"><span class="pre">analytics-accelerator</span></code>.</p>
+<p>Full download instructions are also available in the <a class="reference internal" href="#student-materials">Student Materials</a> section at the bottom of this page.</p>
+<p>If you use the terminal, you can create the folder, download the zip, and unzip it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/analytics-accelerator
+<span class="nb">cd</span><span class="w"> </span>~/analytics-accelerator
+curl<span class="w"> </span>-L<span class="w"> </span><span class="s1">&#39;https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip&#39;</span><span class="w"> </span>-o<span class="w"> </span>seattle-public-library.zip
+unzip<span class="w"> </span>seattle-public-library.zip
+</pre></div>
+</div>
+<p>After unzipping, you should have a folder named <code class="docutils literal notranslate"><span class="pre">seattle-public-library</span></code> inside <code class="docutils literal notranslate"><span class="pre">analytics-accelerator</span></code>.</p>
 </div>
 <section id="set-up-your-development-environment">
 <h2>Set Up Your Development Environment<a class="headerlink" href="#set-up-your-development-environment" title="Link to this heading">#</a></h2>
@@ -590,9 +603,9 @@ Some Duke departments cover access to ChatGPT. If you are able to get ChatGPT ac
 <section id="workshop-api-key-setup">
 <span id="id2"></span><h5>Workshop API key setup<a class="headerlink" href="#workshop-api-key-setup" title="Link to this heading">#</a></h5>
 <p>We will provide API keys to all workshop participants. Set up the workshop API key configuration even if ChatGPT login works for you. This gives you a backup provider if ChatGPT login is unavailable or if you run out of usage during the workshop.</p>
-<p>After you have installed Python, npm, Codex, and the Codex Jupyter connector, use the <a class="reference download internal" download="" href="_downloads/d1ae9060c175ff480b9350f03cf6ad86/student-setup.zip"><span class="xref download myst">workshop setup installer</span></a>. The zip includes a <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> for testing JupyterLab and Jupyter AI, and a script that creates the workshop Codex LiteLLM configuration after you paste in your API key.</p>
+<p>After you have installed Python, npm, Codex, and the Codex Jupyter connector, use the <a class="reference external" href="https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/student-setup.zip">workshop setup installer</a>. The zip includes a <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> for testing JupyterLab and Jupyter AI, and a script that creates the workshop Codex LiteLLM configuration after you paste in your API key.</p>
 <p>Move the downloaded zip file to the folder where you want to create your workshop setup, or retrieve it again from the terminal with <code class="docutils literal notranslate"><span class="pre">curl</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-L<span class="w"> </span><span class="s1">&#39;https://gitlab.oit.duke.edu/jn242/ai-analytics-accelerator/-/raw/main/student-setup.zip&#39;</span><span class="w"> </span>-o<span class="w"> </span>student-setup.zip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-L<span class="w"> </span><span class="s1">&#39;https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/student-setup.zip&#39;</span><span class="w"> </span>-o<span class="w"> </span>student-setup.zip
 unzip<span class="w"> </span>student-setup.zip
 </pre></div>
 </div>
@@ -657,7 +670,7 @@ WSL/Linux</label><div class="sd-tab-content docutils">
 </section>
 <section id="set-up-the-student-installer-environment">
 <h2>Set Up the Student Installer Environment<a class="headerlink" href="#set-up-the-student-installer-environment" title="Link to this heading">#</a></h2>
-<p>Workshop materials will be distributed separately. For now, use the <a class="reference download internal" download="" href="_downloads/d1ae9060c175ff480b9350f03cf6ad86/student-setup.zip"><span class="xref download myst">workshop setup installer</span></a> to verify that your environment can run JupyterLab, Jupyter AI, and the workshop Codex API key configuration.</p>
+<p>Use the <a class="reference external" href="https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/student-setup.zip">workshop setup installer</a> to verify that your environment can run JupyterLab, Jupyter AI, and the workshop Codex API key configuration.</p>
 <section id="create-a-virtual-environment">
 <h3>Create a virtual environment<a class="headerlink" href="#create-a-virtual-environment" title="Link to this heading">#</a></h3>
 <p>The setup installer contains a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file with the Python packages needed for the setup check. We will use a Python virtual environment for these packages.</p>
@@ -762,6 +775,23 @@ jupyter<span class="w"> </span>lab<span class="w"> </span>--version<span class="
 </div>
 </section>
 </section>
+<section id="student-materials">
+<span id="id3"></span><h2>Student Materials<a class="headerlink" href="#student-materials" title="Link to this heading">#</a></h2>
+<p>Download the student materials zip and put it inside a folder named <code class="docutils literal notranslate"><span class="pre">analytics-accelerator</span></code>.</p>
+<p>Use this link if you want to download the zip in your browser:
+<a class="reference external" href="https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip">student materials</a></p>
+<p>If you use the terminal, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/analytics-accelerator
+<span class="nb">cd</span><span class="w"> </span>~/analytics-accelerator
+curl<span class="w"> </span>-L<span class="w"> </span><span class="s1">&#39;https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip&#39;</span><span class="w"> </span>-o<span class="w"> </span>seattle-public-library.zip
+unzip<span class="w"> </span>seattle-public-library.zip
+</pre></div>
+</div>
+<p>After unzipping, you should have:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>~/analytics-accelerator/seattle-public-library/
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -839,6 +869,7 @@ jupyter<span class="w"> </span>lab<span class="w"> </span>--version<span class="
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-from-the-workshop-materials-folder-in-your-terminal">Run from the workshop materials folder in your terminal</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#student-materials">Student Materials</a></li>
 </ul>
   </nav></div>
 

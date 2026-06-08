@@ -382,7 +382,7 @@ into project files and record standing expectations in <code class="docutils lit
 <p>In the terminal workflow, type the prompt directly into Codex. Do not include <code class="docutils literal notranslate"><span class="pre">&#64;Codex</span></code>; that mention was only needed in the earlier Jupyter chat workflow.</p>
 </div>
 <p>In the Codex terminal, enter:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I need to do EDA on the data in my data folder. Can you investigate and tell me about it?
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I need to do exploratory data analysis on the data in my seattle-public-library folder. Can you investigate and tell me about it?
 </pre></div>
 </div>
 <p>Watch what Codex does before evaluating the answer. Note whether it writes reusable notebook code, works in the terminal, summarizes in the response, creates files, or makes assumptions about the data.</p>
@@ -447,19 +447,10 @@ The aggregate file should be used for full checkout volume trends.
 <p>Codex may do a lot from a vague prompt. That is useful for quick orientation, but the work may not be very traceable. Much of the analysis may happen in temporary terminal code, and the final output may be a response summary rather than a reusable notebook artifact.</p>
 <p>The broad prompt is useful here as a teaching demonstration, but it is not the most efficient way to work. It may spend tokens on a wide scan, a long summary, or analysis steps that do not become part of the notebook. The request also did not specify where the work should be recorded, ask Codex to keep the code simple, explain the data structure before interpreting trends, or leave behind a notebook section that another person could review.</p>
 </section>
-<section id="try-a-narrower-prompt">
-<h2>Try a narrower prompt<a class="headerlink" href="#try-a-narrower-prompt" title="Link to this heading">#</a></h2>
-<p>The broad prompt shows that Codex can move quickly, but it may also mix orientation, summary, and analysis. Before asking Codex to edit the notebook, try a narrower prompt that focuses on the data inventory and relationships:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Can you help me investigate the data in my data folder? I would like to know what the dataset or datasets are and the relationships between the items.
-</pre></div>
-</div>
-<p>This prompt is better than the broad EDA request because it points Codex toward a specific kind of investigation. In testing, Codex identified the three datasets and explained that the title-level files connect to the aggregate table by year, month, and usage class. Your run might phrase this differently or emphasize different details.</p>
-<p>However, the output may still be mostly a response summary. It may help orient you to the data, but it still may not leave behind a notebook artifact that another person can inspect and rerun.</p>
-</section>
 <section id="try-a-notebook-prompt">
 <h2>Try a notebook prompt<a class="headerlink" href="#try-a-notebook-prompt" title="Link to this heading">#</a></h2>
 <p>Next, ask Codex to put the investigation into the notebook:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Can you help me investigate the data in my data folder? I would like to know what the dataset or datasets are and the relationships between the items.
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Can you help me investigate the data in my seattle-public-library folder? I would like to know what the dataset or datasets are and the relationships between the items.
 
 I have a notebook open. Please add a brief Data Inventory section that previews each file, summarizes the rows and columns, and explains what one row seems to represent.
 </pre></div>
@@ -643,7 +634,6 @@ reshaping or aggregation shortcuts.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-codex-did">What Codex did</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-codex-reported">What Codex reported</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-this-demonstrates">What this demonstrates</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-a-narrower-prompt">Try a narrower prompt</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-a-notebook-prompt">Try a notebook prompt</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#show-how-agents-md-works">Show how AGENTS.md works</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-first-round-agents-md-rules">Add first-round AGENTS.md rules</a></li>
