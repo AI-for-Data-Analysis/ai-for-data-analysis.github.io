@@ -355,11 +355,10 @@
 <p class="admonition-title">Download the student materials before starting</p>
 <p>Create a folder for this lesson, put the student materials zip inside it, unzip the materials, and move into the unzipped project folder before starting JupyterLab or Codex.</p>
 <p>If you use the terminal, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/analytics-accelerator
-<span class="nb">cd</span><span class="w"> </span>~/analytics-accelerator
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/analytics-accelerator/
+<span class="nb">cd</span><span class="w"> </span>student_setup
 curl<span class="w"> </span>-L<span class="w"> </span><span class="s1">&#39;https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip&#39;</span><span class="w"> </span>-o<span class="w"> </span>seattle-public-library.zip
 unzip<span class="w"> </span>seattle-public-library.zip
-<span class="nb">cd</span><span class="w"> </span>seattle-public-library
 </pre></div>
 </div>
 <p>If you downloaded the zip in your browser instead, move <code class="docutils literal notranslate"><span class="pre">seattle-public-library.zip</span></code> into your <code class="docutils literal notranslate"><span class="pre">analytics-accelerator</span></code> folder before unzipping it.</p>
@@ -381,7 +380,9 @@ when to start a fresh session.</p>
 <section id="opening-jupyterlab-and-codex">
 <h3>Opening JupyterLab and Codex<a class="headerlink" href="#opening-jupyterlab-and-codex" title="Link to this heading">#</a></h3>
 <p>To open JupyterLab, you should navigate to the directory where you would like to work using your terminal. You can then launch JupyterLab using the <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>analytics-accelerator
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/analytics-accelerator/
+<span class="nb">cd</span><span class="w"> </span>student_setup
+<span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>.venv/bin/activate
 ls<span class="w"> </span>
 </pre></div>
 </div>
