@@ -45,7 +45,7 @@ then start Codex in the project folder. The exact command may depend on your
 setup, but the workflow is the same: Codex runs in the terminal, and the notebook
 records the analysis.
 
-Arrange the terminal and notebook side by side. This keeps the agent interaction
+Arrange the terminal and notebook side by side. You can do this by clicking and dragging the windows. This keeps the agent interaction
 visible while you review the code and output in the notebook.
 
 ```{figure} ../images/session-1/jupyter-lab-codex-notebook-side-by-side.png
