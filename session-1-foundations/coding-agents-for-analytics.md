@@ -10,11 +10,10 @@ Create a folder for this lesson, put the student materials zip inside it, unzip 
 If you use the terminal, run:
 
 ```bash
-mkdir -p ~/analytics-accelerator
-cd ~/analytics-accelerator
+cd ~/analytics-accelerator/
+cd student_setup
 curl -L 'https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip' -o seattle-public-library.zip
 unzip seattle-public-library.zip
-cd seattle-public-library
 ```
 
 If you downloaded the zip in your browser instead, move `seattle-public-library.zip` into your `analytics-accelerator` folder before unzipping it.
@@ -41,7 +40,9 @@ when to start a fresh session.
 To open JupyterLab, you should navigate to the directory where you would like to work using your terminal. You can then launch JupyterLab using the `jupyter lab` command:
 
 ```bash
-cd analytics-accelerator
+cd ~/analytics-accelerator/
+cd student_setup
+source activate .venv/bin/activate
 ls 
 ```
 
