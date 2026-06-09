@@ -103,6 +103,44 @@ Before starting fresh or compacting, ask: what would the next analyst need to
 know?
 ```
 
+## Choose model and reasoning level
+
+Context management is not only about what you put in the prompt. It is also
+about choosing the right model behavior for the work.
+
+A stronger reasoning model or a higher reasoning setting can be useful when the
+task has many dependencies: debugging a notebook failure, comparing possible
+analysis plans, deciding which dataset supports a question, or reviewing whether
+a conclusion follows from the code. Those tasks require the model to hold several
+constraints in mind and test alternatives before it acts.
+
+That extra reasoning is not free. Reasoning uses tokens, takes time, and still
+depends on the quality of the context you provide. If the model has the wrong
+file, stale assumptions, or a vague goal, more reasoning can produce a more
+elaborate wrong answer.
+
+Use a faster or lower-reasoning setting when the task is narrow and mechanical:
+fixing a typo, reformatting a small table, renaming a chart title, or applying a
+specific edit you can describe clearly.
+
+Use a stronger or higher-reasoning setting when the task requires judgment:
+choosing an analysis approach, tracing a result back to source files, debugging
+an error with several possible causes, or reviewing whether a notebook section is
+understandable, reviewable, and traceable.
+
+```{admonition} Practical rule
+:class: tip
+
+First improve the context. Then increase reasoning if the task still requires
+more planning, comparison, or debugging.
+```
+
+In Codex, use `/help` to see the model controls available in your installed
+version. If `/model` is available, use it to inspect or change the current model
+for the session. Model names and available reasoning settings can change, so do
+not memorize a single model name as the lesson. The transferable skill is knowing
+what kind of work you are asking the model to do.
+
 ## Ask for focused evidence
 
 Context also grows when Codex prints more than the task requires. Ask for the
@@ -186,5 +224,7 @@ patterns in how you worked.
   into project files.
 - Start fresh when old context stops helping, but only after the important facts
   have been saved.
+- Match the model and reasoning level to the task: use more reasoning for
+  planning, debugging, and review; use less for narrow mechanical edits.
 - Ask for focused evidence instead of large outputs.
 ```

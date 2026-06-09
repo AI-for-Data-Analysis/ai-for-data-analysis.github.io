@@ -21,29 +21,10 @@ You may also want to install [Windows Terminal](https://apps.microsoft.com/detai
 
 Download the [workshop setup installer](https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/student-setup.zip) now, but do not run it yet. This page first walks you through computer-level setup: WSL if needed, Python, npm, Codex, and the Codex Jupyter connector.
 
+The installer is a zip file. If you plan to unzip it from the terminal and the `unzip` command is not available, install it first. On Ubuntu/WSL, run `sudo apt update` and then `sudo apt install unzip`. On macOS, `unzip` is usually already installed; if it is missing, install the Xcode Command Line Tools with `xcode-select --install`.
+
 Later, in the AI provider access section, you will use the installer to create the workshop-specific Python/Jupyter environment and Codex API key configuration.
 ```
-
-````{admonition} Download the Student Materials
-:class: tip
-
-Download the [student materials](https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip) and put them in a folder named `analytics-accelerator`.
-
-Full download instructions are also available in the [Student Materials](#student-materials) section at the bottom of this page.
-
-If you use the terminal, you can create the folder, download the zip, and unzip it with:
-
-```bash
-mkdir -p ~/analytics-accelerator
-cd ~/analytics-accelerator
-curl -L 'https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip' -o seattle-public-library.zip
-unzip seattle-public-library.zip
-```
-
-If the `unzip` command is not available, install it first. On Ubuntu/WSL, run `sudo apt update` and then `sudo apt install unzip`. On macOS, `unzip` is usually already installed; if it is missing, install the Xcode Command Line Tools with `xcode-select --install`.
-
-After unzipping, you should have a folder named `seattle-public-library` inside `analytics-accelerator`.
-````
 
 ## Set Up Your Development Environment
 
@@ -601,11 +582,13 @@ Download the student materials zip and put it inside a folder named `analytics-a
 Use this link if you want to download the zip in your browser:
 [student materials](https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip)
 
-If you use the terminal, run:
+After you've downloaded the material, move to the `student_setup` folder inside of your `analytics_accelerator` folder. Then, unzip the file.
+
+You can alternatively use terminal commands, run:
 
 ```bash
-mkdir -p ~/analytics-accelerator
 cd ~/analytics-accelerator
+cd student_setup
 curl -L 'https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip' -o seattle-public-library.zip
 unzip seattle-public-library.zip
 ```
