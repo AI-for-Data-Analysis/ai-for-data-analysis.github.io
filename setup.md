@@ -575,9 +575,9 @@ jupyter lab --version   # should show a JupyterLab version
 ```
 
 (student-materials)=
-## Student Materials
+## Workshop Data
 
-Download the student materials zip and put it inside a folder named `analytics-accelerator`.
+Download the workshop data zip and put it inside a folder named `analytics-accelerator`.
 
 Use this link if you want to download the zip in your browser:
 [student materials](https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip)
@@ -596,5 +596,5 @@ unzip seattle-public-library.zip
 After unzipping, you should have:
 
 ```text
-~/analytics-accelerator/seattle-public-library/
+~/analytics-accelerator/student_setup/seattle-public-library/
 ```
