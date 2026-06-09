@@ -433,6 +433,37 @@ files.</p>
 know?</p>
 </div>
 </section>
+<section id="choose-model-and-reasoning-level">
+<h2>Choose model and reasoning level<a class="headerlink" href="#choose-model-and-reasoning-level" title="Link to this heading">#</a></h2>
+<p>Context management is not only about what you put in the prompt. It is also
+about choosing the right model behavior for the work.</p>
+<p>A stronger reasoning model or a higher reasoning setting can be useful when the
+task has many dependencies: debugging a notebook failure, comparing possible
+analysis plans, deciding which dataset supports a question, or reviewing whether
+a conclusion follows from the code. Those tasks require the model to hold several
+constraints in mind and test alternatives before it acts.</p>
+<p>That extra reasoning is not free. Reasoning uses tokens, takes time, and still
+depends on the quality of the context you provide. If the model has the wrong
+file, stale assumptions, or a vague goal, more reasoning can produce a more
+elaborate wrong answer.</p>
+<p>Use a faster or lower-reasoning setting when the task is narrow and mechanical:
+fixing a typo, reformatting a small table, renaming a chart title, or applying a
+specific edit you can describe clearly.</p>
+<p>Use a stronger or higher-reasoning setting when the task requires judgment:
+choosing an analysis approach, tracing a result back to source files, debugging
+an error with several possible causes, or reviewing whether a notebook section is
+understandable, reviewable, and traceable.</p>
+<div class="tip admonition">
+<p class="admonition-title">Practical rule</p>
+<p>First improve the context. Then increase reasoning if the task still requires
+more planning, comparison, or debugging.</p>
+</div>
+<p>In Codex, use <code class="docutils literal notranslate"><span class="pre">/help</span></code> to see the model controls available in your installed
+version. If <code class="docutils literal notranslate"><span class="pre">/model</span></code> is available, use it to inspect or change the current model
+for the session. Model names and available reasoning settings can change, so do
+not memorize a single model name as the lesson. The transferable skill is knowing
+what kind of work you are asking the model to do.</p>
+</section>
 <section id="ask-for-focused-evidence">
 <h2>Ask for focused evidence<a class="headerlink" href="#ask-for-focused-evidence" title="Link to this heading">#</a></h2>
 <p>Context also grows when Codex prints more than the task requires. Ask for the
@@ -503,6 +534,8 @@ patterns in how you worked.</p>
 into project files.</p></li>
 <li><p>Start fresh when old context stops helping, but only after the important facts
 have been saved.</p></li>
+<li><p>Match the model and reasoning level to the task: use more reasoning for
+planning, debugging, and review; use less for narrow mechanical edits.</p></li>
 <li><p>Ask for focused evidence instead of large outputs.</p></li>
 </ul>
 </div>
@@ -550,6 +583,7 @@ have been saved.</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-matters">Why this matters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-should-be-saved">What should be saved</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manage-context-while-you-work">Manage context while you work</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-model-and-reasoning-level">Choose model and reasoning level</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ask-for-focused-evidence">Ask for focused evidence</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activity-decide-where-context-belongs">Activity: decide where context belongs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-codex-commands">Useful Codex commands</a></li>
