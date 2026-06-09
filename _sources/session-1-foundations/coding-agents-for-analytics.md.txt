@@ -11,7 +11,7 @@ If you use the terminal, run:
 
 ```bash
 cd ~/analytics-accelerator/
-cd student_setup
+cd student-setup
 curl -L 'https://github.com/AI-for-Data-Analysis/ai-for-data-analysis.github.io/raw/refs/heads/main/files/seattle-public-library.zip' -o seattle-public-library.zip
 unzip seattle-public-library.zip
 ```
@@ -41,7 +41,7 @@ To open JupyterLab, you should navigate to the directory where you would like to
 
 ```bash
 cd ~/analytics-accelerator/
-cd student_setup
+cd student-setup
 source .venv/bin/activate
 ls 
 ```
