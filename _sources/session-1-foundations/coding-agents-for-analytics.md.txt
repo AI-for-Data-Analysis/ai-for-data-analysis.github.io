@@ -102,15 +102,11 @@ analysis prompts.
 
 Useful commands to know:
 
-- `/help` shows the commands available in your installed Codex version.
 - `/status` shows session and environment information.
 - `/model` lets you inspect or change the model for the session.
 - `/new` starts a fresh session.
 - `/compact` summarizes the current conversation to reduce context.
 - `/quit` exits Codex.
-
-Use `/help` as the source of truth. Codex versions can differ, and the available
-commands may change.
 
 ```{admonition} Prompt or command?
 :class: note

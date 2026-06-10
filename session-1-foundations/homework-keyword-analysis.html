@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Skills Overview &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+    <title>Homework: Extend the Keyword Analysis &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
   
   
   
@@ -54,11 +54,12 @@
     <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'session-2-reusable-skills/skills-overview';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'session-1-foundations/homework-keyword-analysis';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Managing Context in Coding Agent Conversations" href="context-and-token-management.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -275,17 +276,17 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">AI Accelerator: Analytics and Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../session-1-foundations/index.html">Session 1: Foundations for AI-Assisted Analytics Work</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../session-1-foundations/index.html">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../session-1-foundations/coding-agents-for-analytics.html">Coding Agents for Analytics Work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../session-1-foundations/prompting-and-project-rules.html">Prompting and Project Rules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../session-1-foundations/understanding-your-data.html">Understanding the Data Before Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../session-1-foundations/analyzing-trends-over-time.html">Planning and Running an Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../session-1-foundations/context-and-token-management.html">Managing Context in Coding Agent Conversations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../session-1-foundations/homework-keyword-analysis.html">Homework: Extend the Keyword Analysis</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Session 1: Foundations for AI-Assisted Analytics Work</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coding-agents-for-analytics.html">Coding Agents for Analytics Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prompting-and-project-rules.html">Prompting and Project Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="understanding-your-data.html">Understanding the Data Before Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analyzing-trends-over-time.html">Planning and Running an Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="context-and-token-management.html">Managing Context in Coding Agent Conversations</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Homework: Extend the Keyword Analysis</a></li>
 </ul>
 </details></li>
 </ul>
@@ -328,7 +329,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Skills Overview</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Homework: Extend the Keyword Analysis</span></li>
   </ul>
 </nav>
 </div>
@@ -345,22 +349,69 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="skills-overview">
-<h1>Skills Overview<a class="headerlink" href="#skills-overview" title="Link to this heading">#</a></h1>
-<section id="guiding-questions">
-<h2>Guiding Questions<a class="headerlink" href="#guiding-questions" title="Link to this heading">#</a></h2>
+  <section id="homework-extend-the-keyword-analysis">
+<h1>Homework: Extend the Keyword Analysis<a class="headerlink" href="#homework-extend-the-keyword-analysis" title="Link to this heading">#</a></h1>
+<p>This homework gives you another chance to practice the Session 1 workflow on a
+messy field: the <code class="docutils literal notranslate"><span class="pre">subjects</span></code> values in the Seattle Public Library title-level
+sample data.</p>
+<p>The goal is not to produce a polished report or a final subject taxonomy. The
+goal is to practice using Codex to inspect data, compare approaches, and decide
+what kind of method is appropriate before trusting an automated result.</p>
+<section id="choose-one-path">
+<h2>Choose one path<a class="headerlink" href="#choose-one-path" title="Link to this heading">#</a></h2>
+<p>If you did not complete the subject-tag stretch exercise during the session,
+start with <a class="reference internal" href="analyzing-trends-over-time.html#subject-tag-stretch-exercise"><span class="std std-ref">the subject-tag stretch exercise</span></a>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Do the checked out materials have subject tags in any dataset? Check the raw
+CSV headers and report which files include the field.
+</pre></div>
+</div>
+<p>Then ask Codex to add a small notebook section that profiles the <code class="docutils literal notranslate"><span class="pre">subjects</span></code>
+field in the digital and physical title-level samples:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Add a cell to the notebook that summarizes the subjects field for the digital
+and physical title-level sample files. Count the number of unique subject
+values in each dataset and show a small sample of values. Keep the code simple
+and explain any parsing assumptions.
+</pre></div>
+</div>
+<p>If the result is surprising, pause before asking Codex to implement a larger
+solution. Use the same method-choice prompt from the stretch exercise:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The physical sample has far more unique subject values than the digital sample.
+This seems like a text-cleaning or lightweight NLP problem. Do not implement
+anything yet. What simpler libraries or methods could help us inspect whether
+these are near-duplicates, formatting variants, or genuinely granular subjects?
+</pre></div>
+</div>
+<p>You can also ask Codex to write a handoff prompt, then start a new thread with
+<code class="docutils literal notranslate"><span class="pre">/new</span></code> and use that prompt to perform new analysis in a new notebook:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Write a handoff prompt for another coding agent to investigate the subjects
+field as a keyword-analysis problem. The prompt should ask the agent to profile
+the field, compare raw and normalized unique counts, identify examples of
+near-duplicate subject values, recommend a simple method before using an LLM,
+and avoid large-scale canonicalization unless explicitly asked.
+</pre></div>
+</div>
+<p>If you already completed the subject-tag stretch exercise, extend it by trying a
+different model, reasoning setting, or method. For example, you might compare:</p>
 <ul class="simple">
-<li><p>What is skills overview?</p></li>
-<li><p>How does skills overview fit into Session 2: Reusable Skills for Analytics Work?</p></li>
-<li><p>What tradeoffs should a learner know?</p></li>
+<li><p>a faster model and a stronger reasoning model</p></li>
+<li><p>a simple normalization-only approach and a fuzzy-matching approach</p></li>
+<li><p>RapidFuzz and scikit-learn TF-IDF</p></li>
+<li><p>an LLM-generated grouping proposal and a simpler string-similarity method</p></li>
 </ul>
 </section>
-<section id="learning-objectives">
-<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<section id="questions-to-investigate">
+<h2>Questions to investigate<a class="headerlink" href="#questions-to-investigate" title="Link to this heading">#</a></h2>
+<p>Use the exercise to answer practical questions about the field:</p>
 <ul class="simple">
-<li><p>Understand the core concept.</p></li>
-<li><p>Apply the concept in a real workflow.</p></li>
-<li><p>Identify common mistakes and how to avoid them.</p></li>
+<li><p>What does the <code class="docutils literal notranslate"><span class="pre">subjects</span></code> field appear to contain?</p></li>
+<li><p>How different are the raw unique counts for digital and physical samples?</p></li>
+<li><p>Does simple normalization reduce the number of distinct values?</p></li>
+<li><p>Are there obvious near-duplicates, formatting variants, or compound subject
+strings?</p></li>
+<li><p>Does the large physical count look like meaningful topical variety, metadata
+granularity, parsing noise, or a mixture?</p></li>
+<li><p>What would you trust Codex or another model to do automatically?</p></li>
+<li><p>What would still require human review?</p></li>
 </ul>
 </section>
 </section>
@@ -375,6 +426,15 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="context-and-token-management.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Managing Context in Coding Agent Conversations</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -394,15 +454,15 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guiding-questions">Guiding Questions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-one-path">Choose one path</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-to-investigate">Questions to investigate</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/session-2-reusable-skills/skills-overview.md.txt">
+    <a href="../_sources/session-1-foundations/homework-keyword-analysis.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

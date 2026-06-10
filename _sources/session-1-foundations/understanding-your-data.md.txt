@@ -136,7 +136,9 @@ inside the `seattle-public-library/` folder.
 Ask Codex to create a data README:
 
 ```text
-Please create a README.md file in the data folder documenting the raw data files with enough detail that future sessions do not have to rediscover the basic dataset structure every time.
+Please edit the README.md file in the data folder documenting the raw data files with enough detail that future sessions do not have to rediscover the basic dataset structure every time.
+
+Update AGENTS.md to direct to this file.
 ```
 
 Review `seattle-public-library/README.md` before keeping it. Check that Codex did not invent
@@ -244,9 +246,7 @@ erDiagram
 
 The diagram shows a many-to-one relationship for context only: many sampled title-month rows can correspond to one monthly aggregate row. The aggregate keys are not title identifiers.
 
-### Discussion: Check the data model
-
-In groups, compare the notebook investigation with the relationship diagram.
+Compare the notebook investigation with the relationship diagram.
 
 Discuss:
 
@@ -256,23 +256,12 @@ Discuss:
 - Which file should answer questions about total checkout volume?
 - Which files should answer questions about titles, creators, subjects, or material types?
 
-## Review the generated code
-
-Code from a data investigation may run correctly while leaving the interpretation unclear. Reviewing the output is part of the technique, and recurring problems become additional rules for `AGENTS.md`. Three patterns are common in agent-generated analysis code:
-
-```{admonition} Group activity: Add one rule
+```{admonition} Make another diagram
 :class: exercise
 
-Review the notebook section Codex created and choose one issue that would benefit from a project rule. Add one rule to `AGENTS.md`, then ask Codex to revise the investigation section so it follows the updated rules.
-
-Compare before and after:
-
-- Did the new rule change Codex's behavior?
-- Was the rule specific enough?
-- Should the rule be kept, revised, or removed?
+Ask Codex what other types of visualizations it could make for data relationships. 
+Pick one or describe your own and add it to the notebook.
 ```
-
-Re-running the investigation after adding these rules demonstrates their effect on the output. Once the data structure is established and confirmed, the analysis can proceed.
 
 ```{admonition} Key points
 :class: key

@@ -287,6 +287,7 @@
 <li class="toctree-l2"><a class="reference internal" href="understanding-your-data.html">Understanding the Data Before Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="analyzing-trends-over-time.html">Planning and Running an Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="context-and-token-management.html">Managing Context in Coding Agent Conversations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework-keyword-analysis.html">Homework: Extend the Keyword Analysis</a></li>
 </ul>
 </details></li>
 </ul>
@@ -503,17 +504,14 @@ notebook-based, traceable analysis is an expectation for the whole project, we d
 not want to retype that instruction at the start of every new session. <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>
 gives us a place to record those standing expectations so they can be loaded
 automatically.</p>
-<p>Ask Codex to create <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please create an AGENTS.md file for this project. It should tell future assistants to keep notebook work traceable.
-</pre></div>
-</div>
-<p>After Codex creates the first file, use a temporary rule to make the instruction
+<p>Create a file called <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> and use a temporary rule to make the instruction
 mechanism visible. Add this section to <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>:</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gu">## Response Style Test</span>
 
 Answer in haiku.
 </pre></div>
 </div>
+<p>In codex, open a new thread using the <code class="docutils literal notranslate"><span class="pre">/new</span></code> command.</p>
 <p>Ask Codex a simple question and observe whether the response changes. If the response is formatted as a haiku, the project rules are reaching the agent.</p>
 <p>Then remove the haiku rule. The haiku test is not part of the analytics workflow; it simply shows that Codex is reading project instructions.</p>
 <div class="warning admonition">

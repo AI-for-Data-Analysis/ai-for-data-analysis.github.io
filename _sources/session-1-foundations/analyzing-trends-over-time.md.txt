@@ -33,6 +33,14 @@ Codex adds annual totals split by physical and digital, a trend chart across the
 
 The aggregate file runs through April 2026, so the final year is incomplete. If 2026 is summed and charted alongside full years, it will appear as a sharp decline because four months are compared against twelve. The analysis must flag the partial year. Confirm that Codex did so; if it did not, instruct it to add the note.
 
+````{admonition} Ask for a change on the chart
+:class: exercise
+
+Choose something you would like to see changed on the chart. This could have to do with font size, color, or style.
+
+Ask Codex to change your chart. Continue prompting until you are satisfied with the plot style.
+````
+
 ## Review checklist
 
 Review the output against the following:
@@ -110,6 +118,67 @@ Prepare a short share-out with:
 ````
 
 These files are samples, not the complete collection. A finding describes the sample; any statement about the full collection is an inference. State which one applies.
+
+(subject-tag-stretch-exercise)=
+````{admonition} Stretch exercise: Treat subject tags as a text-cleaning problem
+:class: exercise
+
+The title-level sample files include a `subjects` field. This field can look
+simple at first, but it is a useful stretch case because a small profiling
+question can turn into a text-cleaning and interpretation problem.
+
+Start by asking Codex a narrow verification question:
+
+```text
+Do the checked out materials have subject tags in any dataset? Check the raw
+CSV headers and report which files include the field.
+```
+
+If the field exists, ask Codex to add a short notebook section:
+
+```text
+Add a cell to the notebook that summarizes the subjects field for the digital
+and physical title-level sample files. Count the number of unique subject
+values in each dataset and show a small sample of values. Keep the code simple
+and explain any parsing assumptions.
+```
+
+Review the result carefully. In testing, the digital and physical samples had
+very different unique subject counts. That difference should not be interpreted
+immediately as "physical has many more meaningful topics." It may reflect
+metadata practices, compound subject strings, punctuation, separators,
+granularity, or the way the field was split.
+
+Use the surprising result to discuss method choice before implementing a larger
+analysis:
+
+```text
+The physical sample has far more unique subject values than the digital sample.
+This seems like a text-cleaning or lightweight NLP problem. Do not implement
+anything yet. What simpler libraries or methods could help us inspect whether
+these are near-duplicates, formatting variants, or genuinely granular subjects?
+```
+
+The useful teaching point is the decision process. A library such as RapidFuzz
+can score string similarity, and scikit-learn can support TF-IDF comparisons or
+clustering, but neither one automatically solves the interpretation problem.
+The analyst still needs to decide how subjects should be parsed, normalized,
+reviewed, and possibly grouped.
+
+You can have the agent write a handoff prompt for a future agent:
+
+```text
+Write a handoff prompt for another coding agent to investigate the subjects
+field as a keyword-analysis problem. The prompt should ask the agent to profile
+the field, compare raw and normalized unique counts, identify examples of
+near-duplicate subject values, recommend a simple method before using an LLM,
+and avoid large-scale canonicalization unless explicitly asked.
+```
+
+If you start a new thread with `/new`, you can use this prompt to perform new analysis in a new notebook. 
+(You can also keep going with the same agent, this just demonstrates hand off)
+
+````
 
 ## Summary
 

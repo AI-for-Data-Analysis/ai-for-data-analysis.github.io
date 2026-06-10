@@ -723,6 +723,7 @@ window.runMermaid = runMermaid;</script>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Understanding the Data Before Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="analyzing-trends-over-time.html">Planning and Running an Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="context-and-token-management.html">Managing Context in Coding Agent Conversations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework-keyword-analysis.html">Homework: Extend the Keyword Analysis</a></li>
 </ul>
 </details></li>
 </ul>
@@ -907,7 +908,9 @@ basic dataset facts also belong in a durable reference file. Dataset
 documentation belongs somewhere humans and agents would both expect to find it:
 inside the <code class="docutils literal notranslate"><span class="pre">seattle-public-library/</span></code> folder.</p>
 <p>Ask Codex to create a data README:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please create a README.md file in the data folder documenting the raw data files with enough detail that future sessions do not have to rediscover the basic dataset structure every time.
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please edit the README.md file in the data folder documenting the raw data files with enough detail that future sessions do not have to rediscover the basic dataset structure every time.
+
+Update AGENTS.md to direct to this file.
 </pre></div>
 </div>
 <p>Review <code class="docutils literal notranslate"><span class="pre">seattle-public-library/README.md</span></code> before keeping it. Check that Codex did not invent
@@ -1000,10 +1003,7 @@ datasets and how they relate. It should look like an Entity Relationship diagram
     COMBINED_MONTHLY_TOTALS ||--o{ DIGITAL_TITLE_SAMPLE : &quot;monthly context by year-month-usageclass&quot;
     COMBINED_MONTHLY_TOTALS ||--o{ PHYSICAL_TITLE_SAMPLE : &quot;monthly context by year-month-usageclass&quot;
     </pre><p>The diagram shows a many-to-one relationship for context only: many sampled title-month rows can correspond to one monthly aggregate row. The aggregate keys are not title identifiers.</p>
-</section>
-<section id="discussion-check-the-data-model">
-<h3>Discussion: Check the data model<a class="headerlink" href="#discussion-check-the-data-model" title="Link to this heading">#</a></h3>
-<p>In groups, compare the notebook investigation with the relationship diagram.</p>
+<p>Compare the notebook investigation with the relationship diagram.</p>
 <p>Discuss:</p>
 <ul class="simple">
 <li><p>Does the diagram make the sample-versus-aggregate distinction visible?</p></li>
@@ -1012,22 +1012,11 @@ datasets and how they relate. It should look like an Entity Relationship diagram
 <li><p>Which file should answer questions about total checkout volume?</p></li>
 <li><p>Which files should answer questions about titles, creators, subjects, or material types?</p></li>
 </ul>
-</section>
-</section>
-<section id="review-the-generated-code">
-<h2>Review the generated code<a class="headerlink" href="#review-the-generated-code" title="Link to this heading">#</a></h2>
-<p>Code from a data investigation may run correctly while leaving the interpretation unclear. Reviewing the output is part of the technique, and recurring problems become additional rules for <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>. Three patterns are common in agent-generated analysis code:</p>
 <div class="exercise admonition">
-<p class="admonition-title">Group activity: Add one rule</p>
-<p>Review the notebook section Codex created and choose one issue that would benefit from a project rule. Add one rule to <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>, then ask Codex to revise the investigation section so it follows the updated rules.</p>
-<p>Compare before and after:</p>
-<ul class="simple">
-<li><p>Did the new rule change Codex’s behavior?</p></li>
-<li><p>Was the rule specific enough?</p></li>
-<li><p>Should the rule be kept, revised, or removed?</p></li>
-</ul>
+<p class="admonition-title">Make another diagram</p>
+<p>Ask Codex what other types of visualizations it could make for data relationships.
+Pick one or describe your own and add it to the notebook.</p>
 </div>
-<p>Re-running the investigation after adding these rules demonstrates their effect on the output. Once the data structure is established and confirmed, the analysis can proceed.</p>
 <div class="key admonition">
 <p class="admonition-title">Key points</p>
 <ul class="simple">
@@ -1036,6 +1025,7 @@ datasets and how they relate. It should look like an Entity Relationship diagram
 <li><p>Reviewing the agent’s notebook output is part of the analysis workflow, not a separate cleanup step.</p></li>
 </ul>
 </div>
+</section>
 </section>
 </section>
 
@@ -1092,10 +1082,8 @@ datasets and how they relate. It should look like an Entity Relationship diagram
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#document-the-data-for-future-sessions">Document the data for future sessions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#request-a-relationship-diagram">Request a relationship diagram</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-relationship-diagram">Data relationship diagram</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-check-the-data-model">Discussion: Check the data model</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-the-generated-code">Review the generated code</a></li>
 </ul>
   </nav></div>
 
