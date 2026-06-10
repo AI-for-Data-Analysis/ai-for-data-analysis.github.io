@@ -10,12 +10,6 @@ Codex produces, how to establish what the data represents before analyzing it,
 and how to produce a trend analysis in which each result is traceable to its
 code.
 
-.. admonition:: The iterative cycle
-   :class: note
-
-   Run a prompt. Review what Codex did. Record a rule to correct it. Run again,
-   and continue into the analysis.
-
 Complete the environment and assistant setup before starting:
 `Complete setup <../setup.html>`_
 
