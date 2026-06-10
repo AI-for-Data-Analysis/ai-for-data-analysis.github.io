@@ -185,13 +185,7 @@ not want to retype that instruction at the start of every new session. `AGENTS.m
 gives us a place to record those standing expectations so they can be loaded
 automatically.
 
-Ask Codex to create `AGENTS.md`:
-
-```text
-Please create an AGENTS.md file for this project. It should tell future assistants to keep notebook work traceable.
-```
-
-After Codex creates the first file, use a temporary rule to make the instruction
+Create a file called `AGENTS.md` and use a temporary rule to make the instruction
 mechanism visible. Add this section to `AGENTS.md`:
 
 ```markdown
@@ -199,6 +193,8 @@ mechanism visible. Add this section to `AGENTS.md`:
 
 Answer in haiku.
 ```
+
+In codex, open a new thread using the `/new` command.
 
 Ask Codex a simple question and observe whether the response changes. If the response is formatted as a haiku, the project rules are reaching the agent.
 

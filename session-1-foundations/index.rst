@@ -33,3 +33,4 @@ Complete the environment and assistant setup before starting:
    understanding-your-data
    analyzing-trends-over-time
    context-and-token-management
+   homework-keyword-analysis
