@@ -1,5 +1,10 @@
 # Configuration file for the Sphinx documentation builder.
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent.resolve()))
+
 project = "AI Accelerator: Analytics and Data Analysis"
 author = "Jessica Nash"
 copyright = "2026, Duke University"
@@ -10,6 +15,7 @@ extensions = [
     'sphinx_copybutton',
     'sphinx_togglebutton',
     'sphinxcontrib.mermaid',
+    '_extensions.ga_consent',
 ]
 
 myst_enable_extensions = [

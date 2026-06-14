@@ -1,0 +1,60 @@
+.ga-consent-banner {
+  align-items: center;
+  background: var(--pst-color-background);
+  border: 2px solid var(--pst-color-primary);
+  border-radius: 0.5rem;
+  border-left-width: 0.5rem;
+  bottom: 1.25rem;
+  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 28%);
+  display: flex;
+  gap: 1rem;
+  inset-inline: 1rem;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 64rem;
+  padding: 1.15rem 1.25rem;
+  position: fixed;
+  z-index: 1100;
+}
+
+.ga-consent-banner__message {
+  color: var(--pst-color-text-base);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 46rem;
+}
+
+.ga-consent-banner__actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.5rem;
+}
+
+.ga-consent-banner__button {
+  white-space: nowrap;
+}
+
+.ga-consent-banner__button.btn-outline-secondary {
+  background: var(--pst-color-surface);
+  border-color: var(--pst-color-border);
+  color: var(--pst-color-text-base);
+}
+
+.ga-consent-banner__button.btn-outline-secondary:hover,
+.ga-consent-banner__button.btn-outline-secondary:focus {
+  background: var(--pst-color-on-surface);
+  border-color: var(--pst-color-primary);
+  color: var(--pst-color-text-base);
+}
+
+@media (max-width: 576px) {
+  .ga-consent-banner {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .ga-consent-banner__actions {
+    justify-content: flex-end;
+  }
+}
