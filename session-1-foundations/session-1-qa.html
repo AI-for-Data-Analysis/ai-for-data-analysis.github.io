@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Planning and Running an Analysis &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+    <title>Session 1 Q&amp;A &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
   
   
   
@@ -54,13 +54,12 @@
     <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'session-1-foundations/analyzing-trends-over-time';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'session-1-foundations/session-1-qa';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Managing Context in Coding Agent Conversations" href="context-and-token-management.html" />
-    <link rel="prev" title="Understanding the Data Before Analysis" href="understanding-your-data.html" />
+    <link rel="prev" title="Homework: Extend the Keyword Analysis" href="homework-keyword-analysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -285,10 +284,10 @@
 <li class="toctree-l2"><a class="reference internal" href="coding-agents-for-analytics.html">Coding Agents for Analytics Work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prompting-and-project-rules.html">Prompting and Project Rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="understanding-your-data.html">Understanding the Data Before Analysis</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Planning and Running an Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analyzing-trends-over-time.html">Planning and Running an Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="context-and-token-management.html">Managing Context in Coding Agent Conversations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="homework-keyword-analysis.html">Homework: Extend the Keyword Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="session-1-qa.html">Session 1 Q&amp;A</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 1 Q&amp;A</a></li>
 </ul>
 </details></li>
 </ul>
@@ -334,7 +333,7 @@
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">Session 1: Foundations for AI-Assisted Analytics Work</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Planning and Running an Analysis</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Session 1 Q&amp;A</span></li>
   </ul>
 </nav>
 </div>
@@ -351,173 +350,216 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="planning-and-running-an-analysis">
-<h1>Planning and Running an Analysis<a class="headerlink" href="#planning-and-running-an-analysis" title="Link to this heading">#</a></h1>
-<p>This page applies the preceding steps to a complete analysis question:</p>
-<blockquote>
-<div><p>How have physical and digital checkouts changed over time?</p>
-</div></blockquote>
-<p>It also shows how to use Codex for planning before implementation when the next analysis might require a library or visualization approach we have not already chosen.</p>
-<section id="select-the-appropriate-file">
-<h2>Select the appropriate file<a class="headerlink" href="#select-the-appropriate-file" title="Link to this heading">#</a></h2>
-<p>Determine which file can answer the question before writing a prompt. The dataset contains two title-level samples and one monthly aggregate. Overall borrowing volume over time is a question about totals, so it must use the 501-row aggregate file. The 250,000-row sample files describe patterns and do not represent total volume.</p>
-<p>This is the purpose of the previous investigation: knowing the structure of the data determines which file is correct. State the chosen dataset in the prompt.</p>
-</section>
-<section id="run-the-analysis">
-<h2>Run the analysis<a class="headerlink" href="#run-the-analysis" title="Link to this heading">#</a></h2>
-<p>In the Codex terminal, enter:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Using the monthly aggregate checkout dataset, analyze how physical and digital
-checkouts changed over time. Add traceable code and short explanations to the
-notebook. Include annual totals, a trend chart, and a note about any partial
-years.
+  <section id="session-1-q-a">
+<h1>Session 1 Q&amp;A<a class="headerlink" href="#session-1-q-a" title="Link to this heading">#</a></h1>
+<p>This page contains answers to questions left on sticky notes in Session 1.</p>
+<section id="how-do-i-analyze-my-own-data-with-codex">
+<h2>How do I analyze my own data with Codex?<a class="headerlink" href="#how-do-i-analyze-my-own-data-with-codex" title="Link to this heading">#</a></h2>
+<p>Codex works from the folder where you start it. That folder is the project
+workspace Codex can inspect, edit, and run commands in.</p>
+<p>To analyze your own data, make a project folder first. Put your data files in
+that folder, then start Codex from inside the project folder. A useful structure
+is to keep the raw data in its own folder and keep notebooks, scripts, project
+notes, and instructions one level above it:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>my-analysis-project/
+├── .venv/
+├── AGENTS.md
+├── README.md
+├── requirements.txt
+├── analysis.ipynb
+├── scripts/
+└── data/
+    ├── my_file.csv
+    └── another_file.xlsx
 </pre></div>
 </div>
-<p>When Codex finishes, use the review checklist below before accepting the result.</p>
-<p>The prompt does not restate the requirements defined in <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>, such as readable code and notebook output; those apply automatically. It specifies only what is particular to this task: the dataset, the required outputs, and the caveat to address.</p>
-</section>
-<section id="expected-output">
-<h2>Expected output<a class="headerlink" href="#expected-output" title="Link to this heading">#</a></h2>
-<p>Codex adds annual totals split by physical and digital, a trend chart across the full range, and the digital share over time. The data shows physical checkouts higher in the early years, digital checkouts increasing over time, and a crossover around 2020.</p>
-<p>The aggregate file runs through April 2026, so the final year is incomplete. If 2026 is summed and charted alongside full years, it will appear as a sharp decline because four months are compared against twelve. The analysis must flag the partial year. Confirm that Codex did so; if it did not, instruct it to add the note.</p>
-<div class="exercise admonition">
-<p class="admonition-title">Ask for a change on the chart</p>
-<p>Choose something you would like to see changed on the chart. This could have to do with font size, color, or style.</p>
-<p>Ask Codex to change your chart. Continue prompting until you are satisfied with the plot style.</p>
+<p>This structure gives Codex a clear boundary: the project folder is the working
+space, and <code class="docutils literal notranslate"><span class="pre">data/</span></code> is where the source files live. It also keeps analysis files
+from getting mixed into the raw data folder.</p>
+<p>Before analyzing the data, ask Codex to create a project-local Python virtual
+environment. A virtual environment keeps the Python packages for this project
+separate from the rest of your computer. For data analysis, the common
+“scientific Python stack” includes packages such as <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code>,
+<code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, and Jupyter tools.</p>
+<p>Ask Codex to set that up inside the project folder:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please create a project-local Python virtual environment in .venv, install the
+basic scientific Python stack for data analysis, and save the package list in
+requirements.txt. Do not install packages into the base Python or base conda
+environment.
+</pre></div>
 </div>
+<p>After Codex finishes, review what it did. You should see a <code class="docutils literal notranslate"><span class="pre">.venv/</span></code> folder and a
+<code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file. The virtual environment can be deleted and recreated,
+but the requirements file should stay with the project so the setup can be
+repeated later. If you use Git, commit <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, not the <code class="docutils literal notranslate"><span class="pre">.venv/</span></code>
+folder.</p>
+<p>Further reading: Python’s documentation explains
+<a class="reference external" href="https://docs.python.org/3/library/venv.html">virtual environments</a>, and the
+SciPy project provides <a class="reference external" href="https://scipy.org/install/">installation guidance</a> for
+the scientific Python ecosystem.</p>
+<div class="tip admonition">
+<p class="admonition-title">How can I move my files to WSL?</p>
+<p>If you are using WSL on Windows, the easiest way to move files into your Linux
+project folder is often to open that folder in Windows File Explorer.</p>
+<p>From the WSL terminal, move into your project folder and run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>explorer.exe<span class="w"> </span>.
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">.</span></code> means “this folder.” File Explorer will open the current WSL directory,
+and you can drag files into the project just like any other Windows folder.</p>
+<p>After moving files, return to the WSL terminal and run <code class="docutils literal notranslate"><span class="pre">ls</span></code> to confirm they are
+in the project folder.</p>
+</div>
+<p>Once the files are in place, open a terminal in the project folder and start
+Codex there. Then ask Codex to inspect the data before analyzing it:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please inspect the files in data/. For each file, report the row count, column
+names, data types, non-null counts, and the first few rows. Do not make plots
+yet.
+</pre></div>
+</div>
+<p>After Codex profiles the data, you can ask it to add project-specific guidance
+to <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>. For example, if one file is sampled and another is complete,
+write that down so future Codex sessions do not have to rediscover it.</p>
 </section>
-<section id="review-checklist">
-<h2>Review checklist<a class="headerlink" href="#review-checklist" title="Link to this heading">#</a></h2>
-<p>Review the output against the following:</p>
+<section id="does-my-data-need-to-be-formatted-a-certain-way">
+<h2>Does my data need to be formatted a certain way?<a class="headerlink" href="#does-my-data-need-to-be-formatted-a-certain-way" title="Link to this heading">#</a></h2>
+<p>For this course, the important question is not whether the data is formatted for
+an AI model. We are using AI-assisted programming for data analysis. That means
+Codex is helping you write and run code, and the code still needs to read your
+files through normal programming libraries.</p>
+<p>Your data will be easiest to analyze when it is in a regular, tabular format
+that tools like Python, pandas, R, Excel, Tableau, or databases can read
+reliably. CSV, Excel, Parquet, JSON, and database tables can all work, depending
+on the project. The key is consistency:</p>
 <ul class="simple">
-<li><p>Did it use the aggregate file rather than a sample file?</p></li>
-<li><p>Did it state what one row represents before interpreting the data?</p></li>
-<li><p>Did it account for the partial 2026 year?</p></li>
-<li><p>Does each stated result correspond to specific code and output?</p></li>
+<li><p>one row should represent a consistent unit</p></li>
+<li><p>column names should be present and meaningful</p></li>
+<li><p>values in a column should have a consistent meaning</p></li>
+<li><p>dates, numbers, categories, and missing values should be represented
+consistently</p></li>
+<li><p>repeated tables, notes, merged cells, subtotals, and visual-only formatting
+should not be mixed into the analysis data</p></li>
 </ul>
+<p>If your data is not already consistent, do not overwrite the original file. Keep
+the raw data, create a cleaned or regularly formatted version, and save the code
+that performs the conversion.</p>
+<p>A useful project structure is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>my-analysis-project/
+├── AGENTS.md
+├── README.md
+├── analysis.ipynb
+├── scripts/
+│   └── prepare_data.py
+└── data/
+    ├── raw/
+    │   └── original_file.xlsx
+    └── processed/
+        └── analysis_ready_file.csv
+</pre></div>
+</div>
+<p>You can use Codex to help write the conversion script:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please inspect data/raw/original_file.xlsx and write a script that converts it
+to a regular analysis-ready CSV in data/processed/. Preserve the raw file. Put
+the conversion code in scripts/prepare_data.py and document any assumptions.
+</pre></div>
+</div>
+<p>This gives you three things a reviewer can check: the original data, the
+analysis-ready data, and the script that explains how one became the other.</p>
 </section>
-<section id="plan-a-new-visualization-before-implementing">
-<h2>Plan a new visualization before implementing<a class="headerlink" href="#plan-a-new-visualization-before-implementing" title="Link to this heading">#</a></h2>
-<p>Not every prompt needs to ask Codex to make changes immediately. When the next step involves choosing an approach, a library, or a visualization type, use Codex as a planning partner first.</p>
-<blockquote>
-<div><p>Does the data show any seasonal patterns for checkouts over time?</p>
-</div></blockquote>
-<p>This question still uses the monthly aggregate file, but the best visualization is less obvious than a basic trend line. A heatmap, faceted chart, small multiples, or an interactive chart might each work. Before installing anything or adding notebook cells, ask Codex to discuss possible approaches:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I&#39;d like to discuss investigating checkout seasonality over time for checkouts. I&#39;m curious if
-there is any time of year where checkouts occur more or less often. How might we do that?
-</pre></div>
-</div>
-<p>A key phrase used here is “I’d like to discuss…”.
-This will keep Codex from acting until you have discussed the topic and greenlighted an action.</p>
-<p>Review the options before moving forward. The useful output is not just the name
-of a chart type; it should explain tradeoffs such as readability, complexity,
-whether the chart will render reliably in the notebook, and whether the code
-will be easy to review.</p>
-<p>If the recommendation is appropriate, then ask Codex to implement the chosen approach:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Use the recommended approach to add a simple, readable notebook section
-showing monthly checkout seasonality by usage class. Explain what the
-visualization shows and include one caveat.
-</pre></div>
-</div>
-<p>This demonstrates a different prompting pattern: discuss and decide first, then implement. That pattern is useful whenever the analysis goal is clear but the method is still uncertain.</p>
-</section>
-<section id="apply-the-workflow-to-the-sample-data">
-<h2>Apply the workflow to the sample data<a class="headerlink" href="#apply-the-workflow-to-the-sample-data" title="Link to this heading">#</a></h2>
-<p>The aggregate file answers questions about totals. The title-level sample files answer more granular questions about titles, subjects, material types, and publishers. Select one such question and apply the same workflow:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>What material types dominate the digital vs physical samples?
-Which subjects appear most often in each sample?
-What titles or creators appear in both the digital and physical samples?
-How does publication year differ between digital and physical samples?
-</pre></div>
-</div>
-<p>Use a prompt that carries the same requirements:</p>
-<div class="exercise admonition">
-<p class="admonition-title">Group activity: Investigate a sample-data question</p>
-<p>Choose one granular question about the title-level sample files, or write your own. Use this prompt template:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Help me investigate this question: [QUESTION]. Use the title-level sample
-files. Before analyzing, state what one row represents and what is being
-counted. Add traceable, readable code to the notebook with short explanations.
-End with one finding and one caveat.
-</pre></div>
-</div>
-<p>Prepare a short share-out with:</p>
+<section id="what-are-the-pros-and-cons-of-using-the-command-line-codex-versus-the-app-version">
+<h2>What are the pros and cons of using the command-line Codex versus the app version?<a class="headerlink" href="#what-are-the-pros-and-cons-of-using-the-command-line-codex-versus-the-app-version" title="Link to this heading">#</a></h2>
+<p>Both versions are Codex. The main difference is the working environment around
+the agent.</p>
+<p>The command-line version runs in your terminal. It is a good fit when you are
+already working in a project folder, using shell commands, running Python
+scripts, starting JupyterLab, checking files with <code class="docutils literal notranslate"><span class="pre">ls</span></code>, or using Git from the
+command line. For this course, the CLI makes the project boundary very visible:
+Codex starts in the directory you choose, reads files from that workspace, and
+runs commands there.</p>
+<p>The tradeoff is that the CLI expects you to be comfortable with terminal
+workflow. You need to know where you are in the filesystem, how to move into the
+right folder, and how to interpret command output. If the terminal is new to
+you, this can make the first few steps feel less familiar.</p>
+<p>The Codex app gives you a desktop interface for choosing projects, working with
+threads, seeing diffs, using built-in Git tools, and running tasks in local,
+worktree, or cloud mode. It also has an integrated terminal, so you can still run
+project commands when needed. The app can be easier when you want a more visual
+place to manage threads, review changes, or work on multiple projects.</p>
+<p>The tradeoff is that the app can hide some of the filesystem mechanics that are
+useful to learn. For data analysis, it is still important to understand which
+project folder Codex is working in and where your data files are stored.</p>
+<p>For this workshop, the command line is useful because it teaches the
+mental model:</p>
 <ul class="simple">
-<li><p>the question your group investigated</p></li>
-<li><p>the dataset used</p></li>
-<li><p>what one row represents</p></li>
-<li><p>the code or output that supports the finding</p></li>
-<li><p>one finding</p></li>
-<li><p>one caveat or uncertainty</p></li>
-<li><p>one thing Codex did well or poorly</p></li>
+<li><p>make a project folder</p></li>
+<li><p>put the data inside the project</p></li>
+<li><p>start Codex from that project</p></li>
+<li><p>inspect the data before analyzing it</p></li>
+<li><p>save scripts, notebooks, and project notes alongside the data</p></li>
 </ul>
-</div>
-<p>These files are samples, not the complete collection. A finding describes the sample; any statement about the full collection is an inference. State which one applies.</p>
-<div class="exercise admonition" id="subject-tag-stretch-exercise">
-<p class="admonition-title">Stretch exercise: Treat subject tags as a text-cleaning problem</p>
-<p>The title-level sample files include a <code class="docutils literal notranslate"><span class="pre">subjects</span></code> field. This field can look
-simple at first, but it is a useful stretch case because a small profiling
-question can turn into a text-cleaning and interpretation problem.</p>
-<p>Start by asking Codex a narrow verification question:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Do the checked out materials have subject tags in any dataset? Check the raw
-CSV headers and report which files include the field.
-</pre></div>
-</div>
-<p>If the field exists, ask Codex to add a short notebook section:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Add a cell to the notebook that summarizes the subjects field for the digital
-and physical title-level sample files. Count the number of unique subject
-values in each dataset and show a small sample of values. Keep the code simple
-and explain any parsing assumptions.
-</pre></div>
-</div>
-<p>Review the result carefully. In testing, the digital and physical samples had
-very different unique subject counts. That difference should not be interpreted
-immediately as “physical has many more meaningful topics.” It may reflect
-metadata practices, compound subject strings, punctuation, separators,
-granularity, or the way the field was split.</p>
-<p>Use the surprising result to discuss method choice before implementing a larger
-analysis:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The physical sample has far more unique subject values than the digital sample.
-This seems like a text-cleaning or lightweight NLP problem. Do not implement
-anything yet. What simpler libraries or methods could help us inspect whether
-these are near-duplicates, formatting variants, or genuinely granular subjects?
-</pre></div>
-</div>
-<p>The useful teaching point is the decision process. A library such as RapidFuzz
-can score string similarity, and scikit-learn can support TF-IDF comparisons or
-clustering, but neither one automatically solves the interpretation problem.
-The analyst still needs to decide how subjects should be parsed, normalized,
-reviewed, and possibly grouped.</p>
-<p>You can have the agent write a handoff prompt for a future agent:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Write a handoff prompt for another coding agent to investigate the subjects
-field as a keyword-analysis problem. The prompt should ask the agent to profile
-the field, compare raw and normalized unique counts, identify examples of
-near-duplicate subject values, recommend a simple method before using an LLM,
-and avoid large-scale canonicalization unless explicitly asked.
-</pre></div>
-</div>
-<p>If you start a new thread with <code class="docutils literal notranslate"><span class="pre">/new</span></code>, you can use this prompt to perform new analysis in a new notebook.
-(You can also keep going with the same agent, this just demonstrates hand off)</p>
-</div>
+<p>After that model is clear, the app can be a convenient interface for the same
+kind of work.</p>
+<p>Further reading: OpenAI’s Codex docs describe the <a class="reference external" href="https://developers.openai.com/codex/cli">Codex CLI</a>,
+the <a class="reference external" href="https://developers.openai.com/codex/app">Codex app</a>, and
+<a class="reference external" href="https://developers.openai.com/codex/app/features">Codex app features</a>.</p>
 </section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<p>The workflow completes one full iteration of the cycle: an initial broad prompt produced results without an artifact; reviewing the output produced project rules; the data structure was established before analysis; and the correct file was used to answer the question with traceable code.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Run a prompt.
-Review what Codex did.
-Define rules early.
-Apply the rules while continuing the analysis.
-Add rules as further issues appear.
-Compare results before and after, and continue.
+<section id="should-we-worry-about-token-usage-for-this-course">
+<h2>Should we worry about token usage for this course?<a class="headerlink" href="#should-we-worry-about-token-usage-for-this-course" title="Link to this heading">#</a></h2>
+<p>For this course, the main goal is to get comfortable using Codex for real data
+analysis work. OIT is supporting your use during the course, so you should take
+advantage of the opportunity to experiment as much as your available limits and
+your own comfort allow.</p>
+<p>That experimentation is part of the learning. Try asking Codex for a plan before
+implementation. Try asking it to explain code it wrote. Try asking it to revise a
+notebook section so the result is easier to review. Try starting a new thread
+after saving project context. These repetitions are how the workflow becomes
+less mysterious.</p>
+<p>At the same time, comfort matters. Some people may want to be mindful of usage
+limits, cost, or the energy use associated with generative AI systems. That is a
+reasonable concern. You do not need to use Codex for every small task if that
+does not feel right to you.</p>
+<p>A practical balance is:</p>
+<ul class="simple">
+<li><p>use Codex enough to learn what it is good at and where you still need review</p></li>
+<li><p>ask focused questions instead of requesting huge unfocused outputs</p></li>
+<li><p>save useful findings in project files so you do not have to rediscover them</p></li>
+<li><p>stop when the tool is no longer helping your understanding</p></li>
+</ul>
+<p>In short: be thoughtful, but do not be timid. This course is a supported chance
+to try the tool, make mistakes, compare prompts, and build judgment about when
+AI-assisted programming helps your analysis.</p>
+</section>
+<section id="which-slash-commands-and-shortcuts-should-i-learn-first">
+<h2>Which slash commands and shortcuts should I learn first?<a class="headerlink" href="#which-slash-commands-and-shortcuts-should-i-learn-first" title="Link to this heading">#</a></h2>
+<p>You do not need to memorize every Codex command. For this course, slash commands
+are useful because they help you steer the session without changing the main
+task.</p>
+<p>Start with these:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/status</span></code>: check the current session, including model, permissions, context,
+and limits</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/plan</span></code>: ask Codex to plan before changing files or writing code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/new</span></code>: start a fresh conversation in the same project when the task changes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/compact</span></code>: summarize a long conversation so the useful context is preserved</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/mention</span></code>: attach a specific file or folder to the conversation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/model</span></code>: inspect or change the model when the task needs a different level of
+reasoning</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/permissions</span></code>: review or change what Codex can do without asking first</p></li>
+</ul>
+<p>The exact list can change, so the most important command is just <code class="docutils literal notranslate"><span class="pre">/</span></code>. Type <code class="docutils literal notranslate"><span class="pre">/</span></code>
+in Codex to see what is available in your current environment.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> pattern is also worth learning. You can use <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> path autocomplete, or
+the <code class="docutils literal notranslate"><span class="pre">/mention</span></code> command, to point Codex at files that matter for the current
+question. For example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Read @data/README.md and @analysis.ipynb. Then tell me whether the notebook
+uses the right dataset for a monthly trend analysis.
 </pre></div>
 </div>
-<div class="key admonition">
-<p class="admonition-title">Key points</p>
-<ul class="simple">
-<li><p>The aggregate file answers questions about total checkout volume.</p></li>
-<li><p>The title-level sample files answer more granular questions about titles, subjects, material types, and publishers.</p></li>
-<li><p>Codex can help compare analysis approaches before writing code or installing anything.</p></li>
-<li><p>A coding agent can do much of the analytical work, but the person interpreting the results must confirm that the output is understandable, reviewable, and traceable.</p></li>
-</ul>
-</div>
+<p>This is not about using a special trick. It is about making context explicit. If
+a file matters, do not make Codex guess which file to inspect.</p>
+<p>Further reading: OpenAI’s Codex docs describe
+<a class="reference external" href="https://developers.openai.com/codex/cli/slash-commands">CLI slash commands</a>
+and <a class="reference external" href="https://developers.openai.com/codex/ide/slash-commands">IDE slash commands</a>.</p>
 </section>
 </section>
 
@@ -532,22 +574,13 @@ Compare results before and after, and continue.
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="understanding-your-data.html"
+       href="homework-keyword-analysis.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Understanding the Data Before Analysis</p>
+        <p class="prev-next-title">Homework: Extend the Keyword Analysis</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="context-and-token-management.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Managing Context in Coding Agent Conversations</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -568,20 +601,18 @@ Compare results before and after, and continue.
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-appropriate-file">Select the appropriate file</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-analysis">Run the analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-output">Expected output</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-checklist">Review checklist</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-a-new-visualization-before-implementing">Plan a new visualization before implementing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-the-workflow-to-the-sample-data">Apply the workflow to the sample data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-i-analyze-my-own-data-with-codex">How do I analyze my own data with Codex?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-my-data-need-to-be-formatted-a-certain-way">Does my data need to be formatted a certain way?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-pros-and-cons-of-using-the-command-line-codex-versus-the-app-version">What are the pros and cons of using the command-line Codex versus the app version?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#should-we-worry-about-token-usage-for-this-course">Should we worry about token usage for this course?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-slash-commands-and-shortcuts-should-i-learn-first">Which slash commands and shortcuts should I learn first?</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/session-1-foundations/analyzing-trends-over-time.md.txt">
+    <a href="../_sources/session-1-foundations/session-1-qa.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

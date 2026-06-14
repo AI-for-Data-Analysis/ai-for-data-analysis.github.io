@@ -28,3 +28,4 @@ Complete the environment and assistant setup before starting:
    analyzing-trends-over-time
    context-and-token-management
    homework-keyword-analysis
+   session-1-qa
