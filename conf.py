@@ -56,6 +56,9 @@ html_theme_options = {
         'image_dark': "images/ai-duke-transparent.png",
 
     },
+    'analytics': {
+        'google_analytics_id': 'G-PCSTBS7XKG',
+    },
     'icon_links': [
         {
             'name': 'Download PDF',
