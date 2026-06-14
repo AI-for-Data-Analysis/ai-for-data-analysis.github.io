@@ -25,7 +25,22 @@ jobs:
 
     - uses: actions/setup-python@v5
       with:
-        python-version: 3.11
+        python-version: "3.13"
+
+    - name: Install system dependencies
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+          latexmk \
+          texlive-xetex \
+          texlive-latex-extra \
+          texlive-fonts-recommended \
+          texlive-fonts-extra \
+          fonts-open-sans \
+          fonts-freefont-otf \
+          librsvg2-bin
+        sudo rm -rf /var/lib/apt/lists/*
 
     - name: Install dependencies
       shell: bash
@@ -37,7 +52,11 @@ jobs:
     - name: Build HTML
       shell: bash
       run: |
+        rsvg-convert -f pdf -o images/duke_wordmark_navyblue_012169.pdf images/duke_wordmark_navyblue_012169.svg
         .venv/bin/sphinx-build -b html . _build/html
+        .venv/bin/sphinx-build -M latexpdf . _build
+        mkdir -p _build/html/latex
+        cp _build/latex/*.pdf _build/html/latex/
         touch _build/html/.nojekyll
 
     - name: Deploy Documentation
