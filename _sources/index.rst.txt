@@ -31,6 +31,17 @@ Use Codex as a coding agent for analytics work while keeping the analysis unders
   :file: csv_tables/session_1_foundations_pages.csv
   :header-rows: 1
 
+Session 2: Context Management and Agent Skills
+###############################################
+
+Section page: `Open Session 2 <session-2-reusable-skills/index.html>`_
+
+Choose working file formats that reduce unnecessary agent tool use, then package repeated instructions as reusable agent skills.
+
+.. csv-table::
+  :file: csv_tables/session_2_reusable_skills_pages.csv
+  :header-rows: 1
+
 
 .. toctree::
    :maxdepth: 2
@@ -40,3 +51,4 @@ Use Codex as a coding agent for analytics work while keeping the analysis unders
    self
    setup
    session-1-foundations/index
+   session-2-reusable-skills/index

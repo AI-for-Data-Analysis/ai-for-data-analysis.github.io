@@ -131,6 +131,8 @@
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Agent Skills" href="agent-skills.html" />
+    <link rel="prev" title="Session 2: Context Management and Agent Skills" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -347,7 +349,7 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">AI Accelerator: Analytics and Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../session-1-foundations/index.html">Session 1: Foundations for AI-Assisted Analytics Work</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -359,6 +361,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../session-1-foundations/context-and-token-management.html">Managing Context in Coding Agent Conversations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../session-1-foundations/homework-keyword-analysis.html">Homework: Extend the Keyword Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../session-1-foundations/session-1-qa.html">Session 1 Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Session 2: Context Management and Agent Skills</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Session 2: Context Management and Agent Skills</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Context Management Part 2: Choose a Working File Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent-skills.html">Agent Skills</a></li>
 </ul>
 </details></li>
 </ul>
@@ -401,6 +409,9 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Session 2: Context Management and Agent Skills</a></li>
+    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Context Management Part 2: Choose a Working File Format</span></li>
   </ul>
 </nav>
@@ -441,7 +452,7 @@
 <p>To see why file format can affect token usage, first identify the unit of work being repeated. A single user request can require several model calls and tool calls before the final response. Each model call receives context, decides a next step, and may ask a tool to inspect, edit, run, or validate something in the project.</p>
 <p>An agent turn is more than a chat message. The model receives input, decides the next step, may call tools, receives tool results, and may repeat that loop before answering.</p>
 <figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="images/session-2/session-2-slide-09.png"><img alt="Diagram of one agent turn showing user task, input context, model calls, tool calls, tool results, and final response" src="images/session-2/session-2-slide-09.png" style="width: 100%;" />
+<a class="reference internal image-reference" href="../_images/session-2-slide-09.png"><img alt="Diagram of one agent turn showing user task, input context, model calls, tool calls, tool results, and final response" src="../_images/session-2-slide-09.png" style="width: 100%;" />
 </a>
 <figcaption>
 <p><span class="caption-text">One user request can produce several model calls. Tool results from one call can become input to the next call.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
@@ -454,7 +465,7 @@
 <p>A Jupyter notebook is stored as JSON rather than as a simple script. An <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file can contain code, markdown, outputs, execution counts, widget state, metadata, and nested structure that must remain valid.</p>
 <p>A percent-cell <code class="docutils literal notranslate"><span class="pre">.py</span></code> file is plain Python text with cell markers. Tools such as VS Code and Jupyter can treat the markers as cells, but the file remains easy to edit as source code.</p>
 <figure class="align-default" id="id2">
-<a class="reference internal image-reference" href="images/session-2/session-2-slide-10.png"><img alt="Comparison of notebook JSON structure and percent-cell Python source structure" src="images/session-2/session-2-slide-10.png" style="width: 100%;" />
+<a class="reference internal image-reference" href="../_images/session-2-slide-10.png"><img alt="Comparison of notebook JSON structure and percent-cell Python source structure" src="../_images/session-2-slide-10.png" style="width: 100%;" />
 </a>
 <figcaption>
 <p><span class="caption-text">A notebook mixes source, outputs, execution state, and metadata. A percent-cell Python file keeps the working source as plain text.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
@@ -550,7 +561,7 @@
 </table>
 </div>
 <figure class="align-default" id="id3">
-<a class="reference internal image-reference" href="images/session-2/session-2-slide-12.png"><img alt="Bar charts comparing total tokens and runtime for direct notebook and percent-cell Python workflows" src="images/session-2/session-2-slide-12.png" style="width: 100%;" />
+<a class="reference internal image-reference" href="../_images/session-2-slide-12.png"><img alt="Bar charts comparing total tokens and runtime for direct notebook and percent-cell Python workflows" src="../_images/session-2-slide-12.png" style="width: 100%;" />
 </a>
 <figcaption>
 <p><span class="caption-text">In the controlled comparison, the notebook workflow used more total tokens and took longer.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
@@ -562,7 +573,7 @@
 </div></blockquote>
 <p>The tool-call categories showed the source of the difference. The direct notebook workflow included notebook-specific work such as structure validation and output extraction. The percent-cell workflow still required execution and output inspection, but it avoided much of the notebook-specific handling.</p>
 <figure class="align-default" id="id4">
-<a class="reference internal image-reference" href="images/session-2/session-2-slide-13.png"><img alt="Token use by model call for notebook and percent-cell Python workflows" src="images/session-2/session-2-slide-13.png" style="width: 100%;" />
+<a class="reference internal image-reference" href="../_images/session-2-slide-13.png"><img alt="Token use by model call for notebook and percent-cell Python workflows" src="../_images/session-2-slide-13.png" style="width: 100%;" />
 </a>
 <figcaption>
 <p><span class="caption-text">The notebook workflow took more model calls. Each call is another chance for context, tool output, and file state to enter the next step.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
@@ -624,6 +635,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Session 2: Context Management and Agent Skills</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="agent-skills.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Agent Skills</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
