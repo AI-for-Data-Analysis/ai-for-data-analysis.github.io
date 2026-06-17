@@ -27,8 +27,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -39,10 +39,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/ga_consent.css" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
     <script>window.PYDATA_GA_CONSENT = {"acceptText": "Accept analytics", "bannerText": "We use Google Analytics to understand how visitors use these open lessons. Accepting analytics helps us evaluate their reach and plan future lesson development. You can accept or decline analytics cookies.", "declineText": "Decline", "privacyText": "Privacy details", "privacyUrl": "", "storageKey": "pydata_ga_consent"};
 (function () {
@@ -108,7 +108,6 @@
     <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-PCSTBS7XKG"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
@@ -118,6 +117,11 @@
                     'ad_personalization': 'denied',
                     'analytics_storage': 'denied'
                 });
+            </script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-PCSTBS7XKG"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', 'G-PCSTBS7XKG');
             </script>
@@ -466,21 +470,6 @@ should be used for full checkout volume trends, and that 2026 is partial.
 Those facts affect which analysis is valid. They should not live only in the
 chat. They belong in the notebook, <code class="docutils literal notranslate"><span class="pre">data/README.md</span></code>, or another project note.</p>
 </section>
-<section id="what-should-be-saved">
-<h2>What should be saved<a class="headerlink" href="#what-should-be-saved" title="Link to this heading">#</a></h2>
-<p>Not every detail deserves a permanent note. A temporary stack trace usually does
-not need to be saved after the bug is fixed. A failed plotting attempt usually
-does not belong in the final notebook unless it explains a lasting decision.</p>
-<p>Save context when it will help a future session avoid rediscovering something
-important or avoid repeating a mistake. Dataset meanings, row-level definitions,
-sample-versus-aggregate distinctions, partial-year caveats, reusable commands,
-and standing workflow rules are usually worth saving. Put them where someone
-would naturally look: dataset facts in <code class="docutils literal notranslate"><span class="pre">data/README.md</span></code>, analysis decisions near
-the relevant notebook code, and standing instructions in <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>.</p>
-<p>Good saved context is short, verified, and placed close to the work it explains.
-Poor saved context is a long terminal transcript, a chat-only conclusion,
-repeated previews, or unverified claims copied from an agent response.</p>
-</section>
 <section id="manage-context-while-you-work">
 <h2>Manage context while you work<a class="headerlink" href="#manage-context-while-you-work" title="Link to this heading">#</a></h2>
 <p>The goal is not to keep conversations short at all costs. A long session can be
@@ -529,8 +518,7 @@ understandable, reviewable, and traceable.</p>
 <p>First improve the context. Then increase reasoning if the task still requires
 more planning, comparison, or debugging.</p>
 </div>
-<p>In Codex, use <code class="docutils literal notranslate"><span class="pre">/help</span></code> to see the model controls available in your installed
-version. If <code class="docutils literal notranslate"><span class="pre">/model</span></code> is available, use it to inspect or change the current model
+<p>Use <code class="docutils literal notranslate"><span class="pre">/model</span></code> is available, use it to inspect or change the current model
 for the session. Model names and available reasoning settings can change, so do
 not memorize a single model name as the lesson. The transferable skill is knowing
 what kind of work you are asking the model to do.</p>
@@ -661,7 +649,6 @@ planning, debugging, and review; use less for narrow mechanical edits.</p></li>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-matters">Why this matters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-should-be-saved">What should be saved</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manage-context-while-you-work">Manage context while you work</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-model-and-reasoning-level">Choose model and reasoning level</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ask-for-focused-evidence">Ask for focused evidence</a></li>
@@ -693,8 +680,8 @@ planning, debugging, and review; use less for narrow mechanical edits.</p></li>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -723,7 +710,7 @@ planning, debugging, and review; use less for narrow mechanical edits.</p></li>
     
 
     <p class="theme-version">
-      Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html" target="_blank" rel="noopener">PyData Sphinx Theme</a> 0.18.0.
+      Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html" target="_blank" rel="noopener">PyData Sphinx Theme</a> 0.19.0.
     </p>
   </div>
 

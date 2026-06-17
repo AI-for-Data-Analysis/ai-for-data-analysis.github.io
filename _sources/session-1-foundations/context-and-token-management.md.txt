@@ -58,23 +58,6 @@ should be used for full checkout volume trends, and that 2026 is partial.
 Those facts affect which analysis is valid. They should not live only in the
 chat. They belong in the notebook, `data/README.md`, or another project note.
 
-## What should be saved
-
-Not every detail deserves a permanent note. A temporary stack trace usually does
-not need to be saved after the bug is fixed. A failed plotting attempt usually
-does not belong in the final notebook unless it explains a lasting decision.
-
-Save context when it will help a future session avoid rediscovering something
-important or avoid repeating a mistake. Dataset meanings, row-level definitions,
-sample-versus-aggregate distinctions, partial-year caveats, reusable commands,
-and standing workflow rules are usually worth saving. Put them where someone
-would naturally look: dataset facts in `data/README.md`, analysis decisions near
-the relevant notebook code, and standing instructions in `AGENTS.md`.
-
-Good saved context is short, verified, and placed close to the work it explains.
-Poor saved context is a long terminal transcript, a chat-only conclusion,
-repeated previews, or unverified claims copied from an agent response.
-
 ## Manage context while you work
 
 The goal is not to keep conversations short at all costs. A long session can be
@@ -135,8 +118,7 @@ First improve the context. Then increase reasoning if the task still requires
 more planning, comparison, or debugging.
 ```
 
-In Codex, use `/help` to see the model controls available in your installed
-version. If `/model` is available, use it to inspect or change the current model
+Use `/model` is available, use it to inspect or change the current model
 for the session. Model names and available reasoning settings can change, so do
 not memorize a single model name as the lesson. The transferable skill is knowing
 what kind of work you are asking the model to do.
