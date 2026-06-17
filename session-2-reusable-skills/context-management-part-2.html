@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Skill Testing And Iteration &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+    <title>Context Management Part 2: Choose a Working File Format &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
   
   
   
@@ -125,7 +125,7 @@
                 gtag('js', new Date());
                 gtag('config', 'G-PCSTBS7XKG');
             </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'session-2-reusable-skills/skill-testing-and-iteration';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'session-2-reusable-skills/context-management-part-2';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script defer="defer" src="../_static/ga_consent.js"></script>
     <link rel="icon" href="../_static/favicon.png"/>
@@ -401,7 +401,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Skill Testing And Iteration</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Context Management Part 2: Choose a Working File Format</span></li>
   </ul>
 </nav>
 </div>
@@ -418,23 +418,199 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="skill-testing-and-iteration">
-<h1>Skill Testing And Iteration<a class="headerlink" href="#skill-testing-and-iteration" title="Link to this heading">#</a></h1>
-<section id="guiding-questions">
-<h2>Guiding Questions<a class="headerlink" href="#guiding-questions" title="Link to this heading">#</a></h2>
+  <section id="context-management-part-2-choose-a-working-file-format">
+<h1>Context Management Part 2: Choose a Working File Format<a class="headerlink" href="#context-management-part-2-choose-a-working-file-format" title="Link to this heading">#</a></h1>
+<p>Session 1 used a notebook because notebooks are a familiar interface for many analysts and learners. They make it easy to see code, outputs, and short explanations together while learning the agent-assisted workflow.</p>
+<p>Session 2 shifts from the notebook as a familiar learning interface to the working file as part of context management. When Codex performs repeated analysis work, the file format affects what the agent must read, edit, validate, execute, and inspect.</p>
+<section id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>What is skill testing and iteration?</p></li>
-<li><p>How does skill testing and iteration fit into Session 2: Reusable Skills for Analytics Work?</p></li>
-<li><p>What tradeoffs should a learner know?</p></li>
+<li><p>explain why working file format affects agent tool use</p></li>
+<li><p>distinguish notebook and percent-cell Python files as agent working artifacts</p></li>
+<li><p>interpret token usage with attention to model calls, fresh input, and tool results</p></li>
+<li><p>choose an appropriate working artifact for agent-assisted analysis</p></li>
 </ul>
+<p>This may be easy to believe intuitively. A notebook looks more complex than a Python script, and an <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file contains more than source code. The mechanism matters because Codex does not only read the file once. During a task, it may inspect the file, edit it, run it, inspect outputs, repair errors, and use those tool results as context for later model calls.</p>
+<div class="note admonition">
+<p class="admonition-title">Central Claim</p>
+<p>The working artifact is part of context management because it changes the tool work Codex must do. More tool work can mean more model calls, more fresh input, more cumulative context, and more runtime.</p>
+</div>
 </section>
-<section id="learning-objectives">
-<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<section id="start-with-one-agent-turn">
+<h2>Start With One Agent Turn<a class="headerlink" href="#start-with-one-agent-turn" title="Link to this heading">#</a></h2>
+<p>To see why file format can affect token usage, first identify the unit of work being repeated. A single user request can require several model calls and tool calls before the final response. Each model call receives context, decides a next step, and may ask a tool to inspect, edit, run, or validate something in the project.</p>
+<p>An agent turn is more than a chat message. The model receives input, decides the next step, may call tools, receives tool results, and may repeat that loop before answering.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="images/session-2/session-2-slide-09.png"><img alt="Diagram of one agent turn showing user task, input context, model calls, tool calls, tool results, and final response" src="images/session-2/session-2-slide-09.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">One user request can produce several model calls. Tool results from one call can become input to the next call.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>This matters because the working file is one of the objects the tools operate on. A file format that requires more inspection, validation, or output extraction can create more tool work during the same analysis task.</p>
+</section>
+<section id="why-file-format-changes-tool-use">
+<h2>Why File Format Changes Tool Use<a class="headerlink" href="#why-file-format-changes-tool-use" title="Link to this heading">#</a></h2>
+<p>A Jupyter notebook is stored as JSON rather than as a simple script. An <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file can contain code, markdown, outputs, execution counts, widget state, metadata, and nested structure that must remain valid.</p>
+<p>A percent-cell <code class="docutils literal notranslate"><span class="pre">.py</span></code> file is plain Python text with cell markers. Tools such as VS Code and Jupyter can treat the markers as cells, but the file remains easy to edit as source code.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="images/session-2/session-2-slide-10.png"><img alt="Comparison of notebook JSON structure and percent-cell Python source structure" src="images/session-2/session-2-slide-10.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">A notebook mixes source, outputs, execution state, and metadata. A percent-cell Python file keeps the working source as plain text.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A notebook may require the agent to do extra tool work:</p>
 <ul class="simple">
-<li><p>Understand the core concept.</p></li>
-<li><p>Apply the concept in a real workflow.</p></li>
-<li><p>Identify common mistakes and how to avoid them.</p></li>
+<li><p>preserve valid JSON structure</p></li>
+<li><p>add or update cells without corrupting the file</p></li>
+<li><p>execute the notebook</p></li>
+<li><p>inspect saved cell outputs</p></li>
+<li><p>decide which outputs matter</p></li>
+<li><p>remove or avoid stale outputs</p></li>
+<li><p>validate notebook structure after edits</p></li>
 </ul>
+<p>A <code class="docutils literal notranslate"><span class="pre">.py</span></code> file gives the agent a simpler source artifact:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">checkout_totals</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/combined_checkout_totals_by_month_usageclass.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="n">complete_years</span> <span class="o">=</span> <span class="n">checkout_totals</span><span class="p">[</span><span class="n">checkout_totals</span><span class="p">[</span><span class="s2">&quot;checkout_year&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2026</span><span class="p">]</span>
+<span class="n">annual_totals</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">complete_years</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;checkout_year&quot;</span><span class="p">,</span> <span class="s2">&quot;usageclass&quot;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s2">&quot;total_checkouts&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># %%</span>
+<span class="n">annual_totals</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;outputs/annual_checkout_totals.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">%%</span></code> markers preserve a cell-like workflow, but the agent is editing ordinary Python text. Outputs can be saved separately as CSV files, images, markdown summaries, or dashboard-ready extracts.</p>
+</section>
+<section id="how-extra-tool-work-becomes-extra-context">
+<h2>How Extra Tool Work Becomes Extra Context<a class="headerlink" href="#how-extra-tool-work-becomes-extra-context" title="Link to this heading">#</a></h2>
+<p>The file-format difference matters because tool results can become later input. If an agent validates notebook JSON, extracts cell output, receives an execution error, or inspects a generated artifact, that result can become part of the working context for the next model call.</p>
+<p>More tool work can therefore mean:</p>
+<ul class="simple">
+<li><p>more model calls</p></li>
+<li><p>more command output and tool results</p></li>
+<li><p>more fresh input</p></li>
+<li><p>more cumulative context</p></li>
+<li><p>more chances to inspect the same information repeatedly</p></li>
+</ul>
+<p>For context management, prompt length is only one part of the problem. The working artifact also determines how much tool work the agent must perform.</p>
+</section>
+<section id="why-token-type-matters">
+<h2>Why Token Type Matters<a class="headerlink" href="#why-token-type-matters" title="Link to this heading">#</a></h2>
+<p>Token usage is not a single kind of activity. Some tokens are material the model reads, some are material the model writes, and some input tokens are repeated context that the system can cache. These distinctions matter because agent workflows often differ in how much new file content, command output, tool result text, and conversation history they add over time.</p>
+<p>A <strong>token</strong> is a small piece of text or data the model reads or writes. When reviewing agent usage, separate these categories:</p>
+<ul class="simple">
+<li><p><strong>Input tokens</strong>: what the model receives, including instructions, conversation history, file contents, command output, errors, and tool results.</p></li>
+<li><p><strong>Output tokens</strong>: what the model generates, including explanations, code, edits, and final responses.</p></li>
+<li><p><strong>Cached input</strong>: repeated context the system recognizes and can reuse, such as stable instructions or earlier conversation context.</p></li>
+<li><p><strong>Fresh input</strong>: new context added on a turn, such as changed files, fresh command output, new errors, or newly inspected results.</p></li>
+</ul>
+<p>Cached input is still context, but it is less expensive than fresh input. Fresh input is especially important for understanding workflow friction because it often reflects new material the agent had to inspect: a changed file, a notebook output, an error message, or a tool result.</p>
+</section>
+<section id="a-file-format-experiment">
+<h2>A File-Format Experiment<a class="headerlink" href="#a-file-format-experiment" title="Link to this heading">#</a></h2>
+<p>The mechanism above suggests that notebooks may create more tool work for coding agents. To test that idea, we ran a paired file-format experiment.</p>
+<p>In the experiment, agents performed similar Seattle Public Library checkout analyses. The analysis question was the same: compare physical and digital borrowing trends over time. The main difference was the working artifact:</p>
+<ul class="simple">
+<li><p>one workflow used an <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> notebook</p></li>
+<li><p>one workflow used a percent-cell <code class="docutils literal notranslate"><span class="pre">.py</span></code> file</p></li>
+</ul>
+<p>The controlled comparison is the easiest part to interpret. Two agents were given the same data, the same analysis question, and similar deliverable requirements. The intended difference was the durable working source:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Workflow</p></th>
+<th class="head text-right"><p>Total tokens</p></th>
+<th class="head text-right"><p>Fresh input</p></th>
+<th class="head text-right"><p>Model calls</p></th>
+<th class="head text-right"><p>Runtime</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Direct <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code></p></td>
+<td class="text-right"><p>1,395,748</p></td>
+<td class="text-right"><p>129,036</p></td>
+<td class="text-right"><p>24</p></td>
+<td class="text-right"><p>8m 30s</p></td>
+</tr>
+<tr class="row-odd"><td><p>Percent-cell <code class="docutils literal notranslate"><span class="pre">.py</span></code></p></td>
+<td class="text-right"><p>719,688</p></td>
+<td class="text-right"><p>51,000</p></td>
+<td class="text-right"><p>14</p></td>
+<td class="text-right"><p>3m 40s</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="images/session-2/session-2-slide-12.png"><img alt="Bar charts comparing total tokens and runtime for direct notebook and percent-cell Python workflows" src="images/session-2/session-2-slide-12.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">In the controlled comparison, the notebook workflow used more total tokens and took longer.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The exact multiplier is less important than the mechanism:</p>
+<blockquote>
+<div><p>The notebook workflow required more model calls and more tool work. That extra work accumulated more context.</p>
+</div></blockquote>
+<p>The tool-call categories showed the source of the difference. The direct notebook workflow included notebook-specific work such as structure validation and output extraction. The percent-cell workflow still required execution and output inspection, but it avoided much of the notebook-specific handling.</p>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="images/session-2/session-2-slide-13.png"><img alt="Token use by model call for notebook and percent-cell Python workflows" src="images/session-2/session-2-slide-13.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">The notebook workflow took more model calls. Each call is another chance for context, tool output, and file state to enter the next step.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>We also ran a less constrained agent-native comparison. That comparison was noisier, but it pointed in the same direction: the notebook path again used more total tokens, more model calls, and more runtime. That consistency is why the recommendation is practical even though the exact multiplier is not universal.</p>
+<div class="note admonition">
+<p class="admonition-title">More detail</p>
+<p>For the complete charts, tool-call categories, cache notes, and starting prompts, see the full <a class="reference external" href="https://analytics-accelerator.colab.duke.edu/file-format-evaluation/">file-format evaluation report</a>.</p>
+</div>
+</section>
+<section id="what-this-means-for-your-work">
+<h2>What This Means For Your Work<a class="headerlink" href="#what-this-means-for-your-work" title="Link to this heading">#</a></h2>
+<p>For the rest of this course, the destination is a dashboard or shareable analysis artifact. That changes the default working pattern.</p>
+<div class="key admonition">
+<p class="admonition-title">Working Recommendation</p>
+<p>For agent-heavy analysis, prefer a plain <code class="docutils literal notranslate"><span class="pre">.py</span></code> file or a percent-cell <code class="docutils literal notranslate"><span class="pre">.py</span></code> file as the working artifact. Use notebooks only when notebook-style teaching, presentation, or review is part of the task.</p>
+</div>
+<p>Use a <code class="docutils literal notranslate"><span class="pre">.py</span></code> or percent-cell <code class="docutils literal notranslate"><span class="pre">.py</span></code> file when:</p>
+<ul class="simple">
+<li><p>Codex will iterate through several edit-run-inspect cycles.</p></li>
+<li><p>You expect to create dashboard-ready data extracts.</p></li>
+<li><p>You want cleaner diffs and easier review.</p></li>
+<li><p>You want outputs saved as separate files.</p></li>
+<li><p>You do not need notebook-style explanation beside every cell.</p></li>
+</ul>
+<p>Use a notebook intentionally when:</p>
+<ul class="simple">
+<li><p>the notebook itself is the teaching or review artifact</p></li>
+<li><p>you need rich inline display while presenting</p></li>
+<li><p>collaborators expect to read the analysis as a notebook</p></li>
+<li><p>the value of notebook presentation outweighs the extra agent workflow cost</p></li>
+</ul>
+<p>The goal is to choose a working artifact that matches the job, so the agent spends its effort on analysis rather than artifact maintenance.</p>
+<div class="tip admonition">
+<p class="admonition-title">Practical Rule</p>
+<p>Use Python source while Codex is iterating on the analysis. Use a notebook or report when the analysis needs to be read as a narrative artifact.</p>
+</div>
+<div class="key admonition">
+<p class="admonition-title">Key points</p>
+<ul class="simple">
+<li><p>File format is part of context management.</p></li>
+<li><p>Notebooks can require extra structure validation and output inspection.</p></li>
+<li><p>Extra tool work can increase model calls, fresh input, runtime, and total tokens.</p></li>
+<li><p>For agent-heavy analysis in this course, prefer <code class="docutils literal notranslate"><span class="pre">.py</span></code> or percent-cell <code class="docutils literal notranslate"><span class="pre">.py</span></code> as the working artifact.</p></li>
+<li><p>Use notebooks when the notebook format is part of the task.</p></li>
+</ul>
+</div>
 </section>
 </section>
 
@@ -467,15 +643,20 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guiding-questions">Guiding Questions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-with-one-agent-turn">Start With One Agent Turn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-file-format-changes-tool-use">Why File Format Changes Tool Use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-extra-tool-work-becomes-extra-context">How Extra Tool Work Becomes Extra Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-token-type-matters">Why Token Type Matters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-file-format-experiment">A File-Format Experiment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-this-means-for-your-work">What This Means For Your Work</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/session-2-reusable-skills/skill-testing-and-iteration.md.txt">
+    <a href="../_sources/session-2-reusable-skills/context-management-part-2.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

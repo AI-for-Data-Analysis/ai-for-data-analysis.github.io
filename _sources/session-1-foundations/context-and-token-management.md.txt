@@ -123,40 +123,6 @@ for the session. Model names and available reasoning settings can change, so do
 not memorize a single model name as the lesson. The transferable skill is knowing
 what kind of work you are asking the model to do.
 
-## Ask for focused evidence
-
-Context also grows when Codex prints more than the task requires. Ask for the
-smallest useful evidence.
-
-For example, instead of asking Codex to print a whole file, ask for the column
-names, row count, data types, and first three rows. Instead of asking for every
-group count, ask for the top ten values and the number of distinct values.
-Instead of asking for a broad project scan, ask Codex to inspect only the
-notebook and data files needed for the current trend question.
-
-Focused output keeps the working context smaller and makes human review easier.
-
-## Activity: decide where context belongs
-
-At the end of an analysis step, choose three facts or decisions Codex learned
-during the session. For each one, decide whether it should stay only in the
-conversation, be added to the notebook, be added to `data/README.md`, or become a
-rule in `AGENTS.md`.
-
-Then ask Codex to update only the appropriate file:
-
-```text
-Please update the project notes so a fresh Codex session can continue from the
-verified context we just established.
-
-Put dataset facts in data/README.md, analysis decisions near the relevant
-notebook section, and standing workflow rules in AGENTS.md. Do not preserve
-temporary errors unless they explain a lasting decision.
-```
-
-Review the edits before keeping them. Make sure Codex saved verified facts, not
-guesses.
-
 ## Useful Codex commands
 
 In the Codex CLI, type `/` to see available slash commands. The exact list may

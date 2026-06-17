@@ -523,35 +523,6 @@ for the session. Model names and available reasoning settings can change, so do
 not memorize a single model name as the lesson. The transferable skill is knowing
 what kind of work you are asking the model to do.</p>
 </section>
-<section id="ask-for-focused-evidence">
-<h2>Ask for focused evidence<a class="headerlink" href="#ask-for-focused-evidence" title="Link to this heading">#</a></h2>
-<p>Context also grows when Codex prints more than the task requires. Ask for the
-smallest useful evidence.</p>
-<p>For example, instead of asking Codex to print a whole file, ask for the column
-names, row count, data types, and first three rows. Instead of asking for every
-group count, ask for the top ten values and the number of distinct values.
-Instead of asking for a broad project scan, ask Codex to inspect only the
-notebook and data files needed for the current trend question.</p>
-<p>Focused output keeps the working context smaller and makes human review easier.</p>
-</section>
-<section id="activity-decide-where-context-belongs">
-<h2>Activity: decide where context belongs<a class="headerlink" href="#activity-decide-where-context-belongs" title="Link to this heading">#</a></h2>
-<p>At the end of an analysis step, choose three facts or decisions Codex learned
-during the session. For each one, decide whether it should stay only in the
-conversation, be added to the notebook, be added to <code class="docutils literal notranslate"><span class="pre">data/README.md</span></code>, or become a
-rule in <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>.</p>
-<p>Then ask Codex to update only the appropriate file:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Please update the project notes so a fresh Codex session can continue from the
-verified context we just established.
-
-Put dataset facts in data/README.md, analysis decisions near the relevant
-notebook section, and standing workflow rules in AGENTS.md. Do not preserve
-temporary errors unless they explain a lasting decision.
-</pre></div>
-</div>
-<p>Review the edits before keeping them. Make sure Codex saved verified facts, not
-guesses.</p>
-</section>
 <section id="useful-codex-commands">
 <h2>Useful Codex commands<a class="headerlink" href="#useful-codex-commands" title="Link to this heading">#</a></h2>
 <p>In the Codex CLI, type <code class="docutils literal notranslate"><span class="pre">/</span></code> to see available slash commands. The exact list may
@@ -651,8 +622,6 @@ planning, debugging, and review; use less for narrow mechanical edits.</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-matters">Why this matters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manage-context-while-you-work">Manage context while you work</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-model-and-reasoning-level">Choose model and reasoning level</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ask-for-focused-evidence">Ask for focused evidence</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activity-decide-where-context-belongs">Activity: decide where context belongs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-codex-commands">Useful Codex commands</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-run-a-usage-report">Optional: run a usage report</a></li>
 </ul>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Skills Overview &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+    <title>Agent Skills &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
   
   
   
@@ -125,7 +125,7 @@
                 gtag('js', new Date());
                 gtag('config', 'G-PCSTBS7XKG');
             </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'session-2-reusable-skills/skills-overview';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'session-2-reusable-skills/agent-skills';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script defer="defer" src="../_static/ga_consent.js"></script>
     <link rel="icon" href="../_static/favicon.png"/>
@@ -401,7 +401,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Skills Overview</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Agent Skills</span></li>
   </ul>
 </nav>
 </div>
@@ -418,23 +418,244 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="skills-overview">
-<h1>Skills Overview<a class="headerlink" href="#skills-overview" title="Link to this heading">#</a></h1>
-<section id="guiding-questions">
-<h2>Guiding Questions<a class="headerlink" href="#guiding-questions" title="Link to this heading">#</a></h2>
+  <section id="agent-skills">
+<h1>Agent Skills<a class="headerlink" href="#agent-skills" title="Link to this heading">#</a></h1>
+<p>In Session 1, you used prompts and <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> to shape how Codex worked in one project. In the previous lesson, you saw that the working file format also shapes the agent’s behavior.</p>
+<p>Skills solve a related problem: repeated instructions should not live only in the conversation.</p>
+<p>When the same guidance appears in many prompts, that guidance may belong in a skill.</p>
+<section id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>What is skills overview?</p></li>
-<li><p>How does skills overview fit into Session 2: Reusable Skills for Analytics Work?</p></li>
-<li><p>What tradeoffs should a learner know?</p></li>
+<li><p>distinguish prompts, <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>, and skills</p></li>
+<li><p>describe the parts of a skill, including <code class="docutils literal notranslate"><span class="pre">SKILL.md</span></code> and optional supporting files</p></li>
+<li><p>explain progressive disclosure for skill loading</p></li>
+<li><p>identify where skills can be stored or installed from</p></li>
+<li><p>evaluate whether a skill changes agent behavior in the intended way</p></li>
 </ul>
 </section>
-<section id="learning-objectives">
-<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<section id="the-problem-skills-solve">
+<h2>The Problem Skills Solve<a class="headerlink" href="#the-problem-skills-solve" title="Link to this heading">#</a></h2>
+<p>Suppose a project repeatedly needs figures for analysis presentations:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Use Duke colors. Make the figure readable on a PowerPoint slide. Use large text
+and markers. Do not put a title on the figure. Save the figure as a high-quality
+PNG.
+</pre></div>
+</div>
+<p>The instruction can work in one prompt, but repeating it manually creates several problems:</p>
 <ul class="simple">
-<li><p>Understand the core concept.</p></li>
-<li><p>Apply the concept in a real workflow.</p></li>
-<li><p>Identify common mistakes and how to avoid them.</p></li>
+<li><p>You may forget part of the instruction.</p></li>
+<li><p>Codex may follow it differently across sessions.</p></li>
+<li><p>The instruction takes up prompt space.</p></li>
+<li><p>A collaborator may not know the convention.</p></li>
+<li><p>The project has no reusable record of what “a good figure” means.</p></li>
 </ul>
+<p>A skill records that repeated workflow in a reusable instruction file.</p>
+</section>
+<section id="prompt-agents-md-or-skill">
+<h2>Prompt, AGENTS.md, or Skill?<a class="headerlink" href="#prompt-agents-md-or-skill" title="Link to this heading">#</a></h2>
+<p>These three instruction types do different jobs:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Instruction type</p></th>
+<th class="head"><p>Best use</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Prompt</p></td>
+<td><p>The immediate task: “Analyze this file” or “revise this chart.”</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code></p></td>
+<td><p>Standing rules for one project: audience, file locations, raw-data rules, review expectations.</p></td>
+</tr>
+<tr class="row-even"><td><p>Skill</p></td>
+<td><p>Reusable workflow guidance for a type of task across projects.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In Session 1, <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> told Codex how to work in the checkout-analysis project. A skill is more portable. It can define a reusable method for Duke-style figures, dashboard accessibility review, pedagogical explanations, or recurring data-validation checks.</p>
+</section>
+<section id="what-is-a-skill">
+<h2>What Is a Skill?<a class="headerlink" href="#what-is-a-skill" title="Link to this heading">#</a></h2>
+<p>An agent skill is a reusable instruction set that extends an AI agent with specialized knowledge or a procedural workflow. In practice, a skill is usually a folder or repository containing:</p>
+<ul class="simple">
+<li><p>a <code class="docutils literal notranslate"><span class="pre">SKILL.md</span></code> file</p></li>
+<li><p>optional supporting files, such as templates, examples, scripts, or reference material</p></li>
+</ul>
+<p>The core of a skill is <code class="docutils literal notranslate"><span class="pre">SKILL.md</span></code>. Supporting files are optional. For example, Jessica’s <a class="reference external" href="https://gitlab.oit.duke.edu/jn242/skills/-/blob/main/skills/pedagogy/SKILL.md?ref_type=heads">pedagogy skill</a> starts with metadata that lets an agent discover when the skill applies, followed by instructions for how to teach:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>---
+name: pedagogy
+<span class="gu">description: &quot;Use this skill when creating educational content that needs to genuinely teach, not just inform.&quot;</span>
+<span class="gu">---</span>
+
+<span class="gh"># Pedagogy Skill</span>
+
+Principles for creating educational content that genuinely teaches.
+
+<span class="gu">## Core Philosophy</span>
+
+The goal is <span class="gs">**understanding**</span>, not information transfer.
+</pre></div>
+</div>
+<p>The metadata is part of the skill interface. The name and description support discovery; the body of the file gives the agent the workflow to follow after the skill is activated.</p>
+<p>A minimal skill might look like this:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>---
+name: duke-analysis-figures
+<span class="gu">description: Use this skill when creating figures for Duke analytics presentations.</span>
+<span class="gu">---</span>
+
+<span class="gh"># Duke Analysis Figures</span>
+
+Create figures that are readable in presentation settings.
+
+<span class="gu">## Rules</span>
+
+<span class="k">-</span><span class="w"> </span>Use Duke Navy <span class="sb">`#012169`</span> and Duke Royal Blue <span class="sb">`#00539B`</span> as primary colors.
+<span class="k">-</span><span class="w"> </span>Use Copper <span class="sb">`#C84E00`</span> or Persimmon <span class="sb">`#E89923`</span> only for emphasis.
+<span class="k">-</span><span class="w"> </span>Use large axis labels and tick labels.
+<span class="k">-</span><span class="w"> </span>Do not add chart titles unless the user asks.
+<span class="k">-</span><span class="w"> </span>Save figures as high-resolution PNG files.
+<span class="k">-</span><span class="w"> </span>Prefer clear labels and direct annotations over dense legends.
+</pre></div>
+</div>
+<p>That is enough to define a reusable standard. More advanced skills can include scripts, templates, image assets, or examples.</p>
+</section>
+<section id="how-skills-are-loaded">
+<h2>How Skills Are Loaded<a class="headerlink" href="#how-skills-are-loaded" title="Link to this heading">#</a></h2>
+<p>Agents do not need to load every full skill into context all the time. Skills use a pattern called <strong>progressive disclosure</strong>. The <a class="reference external" href="https://agentskills.io/home">Agent Skills documentation</a> describes this in three stages:</p>
+<ul class="simple">
+<li><p><strong>Discovery</strong>: the agent sees the name and description, enough to know when the skill might be relevant.</p></li>
+<li><p><strong>Activation</strong>: when a task matches the skill, the agent reads the full <code class="docutils literal notranslate"><span class="pre">SKILL.md</span></code>.</p></li>
+<li><p><strong>Execution</strong>: the agent follows the instructions and may load supporting files or run bundled scripts if the skill calls for them.</p></li>
+</ul>
+<p>The boundary matters. A skill works because the agent can discover it, read it when relevant, and apply the written instructions to the current task.</p>
+<p>You can also explicitly attach a skill in a prompt:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$pedagogy Draft this lesson so students understand why the workflow works, not
+just what commands to run.
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">$skill_name</span></code> pattern tells the agent which reusable instruction set should shape the response.</p>
+</section>
+<section id="where-skills-live">
+<h2>Where Skills Live<a class="headerlink" href="#where-skills-live" title="Link to this heading">#</a></h2>
+<p>Codex and other tools look for skills in well-known locations. Common locations include:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Scope</p></th>
+<th class="head"><p>Example locations</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global skills</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">~/.codex/skills</span></code>, <code class="docutils literal notranslate"><span class="pre">~/.agents/skills</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Project skills</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.codex/skills</span></code>, <code class="docutils literal notranslate"><span class="pre">.agents/skills</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Global skills are available across projects. Project skills travel with a repository and are useful when everyone working in the project should share the same workflow guidance.</p>
+<p>Use a project skill when the instruction is part of how this project works. Use a global skill when the instruction is part of how you personally work across many projects.</p>
+</section>
+<section id="skill-effects">
+<h2>Skill Effects<a class="headerlink" href="#skill-effects" title="Link to this heading">#</a></h2>
+<p>The same prompt can produce different outputs when different skills are active. In the deck example below, an undergraduate project used skills to steer an AI art system connected to a physical drawing device. The prompt stayed the same, but the skill changed the method and style.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="images/session-2/session-2-slide-17.png"><img alt="Three line-art outputs produced from the same prompt using different skills: line art, algorithmic art, and Bauhaus art" src="images/session-2/session-2-slide-17.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Skills can make the agent apply a specified method to the same request.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>For analytics, the difference may be less visually dramatic but operationally useful. A skill can direct Codex to:</p>
+<ul class="simple">
+<li><p>always profile data before modeling</p></li>
+<li><p>use a specific chart style</p></li>
+<li><p>write beginner-readable pandas code</p></li>
+<li><p>validate dashboard-ready output files</p></li>
+<li><p>check accessibility issues in a chart</p></li>
+<li><p>produce a stakeholder-ready summary format</p></li>
+</ul>
+<p>The key test is whether the skill changes observable behavior.</p>
+</section>
+<section id="skills-repositories">
+<h2>Skills Repositories<a class="headerlink" href="#skills-repositories" title="Link to this heading">#</a></h2>
+<p>Skills can be shared through Git repositories. These collections provide examples
+to inspect, install, or adapt:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gitlab.oit.duke.edu/ai-tech/skills/">Duke AI skills collection</a></p></li>
+<li><p><a class="reference external" href="https://github.com/openai/skills">OpenAI skills collection</a></p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/skills">Anthropic skills collection</a></p></li>
+</ul>
+<p>Review a skill before using it. A skill can include instructions, scripts,
+templates, and other supporting files, so it should be treated as project code
+rather than only as prompt text.</p>
+</section>
+<section id="installing-or-creating-skills">
+<h2>Installing or Creating Skills<a class="headerlink" href="#installing-or-creating-skills" title="Link to this heading">#</a></h2>
+<p>Some skills can be installed from a Git repository with <code class="docutils literal notranslate"><span class="pre">npx</span> <span class="pre">skills</span></code>:</p>
+<p>```{admonition} If <code class="docutils literal notranslate"><span class="pre">npx</span></code> is missing
+:class: tip</p>
+<p><code class="docutils literal notranslate"><span class="pre">npx</span></code> is included with modern versions of <code class="docutils literal notranslate"><span class="pre">npm</span></code>. Check that Node.js, <code class="docutils literal notranslate"><span class="pre">npm</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">npx</span></code> are available:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>--version
+npm<span class="w"> </span>--version
+npx<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>If one of these commands is missing, install Node.js and <code class="docutils literal notranslate"><span class="pre">npm</span></code> using the setup
+instructions for your operating system, then run the checks again.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+```bash
+npx skills install SKILL_REPO
+</pre></div>
+</div>
+<p>If a repository contains multiple skills, specify the one you want:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>skills<span class="w"> </span>install<span class="w"> </span>SKILL_REPO<span class="w"> </span>--skill<span class="w"> </span>SKILL_NAME
+</pre></div>
+</div>
+<p>You can also ask Codex to help create a skill with <code class="docutils literal notranslate"><span class="pre">$skill-creator</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$skill-creator I want to create a skill for producing figures when I&#39;m doing
+data analysis. I want to use the Duke color scheme for my figures, and I want
+the output to be high quality and appropriate for PowerPoint. The text and
+markers should be large and readable, and figures should not have titles.
+</pre></div>
+</div>
+<p>That prompt describes the reusable workflow standard that the skill should capture.</p>
+</section>
+<section id="test-a-skill-like-an-analyst">
+<h2>Test a Skill Like an Analyst<a class="headerlink" href="#test-a-skill-like-an-analyst" title="Link to this heading">#</a></h2>
+<p>Evaluate a skill before relying on it.</p>
+<p>Use a before-and-after comparison:</p>
+<ol class="arabic simple">
+<li><p>Ask Codex to perform the task without the skill.</p></li>
+<li><p>Save or inspect the output.</p></li>
+<li><p>Ask Codex to perform a similar task with the skill.</p></li>
+<li><p>Compare the outputs against the behavior the skill was supposed to produce.</p></li>
+<li><p>Revise the skill if the difference is not clear enough.</p></li>
+</ol>
+<p>For the Duke figure example, you might check:</p>
+<ul class="simple">
+<li><p>Are the colors appropriate?</p></li>
+<li><p>Is the text readable on a slide?</p></li>
+<li><p>Are markers and lines large enough?</p></li>
+<li><p>Did the figure avoid unnecessary titles?</p></li>
+<li><p>Was the output saved at useful resolution?</p></li>
+<li><p>Would the figure work in a dashboard presentation?</p></li>
+</ul>
+<p>This evaluation checks whether the written skill produces the intended behavior.</p>
+<div class="key admonition">
+<p class="admonition-title">Key points</p>
+<ul class="simple">
+<li><p>Prompts guide the immediate task.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> guides one project.</p></li>
+<li><p>Skills guide reusable workflows across tasks or projects.</p></li>
+<li><p>A skill is usually <code class="docutils literal notranslate"><span class="pre">SKILL.md</span></code> plus optional supporting files.</p></li>
+<li><p>Skills are loaded through discovery, activation, and execution.</p></li>
+<li><p>Test a skill by comparing behavior before and after using it.</p></li>
+</ul>
+</div>
 </section>
 </section>
 
@@ -467,15 +688,23 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guiding-questions">Guiding Questions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-skills-solve">The Problem Skills Solve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-agents-md-or-skill">Prompt, AGENTS.md, or Skill?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-skill">What Is a Skill?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-skills-are-loaded">How Skills Are Loaded</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-skills-live">Where Skills Live</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-effects">Skill Effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-repositories">Skills Repositories</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-or-creating-skills">Installing or Creating Skills</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-a-skill-like-an-analyst">Test a Skill Like an Analyst</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/session-2-reusable-skills/skills-overview.md.txt">
+    <a href="../_sources/session-2-reusable-skills/agent-skills.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
