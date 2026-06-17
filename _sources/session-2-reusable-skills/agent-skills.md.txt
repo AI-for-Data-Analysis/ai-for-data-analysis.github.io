@@ -6,14 +6,6 @@ Skills solve a related problem: repeated instructions should not live only in th
 
 When the same guidance appears in many prompts, that guidance may belong in a skill.
 
-## Objectives
-
-- distinguish prompts, `AGENTS.md`, and skills
-- describe the parts of a skill, including `SKILL.md` and optional supporting files
-- explain progressive disclosure for skill loading
-- identify where skills can be stored or installed from
-- evaluate whether a skill changes agent behavior in the intended way
-
 ## The Problem Skills Solve
 
 Suppose a project repeatedly needs figures for analysis presentations:
@@ -24,13 +16,7 @@ and markers. Do not put a title on the figure. Save the figure as a high-quality
 PNG.
 ```
 
-The instruction can work in one prompt, but repeating it manually creates several problems:
-
-- You may forget part of the instruction.
-- Codex may follow it differently across sessions.
-- The instruction takes up prompt space.
-- A collaborator may not know the convention.
-- The project has no reusable record of what "a good figure" means.
+The instruction can work in one prompt, but repeating it manually creates several problems. For example, you may forget part of the instruction, or it may be inconvenient if the task is complex.
 
 A skill records that repeated workflow in a reusable instruction file.
 
@@ -53,7 +39,7 @@ An agent skill is a reusable instruction set that extends an AI agent with speci
 - a `SKILL.md` file
 - optional supporting files, such as templates, examples, scripts, or reference material
 
-The core of a skill is `SKILL.md`. Supporting files are optional. For example, Jessica's [pedagogy skill](https://gitlab.oit.duke.edu/jn242/skills/-/blob/main/skills/pedagogy/SKILL.md?ref_type=heads) starts with metadata that lets an agent discover when the skill applies, followed by instructions for how to teach:
+The core of a skill is `SKILL.md`. Supporting files are optional. For example, Jessica's [pedagogy skill](https://gitlab.oit.duke.edu/jn242/skills/-/blob/main/skills/pedagogy/SKILL.md?ref_type=heads) starts with metadata that lets an agent discover when the skill applies, followed by instructions for how to teach. For example, a skill on pedagogy might have the following instructions:
 
 ```markdown
 ---
@@ -61,40 +47,7 @@ name: pedagogy
 description: "Use this skill when creating educational content that needs to genuinely teach, not just inform."
 ---
 
-# Pedagogy Skill
-
-Principles for creating educational content that genuinely teaches.
-
-## Core Philosophy
-
-The goal is **understanding**, not information transfer.
-```
-
-The metadata is part of the skill interface. The name and description support discovery; the body of the file gives the agent the workflow to follow after the skill is activated.
-
-A minimal skill might look like this:
-
-```markdown
----
-name: duke-analysis-figures
-description: Use this skill when creating figures for Duke analytics presentations.
----
-
-# Duke Analysis Figures
-
-Create figures that are readable in presentation settings.
-
-## Rules
-
-- Use Duke Navy `#012169` and Duke Royal Blue `#00539B` as primary colors.
-- Use Copper `#C84E00` or Persimmon `#E89923` only for emphasis.
-- Use large axis labels and tick labels.
-- Do not add chart titles unless the user asks.
-- Save figures as high-resolution PNG files.
-- Prefer clear labels and direct annotations over dense legends.
-```
-
-That is enough to define a reusable standard. More advanced skills can include scripts, templates, image assets, or examples.
+These are loaded into agent context at start time, and the agent may read the rest of the file when it encounters a relevant task.
 
 ## How Skills Are Loaded
 
@@ -104,7 +57,7 @@ Agents do not need to load every full skill into context all the time. Skills us
 - **Activation**: when a task matches the skill, the agent reads the full `SKILL.md`.
 - **Execution**: the agent follows the instructions and may load supporting files or run bundled scripts if the skill calls for them.
 
-The boundary matters. A skill works because the agent can discover it, read it when relevant, and apply the written instructions to the current task.
+A skill works because the agent can discover it, read it when relevant, and apply the written instructions to the current task.
 
 You can also explicitly attach a skill in a prompt:
 
@@ -130,7 +83,7 @@ Use a project skill when the instruction is part of how this project works. Use 
 
 ## Skill Effects
 
-The same prompt can produce different outputs when different skills are active. In the deck example below, an undergraduate project used skills to steer an AI art system connected to a physical drawing device. The prompt stayed the same, but the skill changed the method and style.
+The same prompt can produce different outputs when different skills are active. In the deck example below, a project used skills to steer an AI art system connected to a physical drawing device. The prompt stayed the same, but the skill changed the method and style.
 
 ```{figure} ../images/session-2/session-2-slide-17.png
 :alt: Three line-art outputs produced from the same prompt using different skills: line art, algorithmic art, and Bauhaus art
@@ -143,12 +96,9 @@ For analytics, the difference may be less visually dramatic but operationally us
 
 - always profile data before modeling
 - use a specific chart style
-- write beginner-readable pandas code
 - validate dashboard-ready output files
 - check accessibility issues in a chart
 - produce a stakeholder-ready summary format
-
-The key test is whether the skill changes observable behavior.
 
 ## Skills Repositories
 
