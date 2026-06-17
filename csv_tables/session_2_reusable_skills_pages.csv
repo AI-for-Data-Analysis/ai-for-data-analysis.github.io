@@ -1,0 +1,3 @@
+Page,Questions,Objectives
+":doc:`Context Management Part 2 </session-2-reusable-skills/context-management-part-2>`","* How does the working file format change what Codex has to do?","* Explain why notebooks can create extra tool use and choose a better working artifact for agent-assisted analysis."
+":doc:`Agent Skills </session-2-reusable-skills/agent-skills>`","* How can reusable instructions make agent workflows more consistent?","* Distinguish prompts, project rules, and skills, then create or evaluate a small analytics skill."
