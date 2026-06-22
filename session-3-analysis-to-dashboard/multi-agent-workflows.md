@@ -52,12 +52,12 @@ The parent agent should begin with the project rules and the assignment frame. I
 
 This lesson also changes the working artifact. Earlier work used a notebook. For the dashboard workflow, the analysis should move into percent-cell Python files so the scripts can be rerun and can write standalone, machine-readable CSV outputs.
 
-In the Codex terminal, use `@` file references to point Codex at the files it should read:
+The following box gives a prompt that you should give to a Codex session. You should start Codex in your `student_setup` folder, and can paste it in (`cd analytics_accelerator/student_setup` then start codex)
 
 ```text
 We are preparing data for a Seattle Public Library checkout dashboard.
 
-Read @AGENTS.md and @seattle-public-library/README.md.
+Read @seattle-public-library/README.md.
 
 For this lesson, move the analysis out of notebooks and into percent-cell
 Python scripts that write dashboard-ready CSV files.
@@ -69,7 +69,9 @@ Do not edit files yet. First, summarize the project rules and the data context:
 - what caveats the worker prompts should preserve
 ```
 
-The `@` references make the prompt more concrete. They tell Codex which project files should anchor the first response, instead of asking it to rediscover context from the whole repository.
+Notice somethings about this prompt:
+* We tell Codex we want to use `.py` files instead of notebooks.
+* We use the `@` symbol to point to a particular file. This is a special command in Codex you can use to point to an existing project file.
 
 The parent should extract rules like these:
 
@@ -78,29 +80,18 @@ The parent should extract rules like these:
 - each analysis script should write machine-readable CSV files
 - each dashboard data file needs provenance
 
-It should also identify the data context needed for worker assignments:
-
-- what one row represents in each source file
-- which source file supports each dashboard analysis
-- which outputs use complete data and which use sampled data
-- what caveats the dashboard should preserve
-
-```{admonition} When an explorer helps
-:class: note
-
-This example does not need an explorer subagent because the data context is already documented. A read-only explorer can help when the repository has several possible data sources, the row grain is unclear, or the dashboard questions still need to be matched to available fields.
-```
-
 ## Launch Worker Subagents
 
-After the parent summarizes the data context, ask it to launch worker subagents for the separate analyses. You can describe the goal in plain text. The parent should use the documented data context to turn that goal into specific worker assignments.
+After the parent summarizes the data context, ask it to launch worker subagents for the separate analyses. 
+You can describe the goal in plain text. 
+The parent should use the documented data context to turn that goal into specific worker assignments.
 
 The workers need to produce data that the dashboard can reuse. That means the analysis should be separate from the visualization: percent-cell Python scripts define the calculations and write standalone CSV files with predictable columns, then the dashboard reads those CSV files.
 
 ```{admonition} Why a machine-readable file?
 :class: key
 
-A dashboard should read data from a file, not from a chat summary or a chart-specific calculation hidden in the visualization code. A standalone CSV gives the project a reusable handoff: the analysis script creates the data, the CSV stores the result in rows and columns, and the dashboard renders that reviewed result. The same file can also be inspected, tested, reused in another view, or shared with someone who does not need the dashboard code.
+A dashboard should read data from a file, not from a chat summary or a chart-specific calculation hidden in the visualization code. A standalone CSV gives the project a reusable handoff: the analysis script creates the data, the CSV stores the result in rows and columns, and the dashboard renders that reviewed result. The same file can also be inspected, tested, reused in another view, or shared with someone who does not need the dashboard code. 
 ```
 
 ```text
@@ -108,7 +99,9 @@ Using the data context you summarized, launch worker subagents using gpt-5.4-min
 
 Each agent should output data in a machine-readable format.
 
-Create separate workers to (1) calculate annual digital vs. physical checkout share, (2) identify the most checked out sampled titles by year, preserving all title metadata with total checkouts, and (3) calculate sampled material-type shares by year separately for digital and physical checkouts. Each worker should write percent-cell Python code and write the CSV files from that code.
+Create separate workers to (1) calculate annual digital vs. physical checkout share, (2) identify the most checked out sampled titles by year, preserving all title metadata with total checkouts, and (3) calculate sampled material-type shares by year separately for digital and physical checkouts. Each worker should write percent-cell Python code and write the CSV files from that code. Each analysis that exists for both physical and digital should have separate files for physical and digital. There should be five output files - one for physical vs digital share by year, and two each for analysis (1) and (2).
+
+After the agents are done, map the provenance of each file to scripts by documenting in a markdown file in the dashboard data directory including how to regenerate the data. 
 ```
 
 This prompt leaves the detailed decomposition to the parent. The parent should use the data documentation to decide which source files, grouping keys, output paths, caveats, and checks belong in each worker prompt. A worker assignment is ready when the parent can state the input data, the calculation, the output file, the expected columns, the provenance requirement, and the verification check.
@@ -188,7 +181,6 @@ seattle-library-dashboard/
     most_popular_physical_titles_by_year.csv
     digital_material_share_by_year.csv
     physical_material_share_by_year.csv
-    PROVENANCE.md
 ```
 
 The boundary is:
