@@ -1,0 +1,6 @@
+Page,Questions,Objectives
+":doc:`Multi-Agent Workflows </session-3-analysis-to-dashboard/multi-agent-workflows>`","* What is a multi-agent or subagent workflow?
+* When should you use subagents?
+* How do you use subagents without losing control of the project?","* Distinguish parent, worker, and checker responsibilities.
+* Decide when a task is ready to delegate.
+* Write bounded subagent task contracts and review the results."
