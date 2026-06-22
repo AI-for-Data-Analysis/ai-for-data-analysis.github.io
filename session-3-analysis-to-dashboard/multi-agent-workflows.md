@@ -6,11 +6,11 @@ In this lesson, you will use Codex subagents to divide a dashboard data-preparat
 
 A **multi-agent workflow** uses one main agent to coordinate the work and one or more additional agents to handle focused assignments. The main Codex session is the **parent agent**. A **subagent** is a separate agent run that receives a specific task from the parent, works in its own context, and returns findings, file changes, command output, or a summary.
 
-```{figure} ../images/session-3/subagent-overview.png
-:alt: Overview figure showing a parent agent coordinating focused subagents, then reviewing the result
+```{figure} ../images/session-3/single-vs-multi-agent.png
+:alt: Diagram comparing a single agent completing tasks sequentially with a multi-agent workflow where a supervisor assigns tasks in parallel
 :width: 100%
 
-The parent agent keeps the overall task organized. Each subagent works on one bounded assignment in a separate context, then returns a result that the parent reviews before integrating.
+A single agent works through the tasks in sequence. In a multi-agent workflow, the parent agent acts like the supervisor: it divides the work into bounded assignments, then reviews the results before integrating them.
 ```
 
 Subagents are useful when a project can be divided into focused tasks that do not all require the same context at the same time. In analytics, those tasks might be separate analysis questions, separate validation checks, or separate parts of a dashboard build. In this lesson's dashboard example, one subagent can work on annual digital vs. physical share, another can work on sampled title popularity, and another can work on material-type shares. Each worker owns an analysis task: the percent-cell Python script, the CSV files that script writes, and any notes needed to interpret those files.
