@@ -42,6 +42,18 @@ Choose working file formats that reduce unnecessary agent tool use, then package
   :file: csv_tables/session_2_reusable_skills_pages.csv
   :header-rows: 1
 
+Session 3: From Analysis to Dashboard
+######################################
+
+Section page: `Open Session 3 <session-3-analysis-to-dashboard/index.html>`_
+
+Use multi-agent workflows to prepare reproducible analysis outputs, preserve
+provenance, and turn CSV files into a stable contract for dashboard delivery.
+
+.. csv-table::
+  :file: csv_tables/session_3_analysis_to_dashboard_pages.csv
+  :header-rows: 1
+
 
 .. toctree::
    :maxdepth: 2
@@ -52,3 +64,4 @@ Choose working file formats that reduce unnecessary agent tool use, then package
    setup
    session-1-foundations/index
    session-2-reusable-skills/index
+   session-3-analysis-to-dashboard/index

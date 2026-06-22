@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Multi Agent Workflows &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+    <title>Multi-Agent Workflows &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
   
   
   
@@ -131,6 +131,7 @@
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Session 3: From Analysis to Dashboard" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -347,7 +348,7 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">AI Accelerator: Analytics and Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../session-1-foundations/index.html">Session 1: Foundations for AI-Assisted Analytics Work</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -365,6 +366,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../session-2-reusable-skills/index.html">Session 2: Context Management and Agent Skills</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../session-2-reusable-skills/context-management-part-2.html">Context Management Part 2: Choose a Working File Format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../session-2-reusable-skills/agent-skills.html">Agent Skills</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Session 3: From Analysis to Dashboard</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Session 3: From Analysis to Dashboard</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Multi-Agent Workflows</a></li>
 </ul>
 </details></li>
 </ul>
@@ -407,7 +413,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Multi Agent Workflows</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Session 3: From Analysis to Dashboard</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Multi-Agent Workflows</span></li>
   </ul>
 </nav>
 </div>
@@ -425,22 +434,192 @@
                 <article class="bd-article">
                   
   <section id="multi-agent-workflows">
-<h1>Multi Agent Workflows<a class="headerlink" href="#multi-agent-workflows" title="Link to this heading">#</a></h1>
-<section id="guiding-questions">
-<h2>Guiding Questions<a class="headerlink" href="#guiding-questions" title="Link to this heading">#</a></h2>
+<h1>Multi-Agent Workflows<a class="headerlink" href="#multi-agent-workflows" title="Link to this heading">#</a></h1>
+<p>In Session 2, you saw that Codex’s working file format changes the amount of tool work it has to do. You also saw that reusable instructions can make repeated workflows more consistent.</p>
+<p>In this lesson, you will use Codex subagents to divide a dashboard data-preparation project into separate analysis tasks. The example continues with the Seattle Public Library checkout data. The goal is to prepare the data files that a dashboard can read.</p>
+<p>A <strong>multi-agent workflow</strong> uses one main agent to coordinate the work and one or more additional agents to handle focused assignments. The main Codex session is the <strong>parent agent</strong>. A <strong>subagent</strong> is a separate agent run that receives a specific task from the parent, works in its own context, and returns findings, file changes, command output, or a summary.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/subagent-overview.png"><img alt="Overview figure showing a parent agent coordinating focused subagents, then reviewing the result" src="../_images/subagent-overview.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">The parent agent keeps the overall task organized. Each subagent works on one bounded assignment in a separate context, then returns a result that the parent reviews before integrating.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Subagents are useful when a project can be divided into focused tasks that do not all require the same context at the same time. In analytics, those tasks might be separate analysis questions, separate validation checks, or separate parts of a dashboard build. In this lesson’s dashboard example, one subagent can work on annual digital vs. physical share, another can work on sampled title popularity, and another can work on material-type shares. Each worker owns an analysis task: the percent-cell Python script, the CSV files that script writes, and any notes needed to interpret those files.</p>
+<section id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>What is multi agent workflows?</p></li>
-<li><p>How does multi agent workflows fit into Session 3: From Analysis to Dashboard?</p></li>
-<li><p>What tradeoffs should a learner know?</p></li>
+<li><p>explain what a parent agent and subagent are</p></li>
+<li><p>use worker subagents to implement separate analysis tasks</p></li>
+<li><p>explain why a smaller worker model can be appropriate for bounded work</p></li>
+<li><p>specify machine-readable outputs for dashboard data preparation</p></li>
+<li><p>review worker outputs before dashboard code depends on them</p></li>
 </ul>
 </section>
-<section id="learning-objectives">
-<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<section id="why-use-subagents-here">
+<h2>Why Use Subagents Here?<a class="headerlink" href="#why-use-subagents-here" title="Link to this heading">#</a></h2>
+<p>A single Codex session can complete an entire analysis project. That is often the right choice when the task is small or when every step depends closely on the previous step.</p>
+<p>The Seattle Library dashboard project has several analysis questions that can be developed separately:</p>
+<ol class="arabic simple">
+<li><p>How has digital vs. physical checkout share changed by year?</p></li>
+<li><p>What was the most checked out sampled title each year?</p></li>
+<li><p>What material types make up sampled digital and physical checkouts?</p></li>
+</ol>
+<p>Those questions use related data, but they do not require one agent to hold every implementation detail at the same time. A parent agent can coordinate the project, while subagents handle focused pieces.</p>
+<p>Codex supports subagents that are commonly used in focused roles:</p>
 <ul class="simple">
-<li><p>Understand the core concept.</p></li>
-<li><p>Apply the concept in a real workflow.</p></li>
-<li><p>Identify common mistakes and how to avoid them.</p></li>
+<li><p><strong>Worker subagents</strong> implement a bounded task. They need a clear write scope and a verification command.</p></li>
+<li><p><strong>Checker subagents</strong> review outputs against a defined standard. They should usually be read-only.</p></li>
 </ul>
+<div class="tip admonition">
+<p class="admonition-title">Practical rule</p>
+<p>Use worker subagents after the parent can describe the analysis task, source data, output file, and verification check.</p>
+</div>
+</section>
+<section id="start-with-the-parent-agent">
+<h2>Start With the Parent Agent<a class="headerlink" href="#start-with-the-parent-agent" title="Link to this heading">#</a></h2>
+<p>The parent agent should begin with the project rules and the assignment frame. In this workflow, the data source is already documented, so the parent should read the project rules and the Seattle Public Library data notes directly before defining the worker tasks.</p>
+<p>This lesson also changes the working artifact. Earlier work used a notebook. For the dashboard workflow, the analysis should move into percent-cell Python files so the scripts can be rerun and can write standalone, machine-readable CSV outputs.</p>
+<p>In the Codex terminal, use <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> file references to point Codex at the files it should read:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>We are preparing data for a Seattle Public Library checkout dashboard.
+
+Read @AGENTS.md and @seattle-public-library/README.md.
+
+For this lesson, move the analysis out of notebooks and into percent-cell
+Python scripts that write dashboard-ready CSV files.
+
+Do not edit files yet. First, summarize the project rules and the data context:
+- what one row represents in each checkout file
+- which source file supports each dashboard analysis
+- which analyses use complete data or sampled data
+- what caveats the worker prompts should preserve
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> references make the prompt more concrete. They tell Codex which project files should anchor the first response, instead of asking it to rediscover context from the whole repository.</p>
+<p>The parent should extract rules like these:</p>
+<ul class="simple">
+<li><p>raw data files must not be modified</p></li>
+<li><p>accepted analysis belongs in percent-cell Python files</p></li>
+<li><p>each analysis script should write machine-readable CSV files</p></li>
+<li><p>each dashboard data file needs provenance</p></li>
+</ul>
+<p>It should also identify the data context needed for worker assignments:</p>
+<ul class="simple">
+<li><p>what one row represents in each source file</p></li>
+<li><p>which source file supports each dashboard analysis</p></li>
+<li><p>which outputs use complete data and which use sampled data</p></li>
+<li><p>what caveats the dashboard should preserve</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">When an explorer helps</p>
+<p>This example does not need an explorer subagent because the data context is already documented. A read-only explorer can help when the repository has several possible data sources, the row grain is unclear, or the dashboard questions still need to be matched to available fields.</p>
+</div>
+</section>
+<section id="launch-worker-subagents">
+<h2>Launch Worker Subagents<a class="headerlink" href="#launch-worker-subagents" title="Link to this heading">#</a></h2>
+<p>After the parent summarizes the data context, ask it to launch worker subagents for the separate analyses. You can describe the goal in plain text. The parent should use the documented data context to turn that goal into specific worker assignments.</p>
+<p>The workers need to produce data that the dashboard can reuse. That means the analysis should be separate from the visualization: percent-cell Python scripts define the calculations and write standalone CSV files with predictable columns, then the dashboard reads those CSV files.</p>
+<div class="key admonition">
+<p class="admonition-title">Why a machine-readable file?</p>
+<p>A dashboard should read data from a file, not from a chat summary or a chart-specific calculation hidden in the visualization code. A standalone CSV gives the project a reusable handoff: the analysis script creates the data, the CSV stores the result in rows and columns, and the dashboard renders that reviewed result. The same file can also be inspected, tested, reused in another view, or shared with someone who does not need the dashboard code.</p>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Using the data context you summarized, launch worker subagents using gpt-5.4-mini.
+
+Each agent should output data in a machine-readable format.
+
+Create separate workers to (1) calculate annual digital vs. physical checkout share, (2) identify the most checked out sampled titles by year, preserving all title metadata with total checkouts, and (3) calculate sampled material-type shares by year separately for digital and physical checkouts. Each worker should write percent-cell Python code and write the CSV files from that code.
+</pre></div>
+</div>
+<p>This prompt leaves the detailed decomposition to the parent. The parent should use the data documentation to decide which source files, grouping keys, output paths, caveats, and checks belong in each worker prompt. A worker assignment is ready when the parent can state the input data, the calculation, the output file, the expected columns, the provenance requirement, and the verification check.</p>
+<p>The smaller model is appropriate here because the parent has already scoped the work. The <code class="docutils literal notranslate"><span class="pre">gpt-5.4-mini</span></code> workers are not discovering the project direction. They are executing bounded analysis tasks with source files, output expectations, and caveats supplied by the parent. Use a smaller worker model when the assignment has known inputs, known outputs, limited judgment calls, and a concrete verification command. Keep the parent or a stronger model responsible when the task still requires choosing the analysis strategy, resolving ambiguous data meaning, or making dashboard design tradeoffs.</p>
+</section>
+<section id="watch-the-worker-threads">
+<h2>Watch the Worker Threads<a class="headerlink" href="#watch-the-worker-threads" title="Link to this heading">#</a></h2>
+<p>While the workers are running, you can inspect what each subagent is doing. In Codex, type:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/agents
+</pre></div>
+</div>
+<p>Codex will show the active agent threads. Pick one worker thread and open it. Read through the thread the same way you would read the main Codex conversation: check which files the worker inspected, what commands it ran, what assumptions it made, and whether it is writing the kind of CSV file the dashboard needs.</p>
+<p>You do not need to manage every step inside the worker thread. The parent agent is still coordinating the workflow, and you still control what gets accepted into the project. Reading a worker thread gives you visibility into the analysis while it is happening, and it gives you a chance to notice a wrong source file, a missing caveat, or an output shape that will be hard for the dashboard to use. If you see one of those problems, ask the parent to revise the worker assignment or review the worker output before integrating it.</p>
+<div class="note admonition">
+<p class="admonition-title">What to watch for</p>
+<p>The parent should ask workers for two deliverables: the analysis script and the CSV files written by that script. A prose summary can explain the result, but the dashboard needs the standalone files.</p>
+</div>
+</section>
+<section id="review-the-worker-results">
+<h2>Review the Worker Results<a class="headerlink" href="#review-the-worker-results" title="Link to this heading">#</a></h2>
+<p>When the workers finish, the parent agent should review the outputs before using them in dashboard code.</p>
+<p>Ask:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Review the worker outputs before any dashboard code uses them.
+
+For each analysis:
+- list the script path
+- list the CSV paths written by that script
+- report row counts
+- confirm expected columns
+- summarize the provenance note
+- state whether the output uses complete data or sampled data
+- identify anything that needs revision before dashboard work begins
+</pre></div>
+</div>
+<p>The parent review should check both mechanics and meaning.</p>
+<p>For the annual share analysis:</p>
+<ul class="simple">
+<li><p>each complete year has digital and physical rows</p></li>
+<li><p>annual shares sum to 1.0 within each year</p></li>
+<li><p>checkout totals are numeric and nonnegative</p></li>
+<li><p>the output comes from complete monthly totals</p></li>
+</ul>
+<p>For sampled title and material-type analyses:</p>
+<ul class="simple">
+<li><p>the source file is a sample file</p></li>
+<li><p>labels use “sampled” where needed</p></li>
+<li><p>grouping keys match the dashboard question</p></li>
+<li><p>the title output preserves title metadata and total checkout counts</p></li>
+<li><p>material-type shares are calculated separately for digital and physical checkouts</p></li>
+<li><p>ties are handled consistently</p></li>
+<li><p>row counts are plausible</p></li>
+<li><p>provenance notes state the source, method, and caveat</p></li>
+</ul>
+</section>
+<section id="use-the-outputs-in-the-dashboard">
+<h2>Use the Outputs in the Dashboard<a class="headerlink" href="#use-the-outputs-in-the-dashboard" title="Link to this heading">#</a></h2>
+<p>After review, the dashboard can read the CSV files written by the analysis scripts:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>seattle-library-dashboard/
+  index.html
+  styles.css
+  app.js
+  README.md
+  data/
+    digital_physical_share_by_year.csv
+    most_popular_digital_titles_by_year.csv
+    most_popular_physical_titles_by_year.csv
+    digital_material_share_by_year.csv
+    physical_material_share_by_year.csv
+    PROVENANCE.md
+</pre></div>
+</div>
+<p>The boundary is:</p>
+<ul class="simple">
+<li><p>analysis scripts define each calculation</p></li>
+<li><p>the scripts write CSV files</p></li>
+<li><p>CSV files are the dashboard inputs</p></li>
+<li><p>provenance notes explain how to interpret the CSV files</p></li>
+<li><p>dashboard code renders the reviewed outputs</p></li>
+</ul>
+<p>If a chart looks wrong, debug along that boundary. Check the analysis script, then the CSV it wrote, then the provenance note, then the dashboard rendering code.</p>
+<div class="key admonition">
+<p class="admonition-title">Key points</p>
+<ul class="simple">
+<li><p>The parent agent is the main Codex session coordinating the project.</p></li>
+<li><p>A subagent is a separate agent run assigned to a bounded task.</p></li>
+<li><p>Workers own separate analysis questions.</p></li>
+<li><p>Each worker deliverable is the analysis script plus the CSV files that script writes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpt-5.4-mini</span></code> can be appropriate for worker tasks after the parent has tightly specified the contract.</p></li>
+<li><p>Machine-readable CSV files keep analysis outputs separate from visualization code and easier to reuse.</p></li>
+<li><p>Dashboard inputs should be reviewed before dashboard code depends on them.</p></li>
+</ul>
+</div>
 </section>
 </section>
 
@@ -454,6 +633,15 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Session 3: From Analysis to Dashboard</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -473,8 +661,13 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guiding-questions">Guiding Questions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-subagents-here">Why Use Subagents Here?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-with-the-parent-agent">Start With the Parent Agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-worker-subagents">Launch Worker Subagents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watch-the-worker-threads">Watch the Worker Threads</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-the-worker-results">Review the Worker Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-outputs-in-the-dashboard">Use the Outputs in the Dashboard</a></li>
 </ul>
   </nav></div>
 
