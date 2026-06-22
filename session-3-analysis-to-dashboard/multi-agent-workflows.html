@@ -439,10 +439,10 @@
 <p>In this lesson, you will use Codex subagents to divide a dashboard data-preparation project into separate analysis tasks. The example continues with the Seattle Public Library checkout data. The goal is to prepare the data files that a dashboard can read.</p>
 <p>A <strong>multi-agent workflow</strong> uses one main agent to coordinate the work and one or more additional agents to handle focused assignments. The main Codex session is the <strong>parent agent</strong>. A <strong>subagent</strong> is a separate agent run that receives a specific task from the parent, works in its own context, and returns findings, file changes, command output, or a summary.</p>
 <figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/subagent-overview.png"><img alt="Overview figure showing a parent agent coordinating focused subagents, then reviewing the result" src="../_images/subagent-overview.png" style="width: 100%;" />
+<a class="reference internal image-reference" href="../_images/single-vs-multi-agent.png"><img alt="Diagram comparing a single agent completing tasks sequentially with a multi-agent workflow where a supervisor assigns tasks in parallel" src="../_images/single-vs-multi-agent.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-text">The parent agent keeps the overall task organized. Each subagent works on one bounded assignment in a separate context, then returns a result that the parent reviews before integrating.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">A single agent works through the tasks in sequence. In a multi-agent workflow, the parent agent acts like the supervisor: it divides the work into bounded assignments, then reviews the results before integrating them.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Subagents are useful when a project can be divided into focused tasks that do not all require the same context at the same time. In analytics, those tasks might be separate analysis questions, separate validation checks, or separate parts of a dashboard build. In this lesson’s dashboard example, one subagent can work on annual digital vs. physical share, another can work on sampled title popularity, and another can work on material-type shares. Each worker owns an analysis task: the percent-cell Python script, the CSV files that script writes, and any notes needed to interpret those files.</p>
@@ -480,10 +480,10 @@
 <h2>Start With the Parent Agent<a class="headerlink" href="#start-with-the-parent-agent" title="Link to this heading">#</a></h2>
 <p>The parent agent should begin with the project rules and the assignment frame. In this workflow, the data source is already documented, so the parent should read the project rules and the Seattle Public Library data notes directly before defining the worker tasks.</p>
 <p>This lesson also changes the working artifact. Earlier work used a notebook. For the dashboard workflow, the analysis should move into percent-cell Python files so the scripts can be rerun and can write standalone, machine-readable CSV outputs.</p>
-<p>In the Codex terminal, use <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> file references to point Codex at the files it should read:</p>
+<p>The following box gives a prompt that you should give to a Codex session. You should start Codex in your <code class="docutils literal notranslate"><span class="pre">student_setup</span></code> folder, and can paste it in (<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">analytics_accelerator/student_setup</span></code> then start codex)</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>We are preparing data for a Seattle Public Library checkout dashboard.
 
-Read @AGENTS.md and @seattle-public-library/README.md.
+Read @seattle-public-library/README.md.
 
 For this lesson, move the analysis out of notebooks and into percent-cell
 Python scripts that write dashboard-ready CSV files.
@@ -495,7 +495,11 @@ Do not edit files yet. First, summarize the project rules and the data context:
 - what caveats the worker prompts should preserve
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> references make the prompt more concrete. They tell Codex which project files should anchor the first response, instead of asking it to rediscover context from the whole repository.</p>
+<p>Notice somethings about this prompt:</p>
+<ul class="simple">
+<li><p>We tell Codex we want to use <code class="docutils literal notranslate"><span class="pre">.py</span></code> files instead of notebooks.</p></li>
+<li><p>We use the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> symbol to point to a particular file. This is a special command in Codex you can use to point to an existing project file.</p></li>
+</ul>
 <p>The parent should extract rules like these:</p>
 <ul class="simple">
 <li><p>raw data files must not be modified</p></li>
@@ -503,21 +507,12 @@ Do not edit files yet. First, summarize the project rules and the data context:
 <li><p>each analysis script should write machine-readable CSV files</p></li>
 <li><p>each dashboard data file needs provenance</p></li>
 </ul>
-<p>It should also identify the data context needed for worker assignments:</p>
-<ul class="simple">
-<li><p>what one row represents in each source file</p></li>
-<li><p>which source file supports each dashboard analysis</p></li>
-<li><p>which outputs use complete data and which use sampled data</p></li>
-<li><p>what caveats the dashboard should preserve</p></li>
-</ul>
-<div class="note admonition">
-<p class="admonition-title">When an explorer helps</p>
-<p>This example does not need an explorer subagent because the data context is already documented. A read-only explorer can help when the repository has several possible data sources, the row grain is unclear, or the dashboard questions still need to be matched to available fields.</p>
-</div>
 </section>
 <section id="launch-worker-subagents">
 <h2>Launch Worker Subagents<a class="headerlink" href="#launch-worker-subagents" title="Link to this heading">#</a></h2>
-<p>After the parent summarizes the data context, ask it to launch worker subagents for the separate analyses. You can describe the goal in plain text. The parent should use the documented data context to turn that goal into specific worker assignments.</p>
+<p>After the parent summarizes the data context, ask it to launch worker subagents for the separate analyses.
+You can describe the goal in plain text.
+The parent should use the documented data context to turn that goal into specific worker assignments.</p>
 <p>The workers need to produce data that the dashboard can reuse. That means the analysis should be separate from the visualization: percent-cell Python scripts define the calculations and write standalone CSV files with predictable columns, then the dashboard reads those CSV files.</p>
 <div class="key admonition">
 <p class="admonition-title">Why a machine-readable file?</p>
@@ -527,7 +522,9 @@ Do not edit files yet. First, summarize the project rules and the data context:
 
 Each agent should output data in a machine-readable format.
 
-Create separate workers to (1) calculate annual digital vs. physical checkout share, (2) identify the most checked out sampled titles by year, preserving all title metadata with total checkouts, and (3) calculate sampled material-type shares by year separately for digital and physical checkouts. Each worker should write percent-cell Python code and write the CSV files from that code.
+Create separate workers to (1) calculate annual digital vs. physical checkout share, (2) identify the most checked out sampled titles by year, preserving all title metadata with total checkouts, and (3) calculate sampled material-type shares by year separately for digital and physical checkouts. Each worker should write percent-cell Python code and write the CSV files from that code. Each analysis that exists for both physical and digital should have separate files for physical and digital. There should be five output files - one for physical vs digital share by year, and two each for analysis (1) and (2).
+
+After the agents are done, map the provenance of each file to scripts by documenting in a markdown file in the dashboard data directory including how to regenerate the data. 
 </pre></div>
 </div>
 <p>This prompt leaves the detailed decomposition to the parent. The parent should use the data documentation to decide which source files, grouping keys, output paths, caveats, and checks belong in each worker prompt. A worker assignment is ready when the parent can state the input data, the calculation, the output file, the expected columns, the provenance requirement, and the verification check.</p>
@@ -596,7 +593,6 @@ For each analysis:
     most_popular_physical_titles_by_year.csv
     digital_material_share_by_year.csv
     physical_material_share_by_year.csv
-    PROVENANCE.md
 </pre></div>
 </div>
 <p>The boundary is:</p>
