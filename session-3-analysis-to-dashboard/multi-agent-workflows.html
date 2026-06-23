@@ -543,58 +543,10 @@ After the agents are done, map the provenance of each file to scripts by documen
 <p>The parent should ask workers for two deliverables: the analysis script and the CSV files written by that script. A prose summary can explain the result, but the dashboard needs the standalone files.</p>
 </div>
 </section>
-<section id="review-the-worker-results">
-<h2>Review the Worker Results<a class="headerlink" href="#review-the-worker-results" title="Link to this heading">#</a></h2>
-<p>When the workers finish, the parent agent should review the outputs before using them in dashboard code.</p>
-<p>Ask:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Review the worker outputs before any dashboard code uses them.
-
-For each analysis:
-- list the script path
-- list the CSV paths written by that script
-- report row counts
-- confirm expected columns
-- summarize the provenance note
-- state whether the output uses complete data or sampled data
-- identify anything that needs revision before dashboard work begins
-</pre></div>
-</div>
-<p>The parent review should check both mechanics and meaning.</p>
-<p>For the annual share analysis:</p>
-<ul class="simple">
-<li><p>each complete year has digital and physical rows</p></li>
-<li><p>annual shares sum to 1.0 within each year</p></li>
-<li><p>checkout totals are numeric and nonnegative</p></li>
-<li><p>the output comes from complete monthly totals</p></li>
-</ul>
-<p>For sampled title and material-type analyses:</p>
-<ul class="simple">
-<li><p>the source file is a sample file</p></li>
-<li><p>labels use “sampled” where needed</p></li>
-<li><p>grouping keys match the dashboard question</p></li>
-<li><p>the title output preserves title metadata and total checkout counts</p></li>
-<li><p>material-type shares are calculated separately for digital and physical checkouts</p></li>
-<li><p>ties are handled consistently</p></li>
-<li><p>row counts are plausible</p></li>
-<li><p>provenance notes state the source, method, and caveat</p></li>
-</ul>
-</section>
 <section id="use-the-outputs-in-the-dashboard">
 <h2>Use the Outputs in the Dashboard<a class="headerlink" href="#use-the-outputs-in-the-dashboard" title="Link to this heading">#</a></h2>
-<p>After review, the dashboard can read the CSV files written by the analysis scripts:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>seattle-library-dashboard/
-  index.html
-  styles.css
-  app.js
-  README.md
-  data/
-    digital_physical_share_by_year.csv
-    most_popular_digital_titles_by_year.csv
-    most_popular_physical_titles_by_year.csv
-    digital_material_share_by_year.csv
-    physical_material_share_by_year.csv
-</pre></div>
-</div>
+<p>Next, we will build a dashboard that uses this data.
+We will make a static dashboard (HTML, CSS, Javascript) that reads data from the CSVs this step produced.</p>
 <p>The boundary is:</p>
 <ul class="simple">
 <li><p>analysis scripts define each calculation</p></li>
@@ -603,7 +555,10 @@ For each analysis:
 <li><p>provenance notes explain how to interpret the CSV files</p></li>
 <li><p>dashboard code renders the reviewed outputs</p></li>
 </ul>
-<p>If a chart looks wrong, debug along that boundary. Check the analysis script, then the CSV it wrote, then the provenance note, then the dashboard rendering code.</p>
+<p>We will ask Codex to make a new folder for us that contains only the data needed for the dashbord:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">We</span> <span class="n">will</span> <span class="n">make</span> <span class="n">a</span> <span class="n">static</span> <span class="n">dashboard</span> <span class="k">for</span> <span class="n">this</span> <span class="n">project</span> <span class="nb">next</span><span class="o">.</span> <span class="n">Please</span> <span class="n">create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">folder</span> <span class="k">for</span> <span class="n">the</span> <span class="n">dashboard</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">data</span> <span class="n">files</span> <span class="n">we</span><span class="s1">&#39;ve created in a data folder along with the scripts to create the data files in a script folder.</span>
+</pre></div>
+</div>
 <div class="key admonition">
 <p class="admonition-title">Key points</p>
 <ul class="simple">
@@ -662,7 +617,6 @@ For each analysis:
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-with-the-parent-agent">Start With the Parent Agent</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-worker-subagents">Launch Worker Subagents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watch-the-worker-threads">Watch the Worker Threads</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-the-worker-results">Review the Worker Results</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-outputs-in-the-dashboard">Use the Outputs in the Dashboard</a></li>
 </ul>
   </nav></div>

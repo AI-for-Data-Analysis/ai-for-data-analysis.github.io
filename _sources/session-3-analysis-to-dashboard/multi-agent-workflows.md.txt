@@ -126,62 +126,10 @@ You do not need to manage every step inside the worker thread. The parent agent 
 The parent should ask workers for two deliverables: the analysis script and the CSV files written by that script. A prose summary can explain the result, but the dashboard needs the standalone files.
 ```
 
-## Review the Worker Results
-
-When the workers finish, the parent agent should review the outputs before using them in dashboard code.
-
-Ask:
-
-```text
-Review the worker outputs before any dashboard code uses them.
-
-For each analysis:
-- list the script path
-- list the CSV paths written by that script
-- report row counts
-- confirm expected columns
-- summarize the provenance note
-- state whether the output uses complete data or sampled data
-- identify anything that needs revision before dashboard work begins
-```
-
-The parent review should check both mechanics and meaning.
-
-For the annual share analysis:
-
-- each complete year has digital and physical rows
-- annual shares sum to 1.0 within each year
-- checkout totals are numeric and nonnegative
-- the output comes from complete monthly totals
-
-For sampled title and material-type analyses:
-
-- the source file is a sample file
-- labels use "sampled" where needed
-- grouping keys match the dashboard question
-- the title output preserves title metadata and total checkout counts
-- material-type shares are calculated separately for digital and physical checkouts
-- ties are handled consistently
-- row counts are plausible
-- provenance notes state the source, method, and caveat
-
 ## Use the Outputs in the Dashboard
 
-After review, the dashboard can read the CSV files written by the analysis scripts:
-
-```text
-seattle-library-dashboard/
-  index.html
-  styles.css
-  app.js
-  README.md
-  data/
-    digital_physical_share_by_year.csv
-    most_popular_digital_titles_by_year.csv
-    most_popular_physical_titles_by_year.csv
-    digital_material_share_by_year.csv
-    physical_material_share_by_year.csv
-```
+Next, we will build a dashboard that uses this data. 
+We will make a static dashboard (HTML, CSS, Javascript) that reads data from the CSVs this step produced.
 
 The boundary is:
 
@@ -191,7 +139,11 @@ The boundary is:
 - provenance notes explain how to interpret the CSV files
 - dashboard code renders the reviewed outputs
 
-If a chart looks wrong, debug along that boundary. Check the analysis script, then the CSV it wrote, then the provenance note, then the dashboard rendering code.
+We will ask Codex to make a new folder for us that contains only the data needed for the dashbord:
+
+```
+We will make a static dashboard for this project next. Please create a new folder for the dashboard that contains the data files we've created in a data folder along with the scripts to create the data files in a script folder.
+```
 
 ```{admonition} Key points
 :class: key
