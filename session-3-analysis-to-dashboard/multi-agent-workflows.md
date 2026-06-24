@@ -6,7 +6,7 @@ In this lesson, you will use Codex subagents to divide a dashboard data-preparat
 
 A **multi-agent workflow** uses one main agent to coordinate the work and one or more additional agents to handle focused assignments. The main Codex session is the **parent agent**. A **subagent** is a separate agent run that receives a specific task from the parent, works in its own context, and returns findings, file changes, command output, or a summary.
 
-```{figure} ../images/session-3/single-vs-multi-agent.png
+```{figure} ../images/session-3/agent_chart.png
 :alt: Diagram comparing a single agent completing tasks sequentially with a multi-agent workflow where a supervisor assigns tasks in parallel
 :width: 100%
 
