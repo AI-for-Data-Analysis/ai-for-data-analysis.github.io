@@ -1,6 +1,21 @@
 Page,Questions,Objectives
+":doc:`Building Datasets with Codex </session-3-analysis-to-dashboard/building-datasets-with-codex>`","* How do you turn a public data source into a usable teaching dataset?
+* When should you use complete aggregate files or sampled detail files?
+* How do sampling choices shape the claims learners can make?","* Investigate a public API access pattern before retrieval.
+* Separate volume questions from composition questions.
+* Define row meaning, sampling strategy, reproducibility, and validation checks."
 ":doc:`Multi-Agent Workflows </session-3-analysis-to-dashboard/multi-agent-workflows>`","* What is a multi-agent or subagent workflow?
 * When should you use subagents?
 * How do you use subagents without losing control of the project?","* Distinguish parent, worker, and checker responsibilities.
 * Decide when a task is ready to delegate.
 * Write bounded subagent task contracts and review the results."
+":doc:`Build and Deploy a Static Dashboard: Prompt Notes </session-3-analysis-to-dashboard/static-dashboard-prompts>`","* How can Codex turn dashboard-ready CSV files into a static dashboard?
+* How can prompts change the chart, library, or dashboard component?
+* What steps publish a static dashboard with GitLab Pages?","* Use prompts to generate and revise a static HTML/CSS/JavaScript dashboard.
+* Keep dashboard data loaded from CSV files at runtime.
+* Follow the basic GitLab Pages deployment sequence for static assets."
+":doc:`Open Dataset Starting Points </session-3-analysis-to-dashboard/open-dataset-starting-points>`","* What public datasets could support a student dashboard?
+* Which sources have fields that support filtering, aggregation, maps, or time series?
+* How can you choose a dataset that leads to a clear dashboard question?","* Compare several public data sources for dashboard potential.
+* Select a dataset with a usable unit of analysis and meaningful dimensions.
+* Turn a dataset idea into a focused dashboard question."
