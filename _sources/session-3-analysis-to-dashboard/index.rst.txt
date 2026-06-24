@@ -5,9 +5,10 @@ Session 3 moves from reusable agent workflows into dashboard delivery. The
 central shift is that analysis outputs become a contract between Python work and
 the dashboard layer.
 
-Participants use percent-cell Python files to generate machine-readable data
-files, preserve provenance, and prepare outputs that a browser dashboard can
-read directly. Multi-agent workflows are useful here when the parent agent keeps
+Participants examine how the Seattle Public Library teaching dataset was built,
+then use percent-cell Python files to generate machine-readable data files,
+preserve provenance, and prepare outputs that a browser dashboard can read
+directly. Multi-agent workflows are useful here when the parent agent keeps
 ownership of the plan while smaller subagents handle bounded investigation or
 implementation tasks.
 
@@ -20,4 +21,7 @@ implementation tasks.
    :hidden:
 
    self
+   building-datasets-with-codex
    multi-agent-workflows
+   static-dashboard-prompts
+   open-dataset-starting-points

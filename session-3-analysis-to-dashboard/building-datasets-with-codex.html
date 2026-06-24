@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Session 3: From Analysis to Dashboard &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+    <title>Building Datasets with Codex &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
   
   
   
@@ -125,14 +125,14 @@
                 gtag('js', new Date());
                 gtag('config', 'G-PCSTBS7XKG');
             </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'session-3-analysis-to-dashboard/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'session-3-analysis-to-dashboard/building-datasets-with-codex';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script defer="defer" src="../_static/ga_consent.js"></script>
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Building Datasets with Codex" href="building-datasets-with-codex.html" />
-    <link rel="prev" title="Agent Skills" href="../session-2-reusable-skills/agent-skills.html" />
+    <link rel="next" title="Multi-Agent Workflows" href="multi-agent-workflows.html" />
+    <link rel="prev" title="Session 3: From Analysis to Dashboard" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -369,9 +369,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../session-2-reusable-skills/agent-skills.html">Agent Skills</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Session 3: From Analysis to Dashboard</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 3: From Analysis to Dashboard</a></li>
-<li class="toctree-l2"><a class="reference internal" href="building-datasets-with-codex.html">Building Datasets with Codex</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Session 3: From Analysis to Dashboard</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Session 3: From Analysis to Dashboard</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Building Datasets with Codex</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multi-agent-workflows.html">Multi-Agent Workflows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="static-dashboard-prompts.html">Build and Deploy a Static Dashboard: Prompt Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="open-dataset-starting-points.html">Open Dataset Starting Points</a></li>
@@ -417,7 +417,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Session 3: From Analysis to Dashboard</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Session 3: From Analysis to Dashboard</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Building Datasets with Codex</span></li>
   </ul>
 </nav>
 </div>
@@ -434,86 +437,192 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="session-3-from-analysis-to-dashboard">
-<h1>Session 3: From Analysis to Dashboard<a class="headerlink" href="#session-3-from-analysis-to-dashboard" title="Link to this heading">#</a></h1>
-<p>Session 3 moves from reusable agent workflows into dashboard delivery. The
-central shift is that analysis outputs become a contract between Python work and
-the dashboard layer.</p>
-<p>Participants examine how the Seattle Public Library teaching dataset was built,
-then use percent-cell Python files to generate machine-readable data files,
-preserve provenance, and prepare outputs that a browser dashboard can read
-directly. Multi-agent workflows are useful here when the parent agent keeps
-ownership of the plan while smaller subagents handle bounded investigation or
-implementation tasks.</p>
+  <section id="building-datasets-with-codex">
+<h1>Building Datasets with Codex<a class="headerlink" href="#building-datasets-with-codex" title="Link to this heading">#</a></h1>
+<p>Analysis datasets rarely arrive in exactly the shape you need. A useful dataset is designed: an analyst decides what questions the data should support, what level of detail is needed, what tradeoffs are acceptable, and how the finished files should be regenerated and checked.</p>
+<p>Codex can help with that work, but it should not replace the analyst’s judgment. Use Codex to inspect sources, write retrieval scripts, create repeatable transformations, and validate outputs. Keep the analyst responsible for the questions, definitions, caveats, and claims the dataset should support.</p>
+<p>This lesson uses the Seattle Public Library checkout data as a running example, but the workflow applies to many public datasets.</p>
+<section id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>explain why dataset building starts with analysis questions</p></li>
+<li><p>inspect a public data source before downloading it</p></li>
+<li><p>distinguish complete aggregate files from sampled detail files</p></li>
+<li><p>choose a sampling strategy based on the claims the dataset should support</p></li>
+<li><p>use Codex to write a reproducible dataset-building script</p></li>
+<li><p>define validation checks and documentation before a dataset is ready for analysis</p></li>
+</ul>
+</section>
+<section id="start-with-analysis-questions">
+<h2>Start With Analysis Questions<a class="headerlink" href="#start-with-analysis-questions" title="Link to this heading">#</a></h2>
+<p>The first dataset design decision is not how to download the data. It is what the dataset needs to help analysts answer.</p>
+<p>For example, a checkout dataset might support questions like:</p>
+<ul class="simple">
+<li><p>How have digital and physical checkout totals changed over time?</p></li>
+<li><p>What kinds of titles, material types, or subjects appear in each checkout format?</p></li>
+<li><p>How did the mix of materials change across years?</p></li>
+</ul>
+<p>Those questions require different kinds of files. Total checkout volume needs complete aggregate data. Material mix can often be explored with a sampled detail file. If the dataset tries to do everything in one file, it may become too large, too slow, or too easy to misinterpret.</p>
+<div class="tip admonition">
+<p class="admonition-title">Analyst responsibility</p>
+<p>Codex can help inspect a source and write retrieval code, but the analyst has to define the questions, acceptable tradeoffs, row meaning, and claims the dataset should support.</p>
+</div>
+</section>
+<section id="find-the-working-data-access-point">
+<h2>Find the Working Data Access Point<a class="headerlink" href="#find-the-working-data-access-point" title="Link to this heading">#</a></h2>
+<p>After defining the analysis need, identify how software can access the source. Public data may be available as a direct download, database export, API endpoint, bulk ZIP file, or query service.</p>
+<div class="note admonition">
+<p class="admonition-title">What is an API?</p>
+<p>An <strong>API</strong>, or application programming interface, is a structured way for software to request information from another system. For a public dataset, an API endpoint is often a URL that returns data a script can query, filter, and save.</p>
+</div>
+<p>In the Seattle example, the working public endpoint was:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>https://data.seattle.gov/resource/tmmm-ytt6.json
+</pre></div>
+</div>
+<p>You can find the source dataset page for Seattle Public Library checkouts <a class="reference external" href="https://data.seattle.gov/Community-and-Culture/Checkouts-by-Title/tmmm-ytt6/about_data">on Seattle Open Data</a>. The source is <code class="docutils literal notranslate"><span class="pre">tmmm-ytt6</span></code>, “Checkouts by Title.” It includes both <code class="docutils literal notranslate"><span class="pre">Digital</span></code> and <code class="docutils literal notranslate"><span class="pre">Physical</span></code> values in a <code class="docutils literal notranslate"><span class="pre">usageclass</span></code> field, which made it a good fit for analyzing changing checkout patterns.</p>
+<div class="note admonition">
+<p class="admonition-title">Endpoint note</p>
+<p>Some data portals expose more than one URL pattern. The original Seattle link used the <code class="docutils literal notranslate"><span class="pre">api/v3/views/.../query.json</span></code> pattern. For unauthenticated retrieval, the script used the public Socrata SODA resource endpoint instead: <code class="docutils literal notranslate"><span class="pre">https://data.seattle.gov/resource/tmmm-ytt6.json</span></code>. Confirm the working public endpoint before asking Codex to write retrieval code.</p>
+</div>
+</section>
+<section id="inspect-the-source-before-downloading">
+<h2>Inspect the Source Before Downloading<a class="headerlink" href="#inspect-the-source-before-downloading" title="Link to this heading">#</a></h2>
+<p>Before pulling a large dataset, ask Codex to inspect what the source represents. The important questions are structural:</p>
+<ul class="simple">
+<li><p>What does one source row represent?</p></li>
+<li><p>Is the source already aggregated, or is it row-level event data?</p></li>
+<li><p>What time span does it cover?</p></li>
+<li><p>Which fields are available for filtering, grouping, or sorting?</p></li>
+<li><p>How large is the source?</p></li>
+<li><p>Can the endpoint support server-side filters or grouped queries?</p></li>
+</ul>
+<p>In the Seattle source, one row is not one checkout. The source is already aggregated: one row represents a title/material/usage-class/month combination, with a <code class="docutils literal notranslate"><span class="pre">checkouts</span></code> count.</p>
+<p>That row meaning changes the analysis. If a row has <code class="docutils literal notranslate"><span class="pre">checkouts</span> <span class="pre">=</span> <span class="pre">47</span></code>, it is a title-month record summarizing 47 checkouts for that combination. Treating that row as one checkout would undercount activity and distort any interpretation of volume.</p>
+</section>
+<section id="design-the-output-files">
+<h2>Design the Output Files<a class="headerlink" href="#design-the-output-files" title="Link to this heading">#</a></h2>
+<p>Once the source is understood, design the smaller files analysts will actually use. This is where the analysis questions become file contracts. You can work with Codex to establish this based on the available data and questions you want to ask.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Page</p></th>
-<th class="head"><p>Questions</p></th>
-<th class="head"><p>Objectives</p></th>
+<tr class="row-odd"><th class="head"><p>Question type</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Useful output file</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="building-datasets-with-codex.html"><span class="doc">Building Datasets with Codex</span></a></p></td>
-<td><ul class="simple">
-<li><p>How do you turn a public data source into a usable teaching dataset?</p></li>
-<li><p>When should you use complete aggregate files or sampled detail files?</p></li>
-<li><p>How do sampling choices shape the claims learners can make?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Investigate a public API access pattern before retrieval.</p></li>
-<li><p>Separate volume questions from composition questions.</p></li>
-<li><p>Define row meaning, sampling strategy, reproducibility, and validation checks.</p></li>
-</ul>
-</td>
+<tr class="row-even"><td><p>Volume</p></td>
+<td><p>How did digital and physical checkout totals change over time?</p></td>
+<td><p>Complete aggregate totals</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="multi-agent-workflows.html"><span class="doc">Multi-Agent Workflows</span></a></p></td>
-<td><ul class="simple">
-<li><p>What is a multi-agent or subagent workflow?</p></li>
-<li><p>When should you use subagents?</p></li>
-<li><p>How do you use subagents without losing control of the project?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Distinguish parent, worker, and checker responsibilities.</p></li>
-<li><p>Decide when a task is ready to delegate.</p></li>
-<li><p>Write bounded subagent task contracts and review the results.</p></li>
-</ul>
-</td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="static-dashboard-prompts.html"><span class="doc">Build and Deploy a Static Dashboard: Prompt Notes</span></a></p></td>
-<td><ul class="simple">
-<li><p>How can Codex turn dashboard-ready CSV files into a static dashboard?</p></li>
-<li><p>How can prompts change the chart, library, or dashboard component?</p></li>
-<li><p>What steps publish a static dashboard with GitLab Pages?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Use prompts to generate and revise a static HTML/CSS/JavaScript dashboard.</p></li>
-<li><p>Keep dashboard data loaded from CSV files at runtime.</p></li>
-<li><p>Follow the basic GitLab Pages deployment sequence for static assets.</p></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="open-dataset-starting-points.html"><span class="doc">Open Dataset Starting Points</span></a></p></td>
-<td><ul class="simple">
-<li><p>What public datasets could support a student dashboard?</p></li>
-<li><p>Which sources have fields that support filtering, aggregation, maps, or time series?</p></li>
-<li><p>How can you choose a dataset that leads to a clear dashboard question?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Compare several public data sources for dashboard potential.</p></li>
-<li><p>Select a dataset with a usable unit of analysis and meaningful dimensions.</p></li>
-<li><p>Turn a dataset idea into a focused dashboard question.</p></li>
-</ul>
-</td>
+<tr class="row-odd"><td><p>Composition</p></td>
+<td><p>What kinds of titles, material types, or subjects appear in each checkout format?</p></td>
+<td><p>Sampled detail records</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="toctree-wrapper compound">
+<p>For the Seattle data, this led to a three-file design:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>seattle-public-library/
+  combined_checkout_totals_by_month_usageclass.csv
+  digital_checkout_title_sample_balanced_250k.csv
+  physical_checkout_title_sample_balanced_250k.csv
+  README.md
+</pre></div>
 </div>
+<p>The totals file preserves complete monthly counts by <code class="docutils literal notranslate"><span class="pre">usageclass</span></code>. The two sample files provide manageable title/month records for digital and physical exploration. The sample files have the same structure because they come from the same source and were split by <code class="docutils literal notranslate"><span class="pre">usageclass</span></code> after retrieval.</p>
+</section>
+<section id="choose-a-sampling-strategy">
+<h2>Choose a Sampling Strategy<a class="headerlink" href="#choose-a-sampling-strategy" title="Link to this heading">#</a></h2>
+<p>Sampling is not just a file-size trick. A sampling strategy changes what claims analysts can make.</p>
+<p>Sampling was necessary for the Seattle title/month records because the source contained far more rows than we could reasonably package in a normal repository or ask analysts to load during a short exercise. The design keeps the monthly totals complete, because those files are small after aggregation. It samples the title-level detail records, because that is the part of the source that is too large to distribute directly.</p>
+<p>Several sampling strategies could support different goals:</p>
+<ul class="simple">
+<li><p><strong>Most recent rows</strong>: useful for current-state inspection, weak for historical comparisons.</p></li>
+<li><p><strong>Simple fixed-size sample</strong>: easy to create, but may overrepresent high-volume periods or common groups.</p></li>
+<li><p><strong>Proportional sample</strong>: useful when the sample should resemble the full source population.</p></li>
+<li><p><strong>Balanced sample by year</strong>: useful when analysts need enough rows from each year for comparison.</p></li>
+<li><p><strong>Separate balanced samples by group</strong>: useful when comparing groups that have very different source volumes.</p></li>
+</ul>
+<p>For the Seattle data, the final choice was a balanced sample by year and usage class:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2006-2025
+20 complete years
+250,000 Digital rows
+250,000 Physical rows
+12,500 rows per year per usageclass
+</pre></div>
+</div>
+<p>The sample is balanced at the year and usage-class level, not at the month level. Each year gets 12,500 Digital rows and 12,500 Physical rows. Within that year, months with more source rows get more sampled rows than months with fewer source rows. For example, if July has twice as many title/month records as February for Physical checkouts in a given year, July receives about twice as many rows in that year’s Physical sample.</p>
+<p>The script also makes the sample method repeatable. Running the script again should apply the same year range, group definitions, and sampling rules, rather than creating an undocumented one-off extract.</p>
+<p>Balanced sampling fit this workflow because analysts can compare patterns across years. A proportional sample would represent the overall source population more directly, but high-volume years would dominate the sample and lower-volume years would have fewer rows for comparison. The complete totals file preserves real volume, so the sample can focus on composition.</p>
+<div class="note admonition">
+<p class="admonition-title">Sampling tradeoff</p>
+<p>A balanced-by-year sample is useful for comparing composition across years. A proportional sample is useful for estimating the overall source population. The right choice depends on the question the dataset should support.</p>
+</div>
+</section>
+<section id="ask-codex-for-a-reproducible-builder">
+<h2>Ask Codex for a Reproducible Builder<a class="headerlink" href="#ask-codex-for-a-reproducible-builder" title="Link to this heading">#</a></h2>
+<p>Once the dataset design is clear, ask Codex for a script, not a one-time download. The script is the method. It should show the source endpoint, retrieval choices, filters, sampling design, output paths, and validation checks.</p>
+<p>The key prompt is not simply:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Download this data.
+</pre></div>
+</div>
+<p>A better prompt is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Write a reproducible script that creates these analysis files from this public
+endpoint. Use the approved file design, make the sampling method repeatable,
+write partial outputs safely, and validate the final row counts.
+</pre></div>
+</div>
+<p>The script should make the retrieval method visible without requiring analysts to repeat manual download steps. For the Seattle dataset, that meant querying the public endpoint, creating the approved aggregate and sample files, and writing outputs that matched the dataset design.</p>
+<div class="tip admonition">
+<p class="admonition-title">Why write a script?</p>
+<p>A script turns dataset retrieval into a reviewable method. Reviewers can inspect the source URL, retrieval choices, sampling design, output paths, retry behavior, and validation checks.</p>
+</div>
+</section>
+<section id="prompt-sequence">
+<h2>Prompt Sequence<a class="headerlink" href="#prompt-sequence" title="Link to this heading">#</a></h2>
+<p>Do not ask Codex to inspect the source, design the dataset, and build the script all at once. Break the work into stages so you can review the decisions before Codex writes code.</p>
+<p>First, ask Codex to inspect the source:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I want to build a reproducible analysis dataset from [SOURCE].
+
+Inspect the source access pattern and metadata. Do not download the full dataset
+yet. Tell me:
+- what the source appears to contain
+- what one row represents
+- whether the source is row-level or already aggregated
+- what fields are available for filtering or grouping
+- how large the source appears to be
+</pre></div>
+</div>
+<p>Then ask for a dataset design:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Using what you found, recommend a dataset design for these analysis questions:
+- [QUESTION 1]
+- [QUESTION 2]
+- [QUESTION 3]
+</pre></div>
+</div>
+<p>After you approve the design, ask for the builder script:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Write a script that can regenerate the approved files.
+The script should use a repeatable retrieval method create a short README to accompany the script.
+</pre></div>
+</div>
+<p>This sequence separates source inspection, dataset design, and implementation.</p>
+</section>
+<section id="key-points">
+<h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
+<div class="key admonition">
+<p class="admonition-title">Key points</p>
+<ul class="simple">
+<li><p>Dataset building starts with analysis questions, not downloading.</p></li>
+<li><p>Public data retrieval starts with source inspection.</p></li>
+<li><p>Row meaning determines what the dataset can and cannot support.</p></li>
+<li><p>Complete aggregate files and sampled detail files serve different purposes.</p></li>
+<li><p>Sampling strategy changes what claims analysts can make.</p></li>
+<li><p>A reproducible script makes the dataset method inspectable and rerunnable.</p></li>
+<li><p>Long-running downloads need partial-file handling, retries, and validation.</p></li>
+<li><p>Minimal documentation should explain source, files, row meaning, sampling, and retrieval method.</p></li>
+</ul>
+</div>
+</section>
 </section>
 
 
@@ -527,20 +636,20 @@ implementation tasks.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../session-2-reusable-skills/agent-skills.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Agent Skills</p>
+        <p class="prev-next-title">Session 3: From Analysis to Dashboard</p>
       </div>
     </a>
     <a class="right-next"
-       href="building-datasets-with-codex.html"
+       href="multi-agent-workflows.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Building Datasets with Codex</p>
+        <p class="prev-next-title">Multi-Agent Workflows</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -556,9 +665,29 @@ implementation tasks.</p>
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-with-analysis-questions">Start With Analysis Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-working-data-access-point">Find the Working Data Access Point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-the-source-before-downloading">Inspect the Source Before Downloading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-the-output-files">Design the Output Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-a-sampling-strategy">Choose a Sampling Strategy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ask-codex-for-a-reproducible-builder">Ask Codex for a Reproducible Builder</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-sequence">Prompt Sequence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/session-3-analysis-to-dashboard/index.rst.txt">
+    <a href="../_sources/session-3-analysis-to-dashboard/building-datasets-with-codex.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

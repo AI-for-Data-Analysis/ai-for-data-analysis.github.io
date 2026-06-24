@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Session 3: From Analysis to Dashboard &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+    <title>Open Dataset Starting Points &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
   
   
   
@@ -125,14 +125,13 @@
                 gtag('js', new Date());
                 gtag('config', 'G-PCSTBS7XKG');
             </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'session-3-analysis-to-dashboard/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'session-3-analysis-to-dashboard/open-dataset-starting-points';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script defer="defer" src="../_static/ga_consent.js"></script>
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Building Datasets with Codex" href="building-datasets-with-codex.html" />
-    <link rel="prev" title="Agent Skills" href="../session-2-reusable-skills/agent-skills.html" />
+    <link rel="prev" title="Build and Deploy a Static Dashboard: Prompt Notes" href="static-dashboard-prompts.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -369,12 +368,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../session-2-reusable-skills/agent-skills.html">Agent Skills</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Session 3: From Analysis to Dashboard</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 3: From Analysis to Dashboard</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Session 3: From Analysis to Dashboard</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Session 3: From Analysis to Dashboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="building-datasets-with-codex.html">Building Datasets with Codex</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multi-agent-workflows.html">Multi-Agent Workflows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="static-dashboard-prompts.html">Build and Deploy a Static Dashboard: Prompt Notes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="open-dataset-starting-points.html">Open Dataset Starting Points</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Open Dataset Starting Points</a></li>
 </ul>
 </details></li>
 </ul>
@@ -417,7 +416,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Session 3: From Analysis to Dashboard</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Session 3: From Analysis to Dashboard</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Open Dataset Starting Points</span></li>
   </ul>
 </nav>
 </div>
@@ -434,86 +436,63 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="session-3-from-analysis-to-dashboard">
-<h1>Session 3: From Analysis to Dashboard<a class="headerlink" href="#session-3-from-analysis-to-dashboard" title="Link to this heading">#</a></h1>
-<p>Session 3 moves from reusable agent workflows into dashboard delivery. The
-central shift is that analysis outputs become a contract between Python work and
-the dashboard layer.</p>
-<p>Participants examine how the Seattle Public Library teaching dataset was built,
-then use percent-cell Python files to generate machine-readable data files,
-preserve provenance, and prepare outputs that a browser dashboard can read
-directly. Multi-agent workflows are useful here when the parent agent keeps
-ownership of the plan while smaller subagents handle bounded investigation or
-implementation tasks.</p>
+  <section id="open-dataset-starting-points">
+<h1>Open Dataset Starting Points<a class="headerlink" href="#open-dataset-starting-points" title="Link to this heading">#</a></h1>
+<p>The sources below are starting points you might consider for your own dashboard analysis. Choose one you find interesting that gives you a question to investigate.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Page</p></th>
-<th class="head"><p>Questions</p></th>
-<th class="head"><p>Objectives</p></th>
+<tr class="row-odd"><th class="head"><p>Area</p></th>
+<th class="head"><p>Dataset / source</p></th>
+<th class="head"><p>Why it could work</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="building-datasets-with-codex.html"><span class="doc">Building Datasets with Codex</span></a></p></td>
-<td><ul class="simple">
-<li><p>How do you turn a public data source into a usable teaching dataset?</p></li>
-<li><p>When should you use complete aggregate files or sampled detail files?</p></li>
-<li><p>How do sampling choices shape the claims learners can make?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Investigate a public API access pattern before retrieval.</p></li>
-<li><p>Separate volume questions from composition questions.</p></li>
-<li><p>Define row meaning, sampling strategy, reproducibility, and validation checks.</p></li>
-</ul>
-</td>
+<tr class="row-even"><td><p>Local / Durham</p></td>
+<td><p><a class="reference external" href="https://live-durhamnc.opendata.arcgis.com/datasets/DurhamNC%3A%3Atrees-planting-sites/about">Durham Trees &amp; Planting Sites</a></p></td>
+<td><p>Local, visual, structured; good for maps, filtering, dashboards, and ecosystem-benefit examples.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="multi-agent-workflows.html"><span class="doc">Multi-Agent Workflows</span></a></p></td>
-<td><ul class="simple">
-<li><p>What is a multi-agent or subagent workflow?</p></li>
-<li><p>When should you use subagents?</p></li>
-<li><p>How do you use subagents without losing control of the project?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Distinguish parent, worker, and checker responsibilities.</p></li>
-<li><p>Decide when a task is ready to delegate.</p></li>
-<li><p>Write bounded subagent task contracts and review the results.</p></li>
-</ul>
-</td>
+<tr class="row-odd"><td><p>Parks / time series</p></td>
+<td><p><a class="reference external" href="https://www.nps.gov/subjects/socialscience/visitor-use-statistics-dashboard.htm">NPS Visitor Use Statistics</a></p></td>
+<td><p>Annual and monthly park visitation data; good for trends, seasonality, and comparison across places.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="static-dashboard-prompts.html"><span class="doc">Build and Deploy a Static Dashboard: Prompt Notes</span></a></p></td>
-<td><ul class="simple">
-<li><p>How can Codex turn dashboard-ready CSV files into a static dashboard?</p></li>
-<li><p>How can prompts change the chart, library, or dashboard component?</p></li>
-<li><p>What steps publish a static dashboard with GitLab Pages?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Use prompts to generate and revise a static HTML/CSS/JavaScript dashboard.</p></li>
-<li><p>Keep dashboard data loaded from CSV files at runtime.</p></li>
-<li><p>Follow the basic GitLab Pages deployment sequence for static assets.</p></li>
-</ul>
-</td>
+<tr class="row-even"><td><p>Higher ed</p></td>
+<td><p><a class="reference external" href="https://collegescorecard.ed.gov/data/">College Scorecard</a></p></td>
+<td><p>Institutions, costs, programs, outcomes, debt, and earnings; strong for education dashboards.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="open-dataset-starting-points.html"><span class="doc">Open Dataset Starting Points</span></a></p></td>
-<td><ul class="simple">
-<li><p>What public datasets could support a student dashboard?</p></li>
-<li><p>Which sources have fields that support filtering, aggregation, maps, or time series?</p></li>
-<li><p>How can you choose a dataset that leads to a clear dashboard question?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Compare several public data sources for dashboard potential.</p></li>
-<li><p>Select a dataset with a usable unit of analysis and meaningful dimensions.</p></li>
-<li><p>Turn a dataset idea into a focused dashboard question.</p></li>
-</ul>
-</td>
+<tr class="row-odd"><td><p>Research / scholarly metadata</p></td>
+<td><p><a class="reference external" href="https://developers.openalex.org/">OpenAlex</a></p></td>
+<td><p>Works, authors, institutions, sources, and topics; good for analyzing research trends.</p></td>
+</tr>
+<tr class="row-even"><td><p>Weather / climate</p></td>
+<td><p><a class="reference external" href="https://www.weather.gov/documentation/services-web-api">National Weather Service API</a></p></td>
+<td><p>Forecasts, alerts, and observations; good for API and local dashboard examples.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Census / demographics</p></td>
+<td><p><a class="reference external" href="https://www.census.gov/data/developers/data-sets.html">Census Data API</a></p></td>
+<td><p>Population, housing, income, commuting, and education data; useful for maps and public data lessons.</p></td>
+</tr>
+<tr class="row-even"><td><p>Environment / health</p></td>
+<td><p><a class="reference external" href="https://www.cdc.gov/places/">CDC PLACES</a></p></td>
+<td><p>Local health indicators by county, place, census tract, and ZIP Code Tabulation Area.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Arts / culture</p></td>
+<td><p><a class="reference external" href="https://metmuseum.github.io/">Metropolitan Museum of Art Collection API</a></p></td>
+<td><p>Public art collection data; good for search, filters, categories, dates, and maps.</p></td>
+</tr>
+<tr class="row-even"><td><p>Playful / animals</p></td>
+<td><p><a class="reference external" href="https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw">2018 Central Park Squirrel Census</a></p></td>
+<td><p>Fun and approachable; good for categories, maps, filtering, and counts.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Playful / media</p></td>
+<td><p><a class="reference external" href="https://github.com/fivethirtyeight/data/tree/master/bob-ross">Bob Ross Painting Elements</a></p></td>
+<td><p>Small and easy to understand; good for categorical summaries of trees, mountains, clouds, cabins, lakes, and other painting elements.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="toctree-wrapper compound">
-</div>
+<p>Before building, write down the dashboard question in one sentence. Then inspect
+the source enough to confirm the data has the fields, license, and access pattern
+your dashboard needs.</p>
 </section>
 
 
@@ -527,22 +506,13 @@ implementation tasks.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../session-2-reusable-skills/agent-skills.html"
+       href="static-dashboard-prompts.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Agent Skills</p>
+        <p class="prev-next-title">Build and Deploy a Static Dashboard: Prompt Notes</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="building-datasets-with-codex.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Building Datasets with Codex</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -558,7 +528,7 @@ implementation tasks.</p>
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/session-3-analysis-to-dashboard/index.rst.txt">
+    <a href="../_sources/session-3-analysis-to-dashboard/open-dataset-starting-points.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Session 3: From Analysis to Dashboard &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
+    <title>Build and Deploy a Static Dashboard: Prompt Notes &#8212; AI Accelerator: Analytics and Data Analysis  documentation</title>
   
   
   
@@ -125,14 +125,14 @@
                 gtag('js', new Date());
                 gtag('config', 'G-PCSTBS7XKG');
             </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'session-3-analysis-to-dashboard/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'session-3-analysis-to-dashboard/static-dashboard-prompts';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script defer="defer" src="../_static/ga_consent.js"></script>
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Building Datasets with Codex" href="building-datasets-with-codex.html" />
-    <link rel="prev" title="Agent Skills" href="../session-2-reusable-skills/agent-skills.html" />
+    <link rel="next" title="Open Dataset Starting Points" href="open-dataset-starting-points.html" />
+    <link rel="prev" title="Multi-Agent Workflows" href="multi-agent-workflows.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -369,11 +369,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../session-2-reusable-skills/agent-skills.html">Agent Skills</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Session 3: From Analysis to Dashboard</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Session 3: From Analysis to Dashboard</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Session 3: From Analysis to Dashboard</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Session 3: From Analysis to Dashboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="building-datasets-with-codex.html">Building Datasets with Codex</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multi-agent-workflows.html">Multi-Agent Workflows</a></li>
-<li class="toctree-l2"><a class="reference internal" href="static-dashboard-prompts.html">Build and Deploy a Static Dashboard: Prompt Notes</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Build and Deploy a Static Dashboard: Prompt Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="open-dataset-starting-points.html">Open Dataset Starting Points</a></li>
 </ul>
 </details></li>
@@ -417,7 +417,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Session 3: From Analysis to Dashboard</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Session 3: From Analysis to Dashboard</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Build and Deploy a Static Dashboard: Prompt Notes</span></li>
   </ul>
 </nav>
 </div>
@@ -434,86 +437,132 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="session-3-from-analysis-to-dashboard">
-<h1>Session 3: From Analysis to Dashboard<a class="headerlink" href="#session-3-from-analysis-to-dashboard" title="Link to this heading">#</a></h1>
-<p>Session 3 moves from reusable agent workflows into dashboard delivery. The
-central shift is that analysis outputs become a contract between Python work and
-the dashboard layer.</p>
-<p>Participants examine how the Seattle Public Library teaching dataset was built,
-then use percent-cell Python files to generate machine-readable data files,
-preserve provenance, and prepare outputs that a browser dashboard can read
-directly. Multi-agent workflows are useful here when the parent agent keeps
-ownership of the plan while smaller subagents handle bounded investigation or
-implementation tasks.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Page</p></th>
-<th class="head"><p>Questions</p></th>
-<th class="head"><p>Objectives</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="building-datasets-with-codex.html"><span class="doc">Building Datasets with Codex</span></a></p></td>
-<td><ul class="simple">
-<li><p>How do you turn a public data source into a usable teaching dataset?</p></li>
-<li><p>When should you use complete aggregate files or sampled detail files?</p></li>
-<li><p>How do sampling choices shape the claims learners can make?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Investigate a public API access pattern before retrieval.</p></li>
-<li><p>Separate volume questions from composition questions.</p></li>
-<li><p>Define row meaning, sampling strategy, reproducibility, and validation checks.</p></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="multi-agent-workflows.html"><span class="doc">Multi-Agent Workflows</span></a></p></td>
-<td><ul class="simple">
-<li><p>What is a multi-agent or subagent workflow?</p></li>
-<li><p>When should you use subagents?</p></li>
-<li><p>How do you use subagents without losing control of the project?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Distinguish parent, worker, and checker responsibilities.</p></li>
-<li><p>Decide when a task is ready to delegate.</p></li>
-<li><p>Write bounded subagent task contracts and review the results.</p></li>
-</ul>
-</td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="static-dashboard-prompts.html"><span class="doc">Build and Deploy a Static Dashboard: Prompt Notes</span></a></p></td>
-<td><ul class="simple">
-<li><p>How can Codex turn dashboard-ready CSV files into a static dashboard?</p></li>
-<li><p>How can prompts change the chart, library, or dashboard component?</p></li>
-<li><p>What steps publish a static dashboard with GitLab Pages?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Use prompts to generate and revise a static HTML/CSS/JavaScript dashboard.</p></li>
-<li><p>Keep dashboard data loaded from CSV files at runtime.</p></li>
-<li><p>Follow the basic GitLab Pages deployment sequence for static assets.</p></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="open-dataset-starting-points.html"><span class="doc">Open Dataset Starting Points</span></a></p></td>
-<td><ul class="simple">
-<li><p>What public datasets could support a student dashboard?</p></li>
-<li><p>Which sources have fields that support filtering, aggregation, maps, or time series?</p></li>
-<li><p>How can you choose a dataset that leads to a clear dashboard question?</p></li>
-</ul>
-</td>
-<td><ul class="simple">
-<li><p>Compare several public data sources for dashboard potential.</p></li>
-<li><p>Select a dataset with a usable unit of analysis and meaningful dimensions.</p></li>
-<li><p>Turn a dataset idea into a focused dashboard question.</p></li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+  <section id="build-and-deploy-a-static-dashboard-prompt-notes">
+<h1>Build and Deploy a Static Dashboard: Prompt Notes<a class="headerlink" href="#build-and-deploy-a-static-dashboard-prompt-notes" title="Link to this heading">#</a></h1>
+<p>These notes collect the prompts and deployment steps for the static dashboard lesson. The lesson follows <a class="reference internal" href="multi-agent-workflows.html"><span class="doc">Multi-Agent Workflows</span></a>.</p>
+<p>See the GitLab Pages deployment example: <a class="reference external" href="https://dashboard-starter-with-examples-8c1afe.pages.oit.duke.edu/">dashboard-starter-with-examples-8c1afe.pages.oit.duke.edu</a></p>
+<section id="create-a-dashboard">
+<h2>Create a Dashboard<a class="headerlink" href="#create-a-dashboard" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Create a static dashboard website using plain HTML, CSS, and JavaScript that loads data directly at runtime from dashboard_data/digital_material_type_shares_by_year.csv, do not embed it; use Plotly.js to render exactly one interactive chart and one clearly written interesting finding derived from the CSV data, make the page responsive and visually polished.
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+</section>
+<section id="try-a-new-chart">
+<h2>Try a New Chart<a class="headerlink" href="#try-a-new-chart" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Change to a stacked bar chart in Plotly.js
+</pre></div>
 </div>
+</section>
+<section id="try-a-new-library">
+<h2>Try a New Library<a class="headerlink" href="#try-a-new-library" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://plotly.com/javascript/">Plotly.js</a></p></li>
+<li><p><a class="reference external" href="https://echarts.apache.org/examples/en/index.html#chart-type-bar">Apache ECharts</a></p></li>
+<li><p><a class="reference external" href="https://leafletjs.com/examples.html">Leaflet</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Change to Apache Echarts
+</pre></div>
+</div>
+</section>
+<section id="try-the-bar-race-chart">
+<h2>Try the Bar Race Chart<a class="headerlink" href="#try-the-bar-race-chart" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Change to a bar race chart
+</pre></div>
+</div>
+</section>
+<section id="create-a-table">
+<h2>Create a Table<a class="headerlink" href="#create-a-table" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Create a table below the chart showing the most popular material type of each year using AG Grid Community 32
+</pre></div>
+</div>
+</section>
+<section id="create-a-new-data-visualization">
+<h2>Create a New Data Visualization<a class="headerlink" href="#create-a-new-data-visualization" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Create a new data visualization that loads data directly at runtime from dashboard_data/digital_top_sampled_titles_by_year.csv, do not embed it; render exactly one interactive chart and one clearly written interesting finding derived from the CSV data. Adds it below the exisitng ones.
+</pre></div>
+</div>
+</section>
+<section id="create-a-subagent">
+<h2>Create a Subagent<a class="headerlink" href="#create-a-subagent" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Create a repo-local subagent definition for CSV data visualization work, saved under agents/. The subagent should accept a CSV path and output location, inspect the CSV schema first, build a static responsive HTML/CSS/JS visualization, load the CSV directly at runtime with fetch() and never embed data or derived full datasets, use a browser visualization library such as Plotly.js, Apache ECharts, AG Grid Community 32 for tables, or Leaflet for map-style views, render exactly one interactive chart or requested table, compute exactly one clear finding from the runtime-loaded CSV, keep edits scoped to the requested output files, and verify syntax plus confirm the CSV is referenced rather than embedded.
+</pre></div>
+</div>
+</section>
+<section id="use-data-viz-accessibility-skill">
+<h2>Use Data Viz Accessibility Skill<a class="headerlink" href="#use-data-viz-accessibility-skill" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>use $data-viz-accessibility to audit the dashboard
+</pre></div>
+</div>
+</section>
+<section id="deploy-on-gitlab-pages">
+<h2>Deploy on GitLab Pages<a class="headerlink" href="#deploy-on-gitlab-pages" title="Link to this heading">#</a></h2>
+<section id="set-up-ssh-key">
+<h3>Set Up SSH Key<a class="headerlink" href="#set-up-ssh-key" title="Link to this heading">#</a></h3>
+<p>Ensure you have an SSH key added to your Duke OIT GitLab account inside <a class="reference external" href="https://gitlab.oit.duke.edu/">https://gitlab.oit.duke.edu/</a>. If you already have one, continue to the check below. If not, do the following:</p>
+<ol class="arabic simple">
+<li><p>Generate an SSH public/private key pair on your laptop as explained in the <a class="reference external" href="https://gitlab.oit.duke.edu/help/user/ssh.md#generate-an-ssh-key-pair">Duke OIT GitLab SSH documentation</a>.</p></li>
+<li><p>Upload the public half of that key pair to Duke OIT GitLab as explained in the <a class="reference external" href="https://gitlab.oit.duke.edu/help/user/ssh.md#add-an-ssh-key-to-your-gitlab-account">add an SSH key documentation</a>.</p></li>
+</ol>
+<p>To check if you have set up your SSH key successfully, use the following command in your terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-T<span class="w"> </span>git@gitlab.oit.duke.edu
+</pre></div>
+</div>
+<p>You should see the following message, with your NetID filled in for <code class="docutils literal notranslate"><span class="pre">NETID</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Welcome to GitLab, @NETID!
+</pre></div>
+</div>
+</section>
+<section id="set-up-the-repository">
+<h3>Set Up the Repository<a class="headerlink" href="#set-up-the-repository" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Move <code class="docutils literal notranslate"><span class="pre">index.html</span></code>, <code class="docutils literal notranslate"><span class="pre">index.css</span></code>, and <code class="docutils literal notranslate"><span class="pre">dashboard_data/</span></code> into a <code class="docutils literal notranslate"><span class="pre">public/</span></code> folder.</p></li>
+<li><p>Create a new empty repository.</p></li>
+<li><p>Fill in the form. Make sure the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> option is not selected.</p></li>
+<li><p>Add a new origin.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>init<span class="w"> </span>--initial-branch<span class="o">=</span>main
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin2<span class="w"> </span>git@gitlab.oit.duke.edu:ay114/mydashboard.git
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initial commit&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin2<span class="w"> </span>main
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Refresh the GitLab repository and confirm that you can see your code.</p></li>
+</ol>
+</section>
+<section id="set-up-gitlab-pages">
+<h3>Set Up GitLab Pages<a class="headerlink" href="#set-up-gitlab-pages" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Visit <strong>Settings -&gt; General -&gt; Visibility</strong>.</p></li>
+<li><p>Make sure the GitLab Pages setting is on.</p></li>
+<li><p>Go to <strong>Deploy -&gt; Pages</strong>, create a runner, and copy and paste the following setting:</p></li>
+</ol>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alpine:latest</span>
+
+<span class="nt">pages</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy</span>
+<span class="w">  </span><span class="nt">script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;Deploying static assets...&quot;</span>
+<span class="w">  </span><span class="nt">artifacts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public</span>
+<span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;$CI_COMMIT_BRANCH</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">&quot;main&quot;&#39;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Press commit. This step will generate a <code class="docutils literal notranslate"><span class="pre">.gitlab-ci.yml</span></code> file.</p></li>
+<li><p>Check the pipeline.</p></li>
+<li><p>View the pipeline and see it run.</p></li>
+<li><p>When the pipeline succeeds, visit the Pages link.</p></li>
+<li><p>Confirm that the dashboard is deployed.</p></li>
+</ol>
+</section>
+</section>
+<section id="discuss">
+<h2>Discuss<a class="headerlink" href="#discuss" title="Link to this heading">#</a></h2>
+</section>
 </section>
 
 
@@ -527,20 +576,20 @@ implementation tasks.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../session-2-reusable-skills/agent-skills.html"
+       href="multi-agent-workflows.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Agent Skills</p>
+        <p class="prev-next-title">Multi-Agent Workflows</p>
       </div>
     </a>
     <a class="right-next"
-       href="building-datasets-with-codex.html"
+       href="open-dataset-starting-points.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Building Datasets with Codex</p>
+        <p class="prev-next-title">Open Dataset Starting Points</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -556,9 +605,35 @@ implementation tasks.</p>
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-dashboard">Create a Dashboard</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-a-new-chart">Try a New Chart</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-a-new-library">Try a New Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-the-bar-race-chart">Try the Bar Race Chart</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-table">Create a Table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-data-visualization">Create a New Data Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-subagent">Create a Subagent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-data-viz-accessibility-skill">Use Data Viz Accessibility Skill</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-on-gitlab-pages">Deploy on GitLab Pages</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-ssh-key">Set Up SSH Key</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-repository">Set Up the Repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-gitlab-pages">Set Up GitLab Pages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discuss">Discuss</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/session-3-analysis-to-dashboard/index.rst.txt">
+    <a href="../_sources/session-3-analysis-to-dashboard/static-dashboard-prompts.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
